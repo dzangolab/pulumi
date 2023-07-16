@@ -11,7 +11,7 @@
         "lib": [
             "es2021"
         ],
-        "module": "commonjs",
+        "module": "es2022",
         "moduleResolution": "node",
         "noFallthroughCasesInSwitch": true,
         "noImplicitReturns": true,

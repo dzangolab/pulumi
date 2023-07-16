@@ -1,5 +1,5 @@
 .eslintrc.cjs
 dist
 node_modules
-ship.config.js
+ship.config.cjs
 vite.config.ts
