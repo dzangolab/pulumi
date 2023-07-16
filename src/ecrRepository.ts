@@ -2,15 +2,14 @@ import { LifecyclePolicy, Repository, RepositoryArgs } from "@pulumi/aws/ecr";
 import { ComponentResource, ComponentResourceOptions } from "@pulumi/pulumi";
 
 export class ECRRepository extends ComponentResource {
-  policy: LifecyclePolicy;
-  repo: Repository;
+  private repo: Repository;
 
   constructor(
     name: string,
     args: RepositoryArgs,
     opts?: ComponentResourceOptions,
   ) {
-    super("dzangolab:ECRRepository", name, args, opts);
+    super("dzangolab:pulumi:ECRRepository", name, args, opts);
 
     this.repo = new Repository(
       name,
@@ -21,26 +20,33 @@ export class ECRRepository extends ComponentResource {
       opts,
     );
 
-    this.policy = new LifecyclePolicy(name, {
-      repository: this.repo.name,
-      policy: `{
-                    "rules": [
-                        {
-                            "rulePriority": 1,
-                            "description": "Expire untagged images older than 1 day",
-                            "selection": {
-                                "tagStatus": "untagged",
-                                "countType": "sinceImagePushed",
-                                "countUnit": "days",
-                                "countNumber": 1
-                            },
-                            "action": {
-                                "type": "expire"
-                            }
-                        }
-                    ]
-                }`,
-    });
+    new LifecyclePolicy(
+      name,
+      {
+        repository: this.repo.name,
+        policy: `{
+          "rules": [
+              {
+                  "rulePriority": 1,
+                  "description": "Expire untagged images older than 1 day",
+                  "selection": {
+                      "tagStatus": "untagged",
+                      "countType": "sinceImagePushed",
+                      "countUnit": "days",
+                      "countNumber": 1
+                  },
+                  "action": {
+                      "type": "expire"
+                  }
+              }
+          ]
+      }`,
+      },
+      {
+        ...opts,
+        parent: this,
+      },
+    );
 
     this.registerOutputs({
       arn: this.repo.arn,
