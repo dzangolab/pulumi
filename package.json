@@ -1,0 +1,34 @@
+{
+    "name": "@dzangolab/pulumi",
+    "version": "0.1.0",
+    "keywords": [
+        "pulumi",
+        "AWS",
+        "ECR"
+    ],
+    "bugs": {
+        "url": "https://github.com/dzangolab/pulumi/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dzangolab/pulumi-utils.git"
+    },
+    "license": "MIT",
+    "main": "index.ts",
+    "scripts": {
+        "prepare": "husky install",
+        "sort-package": "npx sort-package-json"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "17.6.6",
+        "@commitlint/config-conventional": "17.6.6",
+        "@types/node": "20.4.2",
+        "husky": "8.0.3",
+        "shipjs": "0.26.3",
+        "sort-package-json": "2.5.1"
+    },
+    "peerDependencies": {
+        "@pulumi/aws": "5.42.0",
+        "@pulumi/pulumi": "3.75.0"
+    }
+}
