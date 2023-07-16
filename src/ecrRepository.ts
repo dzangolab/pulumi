@@ -43,8 +43,11 @@ export class ECRRepository extends ComponentResource {
     });
 
     this.registerOutputs({
+      arn: this.repo.arn,
       id: this.repo.id,
-      name: this.repo.name,
+      registryId: this.repo.registryId,
+      repositoryUrl: this.repo.repositoryUrl,
+      tagsAll: this.repo.tagsAll,
     });
   }
 }
