@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/dzangolab/pulumi/compare/v0.2.0...v0.2.1) (2023-07-16)
+
+
+### Bug Fixes
+
+* **ECRRepository:** cleanup code ([52d6b85](https://github.com/dzangolab/pulumi/commit/52d6b85796a788490abd0da2476dce4df37e88a9))
+
+
+
 # [0.2.0](https://github.com/dzangolab/pulumi/compare/v0.1.6...v0.2.0) (2023-07-16)
 
 
