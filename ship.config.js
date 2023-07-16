@@ -1,6 +1,5 @@
 module.exports = {
-  appName: "@dzangolab/pulumi",
-  publishCommand: ({ isYarn, tag, defaultCommand, dir }) => {
-    return `${defaultCommand} --access public`;
-  }
+  publishCommand: ({ defaultCommand, tag }) =>
+    `${defaultCommand} --access public --tag ${tag}`,
+  buildCommand: () => null,
 };
