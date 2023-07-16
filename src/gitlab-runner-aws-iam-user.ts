@@ -1,8 +1,8 @@
-import * as aws from "@pulumi/aws";
-import * as gitlab from "@pulumi/gitlab";
+import { AccessKey, User, UserGroupMembership, UserPolicyAttachment } from "@pulumi/aws/iam";
+import { Group, GroupVariable } from "@pulumi/gitlab";
 import { ComponentResource, ComponentResourceOptions } from "@pulumi/pulumi";
 
-export interface GitlabRunnerUserOptions {
+export interface GitlabRunnerAWSIAMUserOptions {
     forceDestroy?: boolean,
     gitlabGroupName: string;
     groupName: string;
@@ -12,14 +12,18 @@ export interface GitlabRunnerUserOptions {
     tags?: { [key: string]: string };
 };
 
-export class GitlabRunnerUser extends ComponentResource {
-    accessKey: aws.iam.AccessKey;
-    runner: aws.iam.User;
+export class GitlabRunnerAWSIAMUser extends ComponentResource {
+    accessKey: AccessKey;
+    runner: User;
 
-    constructor(name: string, args: GitlabRunnerUserOptions, opts?: ComponentResourceOptions) {
+    constructor(
+        name: string,
+        args: GitlabRunnerAWSIAMUserOptions,
+        opts?: ComponentResourceOptions
+    ) {
         super("dzango:gitlabRunnerUser", name, args, opts);
 
-        this.runner = new aws.iam.User(
+        this.runner = new User(
             name,
             {
                 forceDestroy: args.forceDestroy,
@@ -31,7 +35,7 @@ export class GitlabRunnerUser extends ComponentResource {
             opts
         );
 
-        new aws.iam.UserGroupMembership(
+        new UserGroupMembership(
             `${name}-${args.groupName}`,
             {
                 groups: [args.groupName],
@@ -44,7 +48,7 @@ export class GitlabRunnerUser extends ComponentResource {
             }
         );
 
-        new aws.iam.UserPolicyAttachment(
+        new UserPolicyAttachment(
             `${name}-ecr-power-user`,
             {
                 policyArn: "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser",
@@ -57,7 +61,7 @@ export class GitlabRunnerUser extends ComponentResource {
             }
         );
 
-        this.accessKey = new aws.iam.AccessKey(
+        this.accessKey = new AccessKey(
             `${name}-access-key`,
             {
                 user: this.runner.name,
@@ -71,10 +75,10 @@ export class GitlabRunnerUser extends ComponentResource {
         );
 
         // Get the Gitlab Group
-        const gitlabGroup = gitlab.Group.get(args.gitlabGroupName, args.gitlabGroupName);
+        const gitlabGroup = Group.get(args.gitlabGroupName, args.gitlabGroupName);
 
         // Add the secret access key to the Gitlab group as a GroupVariable
-        const secretAccessKeyVariable = new gitlab.GroupVariable(
+        new GroupVariable(
             `${args.gitlabGroupName}-secret-access-key`,
             {
                 environmentScope: "*",
@@ -93,7 +97,7 @@ export class GitlabRunnerUser extends ComponentResource {
         );
 
         // Add the access key id to the Gitlab group as a GroupVariable
-        const accessKeyIdVariable = new gitlab.GroupVariable(
+        new GroupVariable(
             `${args.gitlabGroupName}-access-key-id`,
             {
                 environmentScope: "*",
