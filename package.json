@@ -17,6 +17,7 @@
     "main": "index.ts",
     "scripts": {
         "prepare": "husky install",
+        "release": "shipjs prepare",
         "sort-package": "npx sort-package-json"
     },
     "devDependencies": {
