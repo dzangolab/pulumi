@@ -1,7 +1,2 @@
-import { ECRRepository } from "./ecr-repository";
-import { GitlabRunnerAWSIAMUser } from "./gitlab-runner-aws-iam-user";
-
-export {
-    ECRRepository,
-    GitlabRunnerAWSIAMUser,
-}
+export { ECRRepository } from "./ecrRepository";
+export { GitlabRunnerAWSIAMUser } from "./gitlabRunnerAwsIamUser";

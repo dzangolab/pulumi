@@ -1,37 +1,29 @@
-import {
-    LifecyclePolicy,
-    Repository
-} from "@pulumi/aws/ecr";
+import { LifecyclePolicy, Repository, RepositoryArgs } from "@pulumi/aws/ecr";
 import { ComponentResource, ComponentResourceOptions } from "@pulumi/pulumi";
 
-export interface ECRRepositoryOptions {
-    name: string;
-}
-
 export class ECRRepository extends ComponentResource {
-    policy: LifecyclePolicy;
-    repo: Repository;
+  policy: LifecyclePolicy;
+  repo: Repository;
 
-    constructor(
-        name: string,
-        args: ECRRepositoryOptions,
-        opts?: ComponentResourceOptions
-    ) {
-        super("dzangolab:ECRRepository", name, args, opts);
+  constructor(
+    name: string,
+    args: RepositoryArgs,
+    opts?: ComponentResourceOptions,
+  ) {
+    super("dzangolab:ECRRepository", name, args, opts);
 
-        this.repo = new Repository(
-            name,
-            {
-                name: name
-            },
-            opts
-        );
+    this.repo = new Repository(
+      name,
+      {
+        name,
+        ...args,
+      },
+      opts,
+    );
 
-        new LifecyclePolicy(
-            name,
-            {
-                repository: this.repo.name,
-                policy: `{
+    this.policy = new LifecyclePolicy(name, {
+      repository: this.repo.name,
+      policy: `{
                     "rules": [
                         {
                             "rulePriority": 1,
@@ -48,13 +40,11 @@ export class ECRRepository extends ComponentResource {
                         }
                     ]
                 }`,
-            }
-        );
+    });
 
-
-        this.registerOutputs({
-            id: this.repo.id,
-            name: this.repo.name,
-        });
-    }
+    this.registerOutputs({
+      id: this.repo.id,
+      name: this.repo.name,
+    });
+  }
 }

@@ -3,7 +3,7 @@ version = 0.1
 
 build:
 	@printf "\033[0;32m>>> Build packages\033[0m\n"
-	npm build
+	npm run build
 
 install:
 	@printf "\033[0;32m>>> Installing dependencies\033[0m\n"
@@ -11,11 +11,11 @@ install:
 
 lint:
 	@printf "\033[0;32m>>> Lint code\033[0m\n"
-	npm lint
+	npm run lint
 
 lint.fix:
 	@printf "\033[0;32m>>> Lint code\033[0m\n"
-	npm lint:fix
+	npm run lint:fix
 
 outdated:
 	@printf "\033[0;32m>>> Check for outdated dependencies\033[0m\n"
