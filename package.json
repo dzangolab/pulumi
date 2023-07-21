@@ -63,7 +63,7 @@
   "peerDependencies": {
     "@pulumi/aws": "5.42.0",
     "@pulumi/gitlab": "6.1.0",
-    "@pulumi/pulumi": "3.75.0"
+    "@pulumi/pulumi": "3.76.0"
   },
   "engines": {
     "node": ">=16"
