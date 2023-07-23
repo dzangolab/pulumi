@@ -1,8 +1,16 @@
 import { LifecyclePolicy, Repository, RepositoryArgs } from "@pulumi/aws/ecr";
-import { ComponentResource, ComponentResourceOptions } from "@pulumi/pulumi";
+import {
+  ComponentResource,
+  ComponentResourceOptions,
+  Output,
+} from "@pulumi/pulumi";
 
 export class ECRRepository extends ComponentResource {
-  private repo: Repository;
+  arn: Output<string>;
+  id: Output<string>;
+  registryId: Output<string>;
+  repositoryUrl: Output<string>;
+  tagsAll: Output<{ [key: string]: string }>;
 
   constructor(
     name: string,
@@ -11,7 +19,7 @@ export class ECRRepository extends ComponentResource {
   ) {
     super("dzangolab:pulumi:ECRRepository", name, args, opts);
 
-    this.repo = new Repository(
+    const repo = new Repository(
       name,
       {
         name,
@@ -23,7 +31,7 @@ export class ECRRepository extends ComponentResource {
     new LifecyclePolicy(
       name,
       {
-        repository: this.repo.name,
+        repository: repo.name,
         policy: `{
           "rules": [
               {
@@ -48,12 +56,12 @@ export class ECRRepository extends ComponentResource {
       },
     );
 
-    this.registerOutputs({
-      arn: this.repo.arn,
-      id: this.repo.id,
-      registryId: this.repo.registryId,
-      repositoryUrl: this.repo.repositoryUrl,
-      tagsAll: this.repo.tagsAll,
-    });
+    this.arn = repo.arn;
+    this.id = repo.id;
+    this.registryId = repo.registryId;
+    this.repositoryUrl = repo.repositoryUrl;
+    this.tagsAll = repo.tagsAll;
+
+    this.registerOutputs();
   }
 }
