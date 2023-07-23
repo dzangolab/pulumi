@@ -147,7 +147,7 @@ export class Droplet extends ComponentResource {
 
   private generateUserData(
     template: string,
-    context: { [key: string]: string | unknown },
+    context: DropletArguments,
   ): string {
     const env = new Environment([
       new FileSystemLoader(),
@@ -155,20 +155,6 @@ export class Droplet extends ComponentResource {
     ]);
 
     return env.render(template, context);
-
-    /*,
-        {
-          groups: "docker, sudo",
-          ssh_keys: publicKeys,
-          username,
-          volumes: [
-            {
-              name: volumeName,
-              path: "/mnt/data",
-            }
-          ]
-        }
-      );*/
   }
 
   private getSshKeys(keyNames: string[]) {
