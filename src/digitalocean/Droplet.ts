@@ -2,7 +2,7 @@ import { local } from "@pulumi/command";
 import {
   Droplet as DODroplet,
   DropletArgs as DODropletArguments,
-  Firewall,
+  // Firewall,
   getSshKeysOutput,
   ProjectResources,
   ReservedIpAssignment,
@@ -145,7 +145,10 @@ export class Droplet extends ComponentResource {
     this.registerOutputs();
   }
 
-  private generateUserData(template: string, context: Object): string {
+  private generateUserData(
+    template: string,
+    context: { [key: string]: string | unknown },
+  ): string {
     const env = new Environment([
       new FileSystemLoader(),
       new NodeResolveLoader(),
