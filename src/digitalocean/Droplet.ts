@@ -1,25 +1,21 @@
 import { local } from "@pulumi/command";
 import {
   Droplet as DODroplet,
-  DropletArgs as DODropletArgs,
+  DropletArgs as DODropletArguments,
   Firewall,
   getSshKeysOutput,
   ProjectResources,
-  ReservedIpAssignment
+  ReservedIpAssignment,
 } from "@pulumi/digitalocean";
 import {
   ComponentResource,
   ComponentResourceOptions,
   interpolate,
-  Output
+  Output,
 } from "@pulumi/pulumi";
-import {
-  Environment,
-  FileSystemLoader,
-  NodeResolveLoader
-} from "nunjucks";
+import { Environment, FileSystemLoader, NodeResolveLoader } from "nunjucks";
 
-export interface DropletArgs extends DODropletArgs {
+export interface DropletArguments extends DODropletArguments {
   packages?: string[];
   projectId?: string;
   reservedIpId?: string;
@@ -29,10 +25,10 @@ export interface DropletArgs extends DODropletArgs {
   userDataTemplate?: string;
   users: User[];
   volumes?: Volume[];
-};
+}
 
 export interface User {
-  groups: string
+  groups: string;
   publicKeys: string[];
   username: string;
 }
@@ -60,25 +56,21 @@ export class Droplet extends ComponentResource {
 
   constructor(
     name: string,
-    args: DropletArgs,
+    args: DropletArguments,
     opts?: ComponentResourceOptions,
   ) {
     super("dzangolab:pulumi:digitalocean:Droplet", name, args, opts);
 
-    const doArgs = {
+    const doArguments = {
       ...args,
       sshKeys: this.getSshKeys(args.sshKeyNames),
       userData: this.generateUserData(
         args.userDataTemplate || "./cloud-config.njx",
         args,
-      )
+      ),
     };
 
-    const droplet = new DODroplet(
-      name,
-      doArgs,
-      opts
-    );
+    const droplet = new DODroplet(name, doArguments, opts);
 
     // Add droplet to project
     if (args.projectId) {
@@ -86,14 +78,12 @@ export class Droplet extends ComponentResource {
         "name",
         {
           project: args.projectId,
-          resources: [
-            droplet.dropletUrn,
-          ],
+          resources: [droplet.dropletUrn],
         },
         {
           dependsOn: droplet,
           parent: droplet,
-        }
+        },
       );
     }
 
@@ -103,12 +93,12 @@ export class Droplet extends ComponentResource {
         name,
         {
           ipAddress: args.reservedIpId,
-          dropletId: droplet.id.apply(id => Number(id)),
+          dropletId: droplet.id.apply(Number),
         },
         {
           dependsOn: droplet,
           parent: droplet,
-        }
+        },
       );
     }
 
@@ -125,18 +115,18 @@ export class Droplet extends ComponentResource {
     );
     */
 
-    var ipAddress = args.reservedIpId || droplet.ipv4Address;
+    const ipAddress = args.reservedIpId || droplet.ipv4Address;
 
     new local.Command(
       "addOrRemoveDropletToOrFromKnownHosts",
       {
         create: interpolate`sleep 30 && ssh-keyscan ${ipAddress} 2>&1 | grep -vE '^#' >> ~/.ssh/known_hosts`,
-        delete: interpolate`sed -i -e '/^${ipAddress} .*/d' ~/.ssh/known_hosts`
+        delete: interpolate`sed -i -e '/^${ipAddress} .*/d' ~/.ssh/known_hosts`,
       },
       {
         dependsOn: droplet,
         parent: droplet,
-      }
+      },
     );
 
     this.createdAt = droplet.createdAt;
@@ -155,19 +145,13 @@ export class Droplet extends ComponentResource {
     this.registerOutputs();
   }
 
-  private generateUserData(
-    template: string,
-    context: Object,
-  ): string {
+  private generateUserData(template: string, context: Object): string {
     const env = new Environment([
       new FileSystemLoader(),
       new NodeResolveLoader(),
     ]);
 
-    return env.render(
-      template,
-      context
-    );
+    return env.render(template, context);
 
     /*,
         {
@@ -186,13 +170,16 @@ export class Droplet extends ComponentResource {
 
   private getSshKeys(keyNames: string[]) {
     const keys = getSshKeysOutput({
-      filters: [{
-        key: "name",
-        values: keyNames
-        ,
-      }],
+      filters: [
+        {
+          key: "name",
+          values: keyNames,
+        },
+      ],
     });
 
-    return keys.apply(keys => keys.sshKeys.map(key => key.id as unknown as string));
+    return keys.apply((keys) =>
+      keys.sshKeys.map((key) => key.id as unknown as string),
+    );
   }
 }

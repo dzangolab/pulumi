@@ -1,7 +1,7 @@
 import { interpolate } from "@pulumi/pulumi";
 
 import { getConfig } from "./config";
-import { Droplet } from "../../../src/digitalocean/Droplet";
+import { Droplet } from "../../../src/digitalocean/droplet";
 
 export = async () => {
   const config = await getConfig();

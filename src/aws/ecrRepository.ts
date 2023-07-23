@@ -1,43 +1,30 @@
-import { local } from "@pulumi/command";
-import {
-    Droplet,
-    Firewall,
-    getSshKeysOutput,
-    ProjectResources,
-    ReservedIpAssignment
-} from "@pulumi/digitalocean";
-import {
-    ComponentResource,
-    ComponentResourceOptions,
-    getStack,
-    interpolate
-} from "@pulumi/pulumi";
-import * as fs from "fs";
-import { render } from "nunjucks";
+import { LifecyclePolicy, Repository, RepositoryArgs } from "@pulumi/aws/ecr";
+import { ComponentResource, ComponentResourceOptions } from "@pulumi/pulumi";
+
 export class ECRRepository extends ComponentResource {
-    private repo: Repository;
+  private repo: Repository;
 
-    constructor(
-        name: string,
-        args: RepositoryArgs,
-        opts?: ComponentResourceOptions,
-    ) {
-        super("dzangolab:pulumi:ECRRepository", name, args, opts);
+  constructor(
+    name: string,
+    args: RepositoryArgs,
+    opts?: ComponentResourceOptions,
+  ) {
+    super("dzangolab:pulumi:ECRRepository", name, args, opts);
 
-        this.repo = new Repository(
-            name,
-            {
-                name,
-                ...args,
-            },
-            opts,
-        );
+    this.repo = new Repository(
+      name,
+      {
+        name,
+        ...args,
+      },
+      opts,
+    );
 
-        new LifecyclePolicy(
-            name,
-            {
-                repository: this.repo.name,
-                policy: `{
+    new LifecyclePolicy(
+      name,
+      {
+        repository: this.repo.name,
+        policy: `{
           "rules": [
               {
                   "rulePriority": 1,
@@ -54,19 +41,19 @@ export class ECRRepository extends ComponentResource {
               }
           ]
       }`,
-            },
-            {
-                ...opts,
-                parent: this,
-            },
-        );
+      },
+      {
+        ...opts,
+        parent: this,
+      },
+    );
 
-        this.registerOutputs({
-            arn: this.repo.arn,
-            id: this.repo.id,
-            registryId: this.repo.registryId,
-            repositoryUrl: this.repo.repositoryUrl,
-            tagsAll: this.repo.tagsAll,
-        });
-    }
+    this.registerOutputs({
+      arn: this.repo.arn,
+      id: this.repo.id,
+      registryId: this.repo.registryId,
+      repositoryUrl: this.repo.repositoryUrl,
+      tagsAll: this.repo.tagsAll,
+    });
+  }
 }
