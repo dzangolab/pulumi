@@ -1,0 +1,12 @@
+config:
+  droplet:image: docker-20-04
+  droplet:name: test
+  droplet:projectId: PROJECT_ID
+  droplet:publicKeys:
+    - PUBLIC_KEY
+  droplet:region: ams3
+  droplet:size: s-1vcpu-2gb
+  droplet:sshKeyNames:
+    - DO_SSH_KEY_NAME
+  droplet:userDataTemplate: cloud-config.njx
+  droplet:vpcUuid: VPC_UUID

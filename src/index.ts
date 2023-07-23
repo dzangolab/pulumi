@@ -1,2 +1,2 @@
-export { ECRRepository } from "./ecrRepository";
-export { GitlabRunnerAWSIAMUser } from "./gitlabRunnerAwsIamUser";
+export { default as aws } from "./aws";
+export { default as digitalocean } from "./digitalocean";
