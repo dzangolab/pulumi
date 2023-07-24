@@ -1,0 +1,3 @@
+name: app-user
+runtime: nodejs
+description: Example usage of @dzangolab/pulumi/aws/AppUser
