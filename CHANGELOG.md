@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/dzangolab/pulumi/compare/v0.4.0...v0.5.0) (2023-07-24)
+
+
+### Features
+
+* **aws/AppSecret:** implement AppSecret coponent resource ([a7e3556](https://github.com/dzangolab/pulumi/commit/a7e35562c26297d66242eb65b122df4e4caa3b3e))
+
+
+
 ## [0.4.1](https://github.com/dzangolab/pulumi/compare/v0.4.0...v0.4.1) (2023-07-24)
 
 
