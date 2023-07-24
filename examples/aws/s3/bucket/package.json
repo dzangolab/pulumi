@@ -1,0 +1,11 @@
+{
+  "name": "bucket",
+  "main": "index.ts",
+  "devDependencies": {
+    "@types/node": "20.4.4"
+  },
+  "dependencies": {
+    "@pulumi/aws": "5.42.0",
+    "@pulumi/pulumi": "3.76.0"
+  }
+}
