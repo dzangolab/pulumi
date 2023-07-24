@@ -20,7 +20,7 @@ export class S3Bucket extends ComponentResource {
 
     const bucket = new Bucket(name, args, {
       ...opts,
-      parent: this
+      parent: this,
     });
 
     const policy = new Policy(
@@ -43,8 +43,8 @@ export class S3Bucket extends ComponentResource {
                 Resource: `${arn}/*`,
               },
             ],
-          })
-        )
+          }),
+        ),
       },
       {
         dependsOn: bucket,
