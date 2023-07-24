@@ -3,7 +3,7 @@
 
 ### Features
 
-* **aws/AppSecret:** implement AppSecret coponent resource ([a7e3556](https://github.com/dzangolab/pulumi/commit/a7e35562c26297d66242eb65b122df4e4caa3b3e))
+* **aws/AppSecret:** implement AppSecret component resource ([a7e3556](https://github.com/dzangolab/pulumi/commit/a7e35562c26297d66242eb65b122df4e4caa3b3e))
 
 
 
