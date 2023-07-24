@@ -1,3 +1,12 @@
+# [0.6.0](https://github.com/dzangolab/pulumi/compare/v0.5.2...v0.6.0) (2023-07-24)
+
+
+### Features
+
+* **aws/AppUser:** add AppUser component resource ([f64873b](https://github.com/dzangolab/pulumi/commit/f64873bb77d4a26c7a41f21b779af2e2abd7b36f))
+
+
+
 ## [0.5.2](https://github.com/dzangolab/pulumi/compare/v0.5.1...v0.5.2) (2023-07-24)
 
 
