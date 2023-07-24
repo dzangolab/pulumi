@@ -1,3 +1,19 @@
+# [0.4.0](https://github.com/dzangolab/pulumi/compare/v0.3.2...v0.4.0) (2023-07-24)
+
+
+### Bug Fixes
+
+* **aws/s3bucket:** fix S3Bucket component resource ([ef33352](https://github.com/dzangolab/pulumi/commit/ef333522de07fcea38e01651da7f39c48c6cc992))
+* **aws/s3bucket:** fix S3Bucket component resource ([daf718d](https://github.com/dzangolab/pulumi/commit/daf718db598ddf74b849836ca266707884e824e6))
+
+
+### Features
+
+* **aws/s3bucket:** add S3Bucket example ([edd719c](https://github.com/dzangolab/pulumi/commit/edd719c8e7e152efea247d114fc95f2e80267b3d))
+* **digitalocean/droplet:** fix config example filename ([fe26489](https://github.com/dzangolab/pulumi/commit/fe26489880ef0d9a24e2fb9a19bfe3c9659e5ca9))
+
+
+
 ## [0.3.2](https://github.com/dzangolab/pulumi/compare/v0.2.2...v0.3.2) (2023-07-23)
 
 
