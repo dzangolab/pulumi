@@ -1,5 +1,5 @@
 import { Droplet } from "./droplet";
 
-export default {
+export const digitalocean = {
   Droplet,
 };

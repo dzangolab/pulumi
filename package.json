@@ -65,13 +65,13 @@
     "nunjucks": "3.2.4"
   },
   "peerDependencies": {
-    "@pulumi/aws": "5.42.0",
-    "@pulumi/command": "0.7.2",
-    "@pulumi/digitalocean": "4.20.0",
-    "@pulumi/gitlab": "6.1.1",
-    "@pulumi/pulumi": "3.76.0",
-    "@types/nunjucks": "3.2.3",
-    "nunjucks": "3.2.4"
+    "@pulumi/aws": "^5.42.0",
+    "@pulumi/command": "^0.7.2",
+    "@pulumi/digitalocean": "^4.20.0",
+    "@pulumi/gitlab": "^6.1.1",
+    "@pulumi/pulumi": "^3.76.0",
+    "@types/nunjucks": "^3.2.3",
+    "nunjucks": "^3.2.4"
   },
   "engines": {
     "node": ">=16"
