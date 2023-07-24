@@ -9,8 +9,6 @@ import {
   all,
   ComponentResource,
   ComponentResourceOptions,
-  getOrganization,
-  getStack,
   Output,
 } from "@pulumi/pulumi";
 
@@ -31,16 +29,13 @@ export class AppSecret extends ComponentResource {
   ) {
     super("dzangolab:pulumi:AppSecret", name, args, opts);
 
-    const organization = getOrganization();
-    const stack = getStack();
-
-    const secret = new Secret(`${organization}-${stack}`, args, {
+    const secret = new Secret(name, args, {
       ...opts,
       parent: this,
     });
 
     const policy = new Policy(
-      `${organization}-${stack}-secret`,
+      `${name}-secret-read-write`,
       {
         path: "/",
         description: `Read/write access to secret ${name}`,
@@ -93,7 +88,7 @@ export class AppSecret extends ComponentResource {
       },
     );
 
-    new SecretVersion(`${organization}-${stack}`, {
+    new SecretVersion(name, {
       secretId: secret.id,
       secretString: all([
         postgresPassword,
