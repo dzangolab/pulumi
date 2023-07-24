@@ -18,34 +18,39 @@ export class S3Bucket extends ComponentResource {
   constructor(name: string, args: BucketArgs, opts?: ComponentResourceOptions) {
     super("dzangolab:pulumi:S3Bucket", name, args, opts);
 
-    const bucket = new Bucket(name, args, opts);
-
-    const policy = new Policy(`${name}-s3-rw`, {
-      path: "/",
-      description: `RW access to S3 bucket ${name}`,
-      policy: JSON.stringify([
-        {
-          Version: "2012-10-17",
-          Statement: [
-            {
-              Action: ["S3:ListBucket"],
-              Effect: "Allow",
-              Resource: bucket.arn,
-            },
-          ],
-        },
-        {
-          Version: "2012-10-17",
-          Statement: [
-            {
-              Action: ["S3:PutBucket", "S3:GetObject"],
-              Effect: "Allow",
-              Resource: `${bucket.arn}/*`,
-            },
-          ],
-        },
-      ]),
+    const bucket = new Bucket(name, args, {
+      ...opts,
+      parent: this
     });
+
+    const policy = new Policy(
+      `${name}-s3-rw`,
+      {
+        path: "/",
+        description: `RW access to S3 bucket ${name}`,
+        policy: bucket.arn.apply((arn) =>
+          JSON.stringify({
+            Version: "2012-10-17",
+            Statement: [
+              {
+                Action: ["S3:ListBucket"],
+                Effect: "Allow",
+                Resource: arn,
+              },
+              {
+                Action: ["S3:PutObject", "S3:GetObject"],
+                Effect: "Allow",
+                Resource: `${arn}/*`,
+              },
+            ],
+          })
+        )
+      },
+      {
+        dependsOn: bucket,
+        parent: bucket,
+      },
+    );
 
     this.arn = bucket.arn;
     this.bucketDomainName = bucket.bucketDomainName;
