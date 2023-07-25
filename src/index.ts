@@ -1,2 +1,7 @@
-export { aws } from "./aws";
-export { digitalocean } from "./digitalocean";
+import { aws } from "./aws";
+import { digitalocean } from "./digitalocean";
+
+export default {
+    aws,
+    digitalocean,
+}
