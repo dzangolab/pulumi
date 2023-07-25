@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/dzangolab/pulumi/compare/v0.6.7...v0.7.0) (2023-07-25)
+
+
+### Features
+
+* update examples ([1da51d1](https://github.com/dzangolab/pulumi/commit/1da51d17e2cf9ca8398787cf13005f5c0d98cabf))
+
+
+
 ## [0.6.7](https://github.com/dzangolab/pulumi/compare/v0.6.6...v0.6.7) (2023-07-25)
 
 
