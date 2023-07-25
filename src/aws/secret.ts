@@ -10,7 +10,7 @@ import {
   Output,
 } from "@pulumi/pulumi";
 
-export interface AppSecretArguments extends SecretArgs {
+export interface SecretArguments extends SecretArgs {
   secrets: { [key: string]: string };
 }
 
@@ -22,7 +22,7 @@ export class Secret extends ComponentResource {
 
   constructor(
     name: string,
-    args: AppSecretArguments,
+    args: SecretArguments,
     opts?: ComponentResourceOptions,
   ) {
     super("dzangolab:pulumi:AppSecret", name, args, opts);
