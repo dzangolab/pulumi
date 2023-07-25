@@ -5,5 +5,6 @@ export const getConfig = async () => {
 
   return {
     name: stackConfig.require("name"),
+    recoveryWindowInDays: stackConfig.getNumber("recoveryWindowInDays"),
   };
 };

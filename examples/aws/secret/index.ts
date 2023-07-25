@@ -7,6 +7,7 @@ export = async () => {
   const config = await getConfig();
 
   const secret = new aws.Secret(config.name, {
+    recoveryWindowInDays: config.recoveryWindowInDays,
     secrets: {
       "postgres-password": "XYZ",
       "postgres-root-password": "ABC",
