@@ -24,6 +24,7 @@ export default defineConfig(({ mode }) => {
             "@pulumi/aws": "AWS",
             "@pulumi/gitlab": "Gitlab",
             "@pulumi/pulumi": "Pulumi",
+            "nunjucks": "Nunjucks",
           },
         },
       },
