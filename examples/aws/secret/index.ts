@@ -1,15 +1,14 @@
+import { aws } from "@dzangolab/pulumi";
 import { interpolate } from "@pulumi/pulumi";
 
 import { getConfig } from "./config";
-/* eslint-disable-next-line node/no-unpublished-import */
-import { Secret } from "../../../src/aws/secret";
 
 export = async () => {
   const config = await getConfig();
 
-  const secret = new Secret(config.name, {
+  const secret = new aws.Secret(config.name, {
     secrets: {
-      "postgres- password": "XYZ",
+      "postgres-password": "XYZ",
       "postgres-root-password": "ABC",
     },
   });
