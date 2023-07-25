@@ -1,3 +1,12 @@
+## [0.6.7](https://github.com/dzangolab/pulumi/compare/v0.6.6...v0.6.7) (2023-07-25)
+
+
+### Bug Fixes
+
+* **digitalocean/Droplet:** fix example ([a6b31f1](https://github.com/dzangolab/pulumi/commit/a6b31f1e78b492af3bf6dd4282bab44430a3929b))
+
+
+
 ## [0.6.6](https://github.com/dzangolab/pulumi/compare/v0.6.5...v0.6.6) (2023-07-25)
 
 
