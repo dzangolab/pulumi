@@ -1,3 +1,12 @@
+## [0.7.1](https://github.com/dzangolab/pulumi/compare/v0.7.0...v0.7.1) (2023-07-25)
+
+
+### Features
+
+* **aws/secret:** update example ([7ef175f](https://github.com/dzangolab/pulumi/commit/7ef175f316482144a9de6cd68f86ad62cb206f47))
+
+
+
 # [0.7.0](https://github.com/dzangolab/pulumi/compare/v0.6.7...v0.7.0) (2023-07-25)
 
 
