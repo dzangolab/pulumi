@@ -17,7 +17,10 @@ export default defineConfig(({ mode }) => {
         name: "DzangolabPulumi",
       },
       rollupOptions: {
-        external: Object.keys(peerDependencies),
+        external: [
+          ...Object.keys(peerDependencies),
+          "nunjucks",
+        ],
         output: {
           exports: "named",
           globals: {
