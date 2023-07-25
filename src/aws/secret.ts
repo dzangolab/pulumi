@@ -1,0 +1,71 @@
+import { Policy } from "@pulumi/aws/iam";
+import {
+  Secret as AWSSecret,
+  SecretArgs,
+  SecretVersion,
+} from "@pulumi/aws/secretsmanager";
+import {
+  ComponentResource,
+  ComponentResourceOptions,
+  Output,
+} from "@pulumi/pulumi";
+
+export interface AppSecretArguments extends SecretArgs {
+  secrets: { [key: string]: string };
+}
+
+export class Secret extends ComponentResource {
+  arn: Output<string>;
+  id: Output<string>;
+  policyArn: Output<string>;
+  tagsAll: Output<{ [key: string]: string }>;
+
+  constructor(
+    name: string,
+    args: AppSecretArguments,
+    opts?: ComponentResourceOptions,
+  ) {
+    super("dzangolab:pulumi:AppSecret", name, args, opts);
+
+    const secret = new AWSSecret(name, args, {
+      ...opts,
+      parent: this,
+    });
+
+    const policy = new Policy(
+      `${name}-secret-read-write`,
+      {
+        path: "/",
+        description: `Read/write access to secret ${name}`,
+        policy: secret.arn.apply((arn) =>
+          JSON.stringify({
+            Version: "2012-10-17",
+            Statement: [
+              {
+                Action: ["secretsmanager:GetSecretValue"],
+                Effect: "Allow",
+                Resource: arn,
+              },
+            ],
+          }),
+        ),
+      },
+      {
+        dependsOn: secret,
+        parent: secret,
+      },
+    );
+
+    new SecretVersion(name, {
+      secretId: secret.id,
+      secretString: JSON.stringify(args.secrets),
+    });
+
+    this.arn = secret.arn;
+    this.id = secret.id;
+    this.policyArn = policy.arn;
+    this.tagsAll = secret.tagsAll;
+
+    this.registerOutputs();
+  }
+}
