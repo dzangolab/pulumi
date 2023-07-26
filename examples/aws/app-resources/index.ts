@@ -1,7 +1,7 @@
 import { interpolate } from "@pulumi/pulumi";
 
-import { AppResources } from "../../../src/aws/appResources";
 import { getConfig } from "./config";
+import { AppResources } from "../../../src/aws/appResources";
 
 export = async () => {
   const config = await getConfig();
