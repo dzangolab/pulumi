@@ -66,7 +66,7 @@
   },
   "peerDependencies": {
     "@pulumi/aws": "^5.0",
-    "@pulumi/command": "^0.7",
+    "@pulumi/command": "^0.7 || ^0.8.0",
     "@pulumi/digitalocean": "^4.20",
     "@pulumi/gitlab": "^6.1",
     "@pulumi/pulumi": "^3.0"
