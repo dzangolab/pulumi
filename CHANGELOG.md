@@ -1,3 +1,30 @@
+## [0.8.2](https://github.com/dzangolab/pulumi/compare/v0.8.1...v0.8.2) (2023-07-28)
+
+
+### Bug Fixes
+
+* **aws/GithubRunnerRole:** fix component resource ([d08404a](https://github.com/dzangolab/pulumi/commit/d08404ad621ea38171071214c67bdd3b0d181cc2))
+
+
+
+## [0.8.1](https://github.com/dzangolab/pulumi/compare/v0.8.0...v0.8.1) (2023-07-28)
+
+
+
+# [0.8.0](https://github.com/dzangolab/pulumi/compare/v0.7.3...v0.8.0) (2023-07-28)
+
+
+### Bug Fixes
+
+* **aws/github-runner-role:** fix GithubRunnerRole ([d9659a3](https://github.com/dzangolab/pulumi/commit/d9659a34c03b2303055962259e2df9309e88e1ac))
+
+
+### Features
+
+* **aws/github-runner-role:** add GithubRunnerRole component resource ([8f49eb0](https://github.com/dzangolab/pulumi/commit/8f49eb09c31da841e590e6733509a67caa5c56a1))
+
+
+
 ## [0.7.3](https://github.com/dzangolab/pulumi/compare/v0.7.2...v0.7.3) (2023-07-26)
 
 

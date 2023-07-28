@@ -1,5 +1,5 @@
 {
-    "name": "secret",
+    "name": "github-runner-role",
     "main": "index.ts",
     "devDependencies": {
         "@types/node": "^16"
