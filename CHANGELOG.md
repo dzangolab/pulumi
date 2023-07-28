@@ -1,3 +1,12 @@
+## [0.8.3](https://github.com/dzangolab/pulumi/compare/v0.8.2...v0.8.3) (2023-07-28)
+
+
+### Bug Fixes
+
+* **aws/AppUser:** fix app user policies ([37e3f86](https://github.com/dzangolab/pulumi/commit/37e3f86217b4dcc7c3ce2c0abd2ff8cabffdb4ce))
+
+
+
 ## [0.8.2](https://github.com/dzangolab/pulumi/compare/v0.8.1...v0.8.2) (2023-07-28)
 
 
