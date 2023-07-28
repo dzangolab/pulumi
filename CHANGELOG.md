@@ -1,3 +1,17 @@
+# [0.8.0](https://github.com/dzangolab/pulumi/compare/v0.7.3...v0.8.0) (2023-07-28)
+
+
+### Bug Fixes
+
+* **aws/github-runner-role:** fix GithubRunnerRole ([d9659a3](https://github.com/dzangolab/pulumi/commit/d9659a34c03b2303055962259e2df9309e88e1ac))
+
+
+### Features
+
+* **aws/github-runner-role:** add GithubRunnerRole component resource ([8f49eb0](https://github.com/dzangolab/pulumi/commit/8f49eb09c31da841e590e6733509a67caa5c56a1))
+
+
+
 ## [0.7.3](https://github.com/dzangolab/pulumi/compare/v0.7.2...v0.7.3) (2023-07-26)
 
 
