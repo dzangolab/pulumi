@@ -17,7 +17,7 @@ export interface AppUserArguments extends UserArgs {
   group?: string;
   consoleAccess?: boolean;
   pgpPublicKey?: string;
-  policies?: string[];
+  policies: (string | Output<string>)[];
 }
 
 export class AppUser extends ComponentResource {
@@ -48,7 +48,10 @@ export class AppUser extends ComponentResource {
       for (let i = 0; i < args.policies.length; i++) {
         const policy = args.policies[i];
 
-        const slug = policy.split("/")[1];
+        const slug =
+          typeof policy === "string"
+            ? policy.split("/")[1]
+            : policy.apply((policy) => policy.split("/")[1]);
 
         new UserPolicyAttachment(`${name}-${slug}`, {
           policyArn: policy,
