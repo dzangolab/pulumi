@@ -1,11 +1,13 @@
-import { Policy, Role, RoleArgs } from "@pulumi/aws/iam";
+import { Policy, Role } from "@pulumi/aws/iam";
 import {
   ComponentResource,
   ComponentResourceOptions,
   Output,
 } from "@pulumi/pulumi";
 
-export interface GithubRunnerRoleArguments extends RoleArgs {
+export interface GithubRunnerRoleArguments {
+  awsAccountId: string;
+  awsRegion: string;
   repo: string;
 }
 
@@ -13,6 +15,7 @@ export class GithubRunnerRole extends ComponentResource {
   arn: Output<string>;
   createDate: Output<string>;
   id: Output<string>;
+  policyArn: Output<string>;
   tagsAll: Output<{ [key: string]: string }>;
   uniqueId: Output<string>;
 
@@ -30,8 +33,7 @@ export class GithubRunnerRole extends ComponentResource {
           Sid: "",
           Effect: "Allow",
           Principal: {
-            Federated:
-              "arn:aws:iam::139549850843:oidc-provider/token.actions.githubusercontent.com",
+            Federated: `arn:aws:iam::${args.awsAccountId}:oidc-provider/token.actions.githubusercontent.com`,
           },
           Action: "sts:AssumeRoleWithWebIdentity",
           Condition: {
@@ -47,7 +49,7 @@ export class GithubRunnerRole extends ComponentResource {
     });
 
     const policy = new Policy(
-      "github-runner",
+      `${name}-policy`,
       {
         policy: JSON.stringify({
           Version: "2012-10-17",
@@ -64,7 +66,7 @@ export class GithubRunnerRole extends ComponentResource {
                 "ecr:BatchCheckLayerAvailability",
               ],
               Effect: "Allow",
-              Resource: "arn:aws:ecr:ap-southeast-1:139549850843:*",
+              Resource: `arn:aws:ecr:${args.awsRegion}:${args.awsAccountId}:*`,
               Sid: "ECR",
             },
             {
@@ -94,6 +96,7 @@ export class GithubRunnerRole extends ComponentResource {
     this.arn = role.arn;
     this.createDate = role.createDate;
     this.id = role.id;
+    this.policyArn = policy.arn;
     this.tagsAll = role.tagsAll;
     this.uniqueId = role.uniqueId;
 

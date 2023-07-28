@@ -1,0 +1,3 @@
+name: github-runner-role
+runtime: nodejs
+description: Example use of @dzangolab/pulumi/aws/GithubRunnerRole"

@@ -1,0 +1,3 @@
+config:
+  github-runner-role:name: test-github-runner-role
+  github-runner-role:repo: dzangolab/monorepo

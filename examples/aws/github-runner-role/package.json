@@ -1,0 +1,12 @@
+{
+    "name": "github-runner-role",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^16"
+    },
+    "dependencies": {
+        "@dzangolab/pulumi": "^0.7.0",
+        "@pulumi/pulumi": "^3.0.0",
+        "@pulumi/aws": "^5.0.0"
+    }
+}
