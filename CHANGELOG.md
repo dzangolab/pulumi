@@ -1,3 +1,12 @@
+## [0.8.2](https://github.com/dzangolab/pulumi/compare/v0.8.1...v0.8.2) (2023-07-28)
+
+
+### Bug Fixes
+
+* **aws/GithubRunnerRole:** fix component resource ([d08404a](https://github.com/dzangolab/pulumi/commit/d08404ad621ea38171071214c67bdd3b0d181cc2))
+
+
+
 ## [0.8.1](https://github.com/dzangolab/pulumi/compare/v0.8.0...v0.8.1) (2023-07-28)
 
 
