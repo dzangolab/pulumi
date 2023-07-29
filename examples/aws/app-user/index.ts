@@ -1,4 +1,3 @@
-// import { aws } from "@dzangolab/pulumi";
 import { Policy } from "@pulumi/aws/iam";
 import { interpolate } from "@pulumi/pulumi";
 
