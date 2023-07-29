@@ -83,6 +83,8 @@ export class Droplet extends ComponentResource {
         {
           dependsOn: droplet,
           parent: droplet,
+          protect: opts?.protect,
+          retainOnDelete: opts?.retainOnDelete,
         },
       );
     }
@@ -98,6 +100,8 @@ export class Droplet extends ComponentResource {
         {
           dependsOn: droplet,
           parent: droplet,
+          protect: opts?.protect,
+          retainOnDelete: opts?.retainOnDelete,
         },
       );
     }
