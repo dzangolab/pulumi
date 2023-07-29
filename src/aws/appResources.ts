@@ -1,6 +1,4 @@
-import {
-  getRandomPasswordOutput
-} from "@pulumi/aws/secretsmanager";
+import { getRandomPasswordOutput } from "@pulumi/aws/secretsmanager";
 import {
   all,
   ComponentResource,
@@ -90,11 +88,18 @@ export class AppResources extends ComponentResource {
     );
 
     const passwordObject = all([
+      user.secretAccessKey as unknown as string,
       postgresPassword,
       postgresRootPassword,
       traefikDashboardPassword,
     ]).apply(
-      ([postgresPassword, postgresRootPassword, traefikDashboardPassword]) => ({
+      ([
+        secretAccessKey,
+        postgresPassword,
+        postgresRootPassword,
+        traefikDashboardPassword,
+      ]) => ({
+        "aws-secret-access-key": secretAccessKey,
         "postgres-password": postgresPassword.randomPassword,
         "postgres-root-password": postgresRootPassword.randomPassword,
         "traefik-dashboard-password": traefikDashboardPassword.randomPassword,
