@@ -53,6 +53,8 @@ export class AppResources extends ComponentResource {
       },
       {
         parent: project,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 
@@ -63,6 +65,8 @@ export class AppResources extends ComponentResource {
       },
       {
         parent: project,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 
@@ -76,6 +80,8 @@ export class AppResources extends ComponentResource {
       },
       {
         parent: project,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 
@@ -87,6 +93,8 @@ export class AppResources extends ComponentResource {
       },
       {
         parent: project,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 
