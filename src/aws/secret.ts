@@ -11,7 +11,7 @@ import {
 } from "@pulumi/pulumi";
 
 export interface SecretArguments extends SecretArgs {
-  secrets: { [key: string]: string };
+  secretString?: string | Output<string>;
 }
 
 export class Secret extends ComponentResource {
@@ -56,10 +56,18 @@ export class Secret extends ComponentResource {
       },
     );
 
-    new SecretVersion(name, {
-      secretId: secret.id,
-      secretString: JSON.stringify(args.secrets),
-    });
+    if (args.secretString) {
+      new SecretVersion(
+        name,
+        {
+          secretId: secret.id,
+          secretString: args.secretString,
+        },
+        {
+          parent: secret,
+        },
+      );
+    }
 
     this.arn = secret.arn;
     this.id = secret.id;
