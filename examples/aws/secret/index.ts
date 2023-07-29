@@ -8,10 +8,10 @@ export = async () => {
 
   const secret = new aws.Secret(config.name, {
     recoveryWindowInDays: config.recoveryWindowInDays,
-    secrets: {
+    secret: JSON.stringify({
       "postgres-password": "XYZ",
       "postgres-root-password": "ABC",
-    },
+    }),
   });
 
   return {

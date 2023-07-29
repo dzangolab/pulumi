@@ -8,6 +8,5 @@ export const getConfig = async () => {
   return {
     name: `${organization}-${stack}`,
     usergroup: stackConfig.get("usergroup"),
-    region: stackConfig.require("aws:region"),
   };
 };

@@ -1,8 +1,10 @@
-import { aws } from "@dzangolab/pulumi";
+// import { aws } from "@dzangolab/pulumi";
 import { Policy } from "@pulumi/aws/iam";
 import { interpolate } from "@pulumi/pulumi";
 
 import { getConfig } from "./config";
+/* eslint-disable-next-line node/no-unpublished-import */
+import { AppUser } from "../../../src/aws/appUser";
 
 export = async () => {
   const config = await getConfig();
@@ -22,7 +24,7 @@ export = async () => {
     }),
   });
 
-  const user = new aws.AppUser(config.name, {
+  const user = new AppUser(config.name, {
     accessKey: config.accessKey,
     group: config.group,
     policies: ["arn:aws:iam::aws:policy/AdministratorAccess", policy.arn],

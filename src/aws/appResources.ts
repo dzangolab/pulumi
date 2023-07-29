@@ -1,13 +1,10 @@
 import {
-  getRandomPassword,
-  getRandomPasswordOutput,
-  SecretVersion,
+  getRandomPasswordOutput
 } from "@pulumi/aws/secretsmanager";
 import {
   all,
   ComponentResource,
   ComponentResourceOptions,
-  interpolate,
   Output,
 } from "@pulumi/pulumi";
 
@@ -17,14 +14,17 @@ import { Secret } from "./secret";
 
 export interface AppResourcesArguments {
   passwordLength?: number;
-  region: string;
   usergroup?: string;
   username?: string;
 }
 
 export class AppResources extends ComponentResource {
+  accessKeyId: Output<string>;
   bucketArn: Output<string>;
+  bucketPolicyArn: Output<string>;
+  secretAccessKey: Output<string>;
   secretArn: Output<string>;
+  secretPolicyArn: Output<string>;
   userArn: Output<string>;
 
   constructor(
@@ -43,10 +43,68 @@ export class AppResources extends ComponentResource {
       },
     );
 
+    const user = new AppUser(
+      args.username || name,
+      {
+        accessKey: true,
+        consoleAccess: false,
+        group: args?.usergroup,
+        policies: [
+          bucket.policyArn,
+          "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+        ],
+      },
+      {
+        parent: this,
+      },
+    );
+
+    const passwordLength = args.passwordLength || 24;
+
+    const postgresRootPassword = getRandomPasswordOutput(
+      {
+        passwordLength: passwordLength,
+      },
+      {
+        parent: user,
+      },
+    );
+
+    const postgresPassword = getRandomPasswordOutput(
+      {
+        passwordLength: passwordLength,
+      },
+      {
+        parent: user,
+      },
+    );
+
+    const traefikDashboardPassword = getRandomPasswordOutput(
+      {
+        excludePunctuation: true,
+        passwordLength: passwordLength,
+      },
+      {
+        parent: user,
+      },
+    );
+
+    const passwordObject = all([
+      postgresPassword,
+      postgresRootPassword,
+      traefikDashboardPassword,
+    ]).apply(
+      ([postgresPassword, postgresRootPassword, traefikDashboardPassword]) => ({
+        "postgres-password": postgresPassword.randomPassword,
+        "postgres-root-password": postgresRootPassword.randomPassword,
+        "traefik-dashboard-password": traefikDashboardPassword.randomPassword,
+      }),
+    );
+
     const secret = new Secret(
       name,
       {
-        secrets: {},
+        secretString: passwordObject.apply((o) => JSON.stringify(o)),
       },
       {
         ...opts,
@@ -54,65 +112,8 @@ export class AppResources extends ComponentResource {
       },
     );
 
-    const bucketPolicyArn = bucket.policyArn.apply((arn) => arn);
-
-    const user = new AppUser(args.username || name, {
-      accessKey: true,
-      consoleAccess: false,
-      group: args?.usergroup,
-      policies: [bucketPolicyArn],
-    });
-
-    /*
-    const passwordLength = args.passwordLength || 24;
-    
-    const postgresRootPassword = getRandomPasswordOutput(
-      {
-        passwordLength: passwordLength,
-      },
-      {
-        parent: secret,
-      },
-    );
-    
-    const postgresPassword = getRandomPasswordOutput(
-      {
-        passwordLength: passwordLength,
-      },
-      {
-        parent: secret,
-      },
-    );
-    
-    const traefikDashboardPassword = getRandomPasswordOutput(
-      {
-        excludePunctuation: true,
-        passwordLength: passwordLength,
-      },
-      {
-        parent: secret,
-      },
-    );
-    
-    new SecretVersion(name, {
-      secretId: secret.id,
-      secretString: all([
-        postgresPassword.randomPassword,
-        postgresRootPassword.randomPassword,
-        traefikDashboardPassword.randomPassword,
-        user?.secretAccessKey,
-      ]).apply(
-        ([postgresPassword, postgresRootPassword, traefikDashboardPassword, secretAccessKey]) =>
-          JSON.stringify({
-            "aws-secret-access-key": secretAccessKey as string,
-            "postgres-password": postgresPassword as string,
-            "postgres-root-password": postgresRootPassword as string,
-            "traefik-dashboard-password":
-              traefikDashboardPassword as string,
-          }),
-      ),
-    });
-    */
+    this.accessKeyId = user.accessKeyId as Output<string>;
+    this.secretAccessKey = user.secretAccessKey as Output<string>;
 
     this.bucketArn = bucket.arn;
     this.bucketPolicyArn = bucket.policyArn;

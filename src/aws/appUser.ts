@@ -35,46 +35,66 @@ export class AppUser extends ComponentResource {
   ) {
     super("dzangolab:pulumi:AppUser", name, args, opts);
 
-    const user = new User(name, args, opts);
+    const user = new User(name, args, {
+      ...opts,
+      parent: this,
+    });
 
     if (args.group) {
-      new UserGroupMembership(name, {
-        groups: [args.group],
-        user: user.name,
-      });
+      new UserGroupMembership(
+        name,
+        {
+          groups: [args.group],
+          user: user.name,
+        },
+        {
+          parent: this,
+        },
+      );
     }
 
     if (args.policies) {
       for (let i = 0; i < args.policies.length; i++) {
-        const policy = args.policies[i];
-
-        const slug =
-          typeof policy === "string"
-            ? policy.split("/")[1]
-            : policy.apply((policy) => policy.split("/")[1]);
-
-        new UserPolicyAttachment(`${name}-${slug}`, {
-          policyArn: policy,
-          user: user.name,
-        });
+        new UserPolicyAttachment(
+          `${name}-${i}`,
+          {
+            policyArn: args.policies[i],
+            user: user.name,
+          },
+          {
+            parent: this,
+          },
+        );
       }
     }
 
     if (args.accessKey) {
-      const accessKey = new AccessKey(name, {
-        user: user.name,
-      });
+      const accessKey = new AccessKey(
+        name,
+        {
+          user: user.name,
+        },
+        {
+          parent: this,
+        },
+      );
 
       this.accessKeyId = accessKey.id;
       this.secretAccessKey = accessKey.secret;
     }
 
     if (args.consoleAccess && args.pgpPublicKey) {
-      new UserLoginProfile(name, {
-        passwordResetRequired: true,
-        pgpKey: args.pgpPublicKey,
-        user: user.name,
-      });
+      new UserLoginProfile(
+        name,
+        {
+          passwordResetRequired: true,
+          pgpKey: args.pgpPublicKey,
+          user: user.name,
+        },
+        {
+          parent: this,
+        },
+      );
     }
 
     this.arn = user.arn;
