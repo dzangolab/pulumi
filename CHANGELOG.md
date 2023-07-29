@@ -1,3 +1,13 @@
+## [0.9.3](https://github.com/dzangolab/pulumi/compare/v0.9.2...v0.9.3) (2023-07-29)
+
+
+### Bug Fixes
+
+* **digitalocean/droplet:** fix protection status for child resources ([e9bc739](https://github.com/dzangolab/pulumi/commit/e9bc7392b872606c22f354c0cba754b42fb6dac3))
+* **digitalocean:** fix protection status for child resources ([1f749f1](https://github.com/dzangolab/pulumi/commit/1f749f1ba2b5cc8ef4010eed5428170c7428fe33))
+
+
+
 ## [0.9.2](https://github.com/dzangolab/pulumi/compare/v0.9.1...v0.9.2) (2023-07-29)
 
 
