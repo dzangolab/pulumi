@@ -53,6 +53,8 @@ export class Secret extends ComponentResource {
       {
         dependsOn: secret,
         parent: secret,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 
@@ -65,6 +67,8 @@ export class Secret extends ComponentResource {
         },
         {
           parent: secret,
+          protect: opts?.protect,
+          retainOnDelete: opts?.retainOnDelete,
         },
       );
     }

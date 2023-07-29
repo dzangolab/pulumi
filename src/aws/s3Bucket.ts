@@ -49,6 +49,8 @@ export class S3Bucket extends ComponentResource {
       {
         dependsOn: bucket,
         parent: bucket,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 

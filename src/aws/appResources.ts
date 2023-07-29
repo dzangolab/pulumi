@@ -54,6 +54,8 @@ export class AppResources extends ComponentResource {
       },
       {
         parent: this,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 
@@ -112,8 +114,9 @@ export class AppResources extends ComponentResource {
         secretString: passwordObject.apply((o) => JSON.stringify(o)),
       },
       {
-        ...opts,
         parent: this,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 

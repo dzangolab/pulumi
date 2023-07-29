@@ -49,6 +49,8 @@ export class AppUser extends ComponentResource {
         },
         {
           parent: this,
+          protect: opts?.protect,
+          retainOnDelete: opts?.retainOnDelete,
         },
       );
     }
@@ -63,6 +65,8 @@ export class AppUser extends ComponentResource {
           },
           {
             parent: this,
+            protect: opts?.protect,
+            retainOnDelete: opts?.retainOnDelete,
           },
         );
       }
@@ -76,6 +80,8 @@ export class AppUser extends ComponentResource {
         },
         {
           parent: this,
+          protect: opts?.protect,
+          retainOnDelete: opts?.retainOnDelete,
         },
       );
 
@@ -93,6 +99,8 @@ export class AppUser extends ComponentResource {
         },
         {
           parent: this,
+          protect: opts?.protect,
+          retainOnDelete: opts?.retainOnDelete,
         },
       );
     }
