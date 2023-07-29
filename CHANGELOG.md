@@ -1,3 +1,12 @@
+## [0.9.4](https://github.com/dzangolab/pulumi/compare/v0.9.3...v0.9.4) (2023-07-29)
+
+
+### Bug Fixes
+
+* **aws:** fix protection status for child resources ([1419d89](https://github.com/dzangolab/pulumi/commit/1419d8944503b8497f2c3822bace2946e8d80948))
+
+
+
 ## [0.9.3](https://github.com/dzangolab/pulumi/compare/v0.9.2...v0.9.3) (2023-07-29)
 
 
