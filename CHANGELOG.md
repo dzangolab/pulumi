@@ -1,3 +1,12 @@
+## [0.11.1](https://github.com/dzangolab/pulumi/compare/v0.11.0...v0.11.1) (2023-07-30)
+
+
+### Bug Fixes
+
+* **aws/ApppResources:** fix typo ([f5f77eb](https://github.com/dzangolab/pulumi/commit/f5f77ebfd43aa8d408755878ca184f8f20d55127))
+
+
+
 # [0.11.0](https://github.com/dzangolab/pulumi/compare/v0.10.0...v0.11.0) (2023-07-30)
 
 
