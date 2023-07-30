@@ -14,6 +14,7 @@ import {
 export interface AppResourcesArguments {
   description?: string;
   environment?: string;
+  name?: string;
   region: string;
   volumeSize: number;
 }
@@ -37,12 +38,13 @@ export class AppResources extends ComponentResource {
       {
         description: args.description || `${name} infrastructure`,
         environment: args.environment || name,
-        name,
+        name: args.name,
         purpose: "Web Application",
       },
       {
-        ...opts,
         parent: this,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 

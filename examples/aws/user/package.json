@@ -1,5 +1,5 @@
 {
-  "name": "app-user",
+  "name": "user",
   "main": "index.ts",
   "devDependencies": {
     "@types/node": "^16"

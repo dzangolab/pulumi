@@ -2,13 +2,14 @@ import { interpolate } from "@pulumi/pulumi";
 
 import { getConfig } from "./config";
 /* eslint-disable-next-line node/no-unpublished-import */
-import { SesSmtpUser } from "../../../src/aws/sesSmtpUser";
+import { User } from "../../../src/aws/user";
 
 export = async () => {
   const config = await getConfig();
 
-  const user = new SesSmtpUser(config.name, {
+  const user = new User(config.name, {
     group: config.group,
+    sesSmtpUser: true,
   });
 
   return {
@@ -20,6 +21,7 @@ export = async () => {
     path: interpolate`${user.path}`,
     permissionsBoundary: interpolate`${user.permissionsBoundary}`,
     secretAccessKey: interpolate`${user.secretAccessKey}`,
+    sesSmtpuser: interpolate`${user.sesSmtpUser}`,
     tagsAll: interpolate`${user.tagsAll}`,
     uniqueId: interpolate`${user.uniqueId}`,
   };

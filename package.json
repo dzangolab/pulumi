@@ -1,6 +1,10 @@
 {
   "name": "@dzangolab/pulumi",
+<<<<<<< HEAD
   "version": "0.10.0",
+=======
+  "version": "0.11.0",
+>>>>>>> releases/v0.11.0
   "description": "A collection of opinionated Pulumi component resources and dynamic providers",
   "homepage": "https://github.com/dzangolab/pulumi",
   "repository": {
@@ -62,6 +66,7 @@
     "vite": "4.4.7"
   },
   "dependencies": {
+    "@pulumi/random": "4.13.2",
     "nunjucks": "3.2.4"
   },
   "peerDependencies": {

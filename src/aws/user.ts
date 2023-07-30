@@ -1,9 +1,10 @@
 import {
   AccessKey,
-  User,
+  User as IAMUser,
   UserArgs,
   UserGroupMembership,
   UserLoginProfile,
+  UserPolicy,
   UserPolicyAttachment,
 } from "@pulumi/aws/iam";
 import {
@@ -12,15 +13,17 @@ import {
   Output,
 } from "@pulumi/pulumi";
 
-export interface AppUserArguments extends UserArgs {
+export interface UserArguments extends UserArgs {
   accessKey?: boolean;
   group?: string;
   consoleAccess?: boolean;
+  inlinePolicies?: { [key: string]: string | Output<string> };
   pgpPublicKey?: string;
-  policies: (string | Output<string>)[];
+  policies?: { [key: string]: string | Output<string> };
+  sesSmtpUser?: boolean;
 }
 
-export class AppUser extends ComponentResource {
+export class User extends ComponentResource {
   accessKeyId?: Output<string>;
   arn: Output<string>;
   forceDestroy: Output<boolean | undefined>;
@@ -29,18 +32,18 @@ export class AppUser extends ComponentResource {
   path: Output<string | undefined>;
   permissionsBoundary: Output<string | undefined>;
   secretAccessKey?: Output<string>;
-  sesSmtpPassword?: Output<string>;
+  sesSmtpUser: boolean;
   tagsAll: Output<{ [key: string]: string }>;
   uniqueId: Output<string>;
 
   constructor(
     name: string,
-    args: AppUserArguments,
+    args: UserArguments,
     opts?: ComponentResourceOptions,
   ) {
-    super("dzangolab:pulumi:AppUser", name, args, opts);
+    super("dzangolab:pulumi:User", name, args, opts);
 
-    const user = new User(name, args, {
+    const user = new IAMUser(name, args, {
       ...opts,
       parent: this,
     });
@@ -60,12 +63,53 @@ export class AppUser extends ComponentResource {
       );
     }
 
-    if (args.policies) {
-      for (let i = 0; i < args.policies.length; i++) {
-        new UserPolicyAttachment(
-          `${name}-${i}`,
+    if (args.sesSmtpUser) {
+      new UserPolicy(
+        "AmazonSesSendingAccess",
+        {
+          user: user.name,
+          policy: JSON.stringify({
+            Version: "2012-10-17",
+            Statement: [
+              {
+                Effect: "Allow",
+                Action: "ses:SendRawEmail",
+                Resource: "*",
+              },
+            ],
+          }),
+        },
+        {
+          parent: user,
+          protect: opts?.protect,
+          retainOnDelete: opts?.retainOnDelete,
+        },
+      );
+    }
+
+    if (args.inlinePolicies && !args.sesSmtpUser) {
+      for (const policy in args.inlinePolicies) {
+        new UserPolicy(
+          policy,
           {
-            policyArn: args.policies[i],
+            user: user.name,
+            policy: args.inlinePolicies[policy],
+          },
+          {
+            parent: user,
+            protect: opts?.protect,
+            retainOnDelete: opts?.retainOnDelete,
+          },
+        );
+      }
+    }
+
+    if (args.policies && !args.sesSmtpUser) {
+      for (const policy in args.policies) {
+        new UserPolicyAttachment(
+          policy,
+          {
+            policyArn: args.policies[policy],
             user: user.name,
           },
           {
@@ -77,7 +121,7 @@ export class AppUser extends ComponentResource {
       }
     }
 
-    if (args.accessKey) {
+    if (args.accessKey || args.sesSmtpUser) {
       const accessKey = new AccessKey(
         name,
         {
@@ -91,11 +135,12 @@ export class AppUser extends ComponentResource {
       );
 
       this.accessKeyId = accessKey.id;
-      this.secretAccessKey = accessKey.secret;
-      this.sesSmtpPassword = accessKey.sesSmtpPasswordV4;
+      this.secretAccessKey = args.sesSmtpUser
+        ? accessKey.sesSmtpPasswordV4
+        : accessKey.secret;
     }
 
-    if (args.consoleAccess && args.pgpPublicKey) {
+    if (args.consoleAccess && args.pgpPublicKey && !args.sesSmtpUser) {
       new UserLoginProfile(
         name,
         {
@@ -117,6 +162,7 @@ export class AppUser extends ComponentResource {
     this.name = user.name;
     this.path = user.path;
     this.permissionsBoundary = user.permissionsBoundary;
+    this.sesSmtpUser = !!args.sesSmtpUser;
     this.tagsAll = user.tagsAll;
     this.uniqueId = user.uniqueId;
 

@@ -1,16 +1,17 @@
-import { getRandomPasswordOutput } from "@pulumi/aws/secretsmanager";
 import {
   all,
   ComponentResource,
   ComponentResourceOptions,
   Output,
 } from "@pulumi/pulumi";
+import { RandomPassword } from "@pulumi/random";
 
-import { AppUser } from "./appUser";
 import { S3Bucket } from "./s3Bucket";
 import { Secret } from "./secret";
+import { User } from "./user";
 
 export interface AppResourcesArguments {
+  database?: string;
   passwordLength?: number;
   usergroup?: string;
   username?: string;
@@ -23,6 +24,8 @@ export class AppResources extends ComponentResource {
   secretAccessKey: Output<string>;
   secretArn: Output<string>;
   secretPolicyArn: Output<string>;
+  sesSmtpPassword: Output<string>;
+  sesSmtpUsername: Output<string>;
   userArn: Output<string>;
 
   constructor(
@@ -41,16 +44,16 @@ export class AppResources extends ComponentResource {
       },
     );
 
-    const user = new AppUser(
+    const user = new User(
       args.username || name,
       {
         accessKey: true,
         consoleAccess: false,
         group: args?.usergroup,
-        policies: [
-          bucket.policyArn,
-          "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
-        ],
+        policies: {
+          s3: bucket.policyArn,
+          ecr: "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+        },
       },
       {
         parent: this,
@@ -59,30 +62,50 @@ export class AppResources extends ComponentResource {
       },
     );
 
+    const sesSmtpUser = new User(
+      `${args.username || name}-ses`,
+      {
+        group: args?.usergroup,
+        sesSmtpUser: true,
+      },
+      {
+        parent: this,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
+      },
+    );
+
+    const database = args.database || "postgres";
     const passwordLength = args.passwordLength || 24;
 
-    const databasePassword = getRandomPasswordOutput(
+    const databasePassword = new RandomPassword(
+      `${name}-${database}-password`,
       {
-        passwordLength: passwordLength,
+        length: passwordLength,
       },
       {
         parent: user,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 
-    const databaseRootPassword = getRandomPasswordOutput(
+    const databaseRootPassword = new RandomPassword(
+      `${name}-${database}-root-password`,
       {
-        passwordLength: passwordLength,
+        length: passwordLength,
       },
       {
         parent: user,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 
-    const traefikDashboardPassword = getRandomPasswordOutput(
+    const traefikDashboardPassword = new RandomPassword(
+      `${name}-traefik-dashboard-password`,
       {
-        excludePunctuation: true,
-        passwordLength: passwordLength,
+        length: passwordLength,
       },
       {
         parent: user,
@@ -90,25 +113,36 @@ export class AppResources extends ComponentResource {
     );
 
     const passwordObject = all([
+      databasePassword.result,
+      databaseRootPassword.result,
+      traefikDashboardPassword.result,
+      sesSmtpUser.accessKeyId as unknown as string,
+      sesSmtpUser.secretAccessKey as unknown as string,
       user.accessKeyId as unknown as string,
       user.secretAccessKey as unknown as string,
-      databasePassword,
-      databaseRootPassword,
-      traefikDashboardPassword,
     ]).apply(
       ([
-        accessKeyId,
-        secretAccessKey,
         databasePassword,
         databaseRootPassword,
         traefikDashboardPassword,
-      ]) => ({
-        "aws-access_key-iid": accessKeyId,
-        "aws-secret-access-key": secretAccessKey,
-        "database-password": databasePassword.randomPassword,
-        "database-root-password": databaseRootPassword.randomPassword,
-        "traefik-dashboard-password": traefikDashboardPassword.randomPassword,
-      }),
+        sesSmtpAccessKeyId,
+        sesSmtpSecretAccessKey,
+        accessKeyId,
+        secretAccessKey,
+      ]) => {
+        const passwordObject: { [key: string]: string | Output<string> } = {
+          "aws-access_key-id": accessKeyId,
+          "aws-secret-access-key": secretAccessKey,
+          "ses-smtp-username": sesSmtpAccessKeyId,
+          "ses-smtp-password": sesSmtpSecretAccessKey,
+          "traefik-dashboard-password": traefikDashboardPassword,
+        };
+
+        passwordObject[`${database}-password`] = databasePassword;
+        passwordObject[`${database}-root-password`] = databaseRootPassword;
+
+        return passwordObject;
+      },
     );
 
     const secret = new Secret(
@@ -131,6 +165,9 @@ export class AppResources extends ComponentResource {
 
     this.secretArn = secret.arn;
     this.secretPolicyArn = secret.policyArn;
+
+    this.sesSmtpPassword = sesSmtpUser.secretAccessKey as Output<string>;
+    this.sesSmtpUsername = sesSmtpUser.accessKeyId as Output<string>;
 
     this.userArn = user.arn;
 
