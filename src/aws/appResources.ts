@@ -1,4 +1,3 @@
-import { getRandomPasswordOutput } from "@pulumi/aws/secretsmanager";
 import {
   all,
   ComponentResource,
@@ -12,7 +11,7 @@ import { Secret } from "./secret";
 import { User } from "./user";
 
 export interface AppResourcesArguments {
-  database?: string,
+  database?: string;
   passwordLength?: number;
   usergroup?: string;
   username?: string;
@@ -131,7 +130,7 @@ export class AppResources extends ComponentResource {
         accessKeyId,
         secretAccessKey,
       ]) => {
-        let passwordObject: { [key: string]: string | Output<string> } = {
+        const passwordObject: { [key: string]: string | Output<string> } = {
           "aws-access_key-id": accessKeyId,
           "aws-secret-access-key": secretAccessKey,
           "ses-smtp-username": sesSmtpAccessKeyId,
