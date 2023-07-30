@@ -131,7 +131,7 @@ export class AppResources extends ComponentResource {
         secretAccessKey,
       ]) => {
         const passwordObject: { [key: string]: string | Output<string> } = {
-          "aws-access_key-id": accessKeyId,
+          "aws-access-key-id": accessKeyId,
           "aws-secret-access-key": secretAccessKey,
           "ses-smtp-username": sesSmtpAccessKeyId,
           "ses-smtp-password": sesSmtpSecretAccessKey,
