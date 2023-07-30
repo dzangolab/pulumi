@@ -90,17 +90,20 @@ export class AppResources extends ComponentResource {
     );
 
     const passwordObject = all([
+      user.accessKeyId as unknown as string,
       user.secretAccessKey as unknown as string,
       postgresPassword,
       postgresRootPassword,
       traefikDashboardPassword,
     ]).apply(
       ([
+        accessKeyId,
         secretAccessKey,
         postgresPassword,
         postgresRootPassword,
         traefikDashboardPassword,
       ]) => ({
+        "aws-access_key-iid": accessKeyId,
         "aws-secret-access-key": secretAccessKey,
         "postgres-password": postgresPassword.randomPassword,
         "postgres-root-password": postgresRootPassword.randomPassword,
