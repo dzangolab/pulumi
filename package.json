@@ -62,6 +62,7 @@
     "vite": "4.4.7"
   },
   "dependencies": {
+    "@pulumi/random": "4.13.2",
     "nunjucks": "3.2.4"
   },
   "peerDependencies": {

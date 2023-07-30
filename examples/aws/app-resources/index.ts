@@ -7,7 +7,7 @@ import { AppResources } from "../../../src/aws/appResources";
 export = async () => {
   const config = await getConfig();
 
-  const resources = new AppResources(config.name, {});
+  const resources = new AppResources(config.name, config);
 
   return {
     accessKeyId: interpolate`${resources.accessKeyId}`,

@@ -5,12 +5,14 @@ import {
   ComponentResourceOptions,
   Output,
 } from "@pulumi/pulumi";
+import { RandomPassword } from "@pulumi/random";
 
 import { S3Bucket } from "./s3Bucket";
 import { Secret } from "./secret";
 import { User } from "./user";
 
 export interface AppResourcesArguments {
+  database?: string,
   passwordLength?: number;
   usergroup?: string;
   username?: string;
@@ -74,30 +76,37 @@ export class AppResources extends ComponentResource {
       },
     );
 
+    const database = args.database || "postgres";
     const passwordLength = args.passwordLength || 24;
 
-    const databasePassword = getRandomPasswordOutput(
+    const databasePassword = new RandomPassword(
+      `${name}-${database}-password`,
       {
-        passwordLength: passwordLength,
+        length: passwordLength,
       },
       {
         parent: user,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 
-    const databaseRootPassword = getRandomPasswordOutput(
+    const databaseRootPassword = new RandomPassword(
+      `${name}-${database}-root-password`,
       {
-        passwordLength: passwordLength,
+        length: passwordLength,
       },
       {
         parent: user,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
       },
     );
 
-    const traefikDashboardPassword = getRandomPasswordOutput(
+    const traefikDashboardPassword = new RandomPassword(
+      `${name}-traefik-dashboard-password`,
       {
-        excludePunctuation: true,
-        passwordLength: passwordLength,
+        length: passwordLength,
       },
       {
         parent: user,
@@ -105,9 +114,9 @@ export class AppResources extends ComponentResource {
     );
 
     const passwordObject = all([
-      databasePassword,
-      databaseRootPassword,
-      traefikDashboardPassword,
+      databasePassword.result,
+      databaseRootPassword.result,
+      traefikDashboardPassword.result,
       sesSmtpUser.accessKeyId as unknown as string,
       sesSmtpUser.secretAccessKey as unknown as string,
       user.accessKeyId as unknown as string,
@@ -121,15 +130,20 @@ export class AppResources extends ComponentResource {
         sesSmtpSecretAccessKey,
         accessKeyId,
         secretAccessKey,
-      ]) => ({
-        "aws-access_key-id": accessKeyId,
-        "aws-secret-access-key": secretAccessKey,
-        "database-password": databasePassword.randomPassword,
-        "database-root-password": databaseRootPassword.randomPassword,
-        "ses-smtp-username": sesSmtpAccessKeyId,
-        "ses-smtp-password": sesSmtpSecretAccessKey,
-        "traefik-dashboard-password": traefikDashboardPassword.randomPassword,
-      }),
+      ]) => {
+        let passwordObject: { [key: string]: string | Output<string> } = {
+          "aws-access_key-id": accessKeyId,
+          "aws-secret-access-key": secretAccessKey,
+          "ses-smtp-username": sesSmtpAccessKeyId,
+          "ses-smtp-password": sesSmtpSecretAccessKey,
+          "traefik-dashboard-password": traefikDashboardPassword,
+        };
+
+        passwordObject[`${database}-password`] = databasePassword;
+        passwordObject[`${database}-root-password`] = databaseRootPassword;
+
+        return passwordObject;
+      },
     );
 
     const secret = new Secret(
