@@ -5,6 +5,7 @@ import { GithubRunnerRole } from "./githubRunnerRole";
 import { GitlabRunnerAWSIAMUser } from "./gitlabRunnerAwsIamUser";
 import { S3Bucket } from "./s3Bucket";
 import { Secret } from "./secret";
+import { SesSmtpUser } from "./sesSmtpUser";
 
 export const aws = {
   AppResources,
@@ -14,4 +15,5 @@ export const aws = {
   GitlabRunnerAWSIAMUser,
   S3Bucket,
   Secret,
+  SesSmtpUser,
 };

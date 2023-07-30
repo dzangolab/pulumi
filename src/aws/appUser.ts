@@ -23,8 +23,13 @@ export interface AppUserArguments extends UserArgs {
 export class AppUser extends ComponentResource {
   accessKeyId?: Output<string>;
   arn: Output<string>;
+  forceDestroy: Output<boolean | undefined>;
   id: Output<string>;
+  name: Output<string>;
+  path: Output<string | undefined>;
+  permissionsBoundary: Output<string | undefined>;
   secretAccessKey?: Output<string>;
+  sesSmtpPassword?: Output<string>;
   tagsAll: Output<{ [key: string]: string }>;
   uniqueId: Output<string>;
 
@@ -87,6 +92,7 @@ export class AppUser extends ComponentResource {
 
       this.accessKeyId = accessKey.id;
       this.secretAccessKey = accessKey.secret;
+      this.sesSmtpPassword = accessKey.sesSmtpPasswordV4;
     }
 
     if (args.consoleAccess && args.pgpPublicKey) {
@@ -106,7 +112,11 @@ export class AppUser extends ComponentResource {
     }
 
     this.arn = user.arn;
+    this.forceDestroy = user.forceDestroy;
     this.id = user.id;
+    this.name = user.name;
+    this.path = user.path;
+    this.permissionsBoundary = user.permissionsBoundary;
     this.tagsAll = user.tagsAll;
     this.uniqueId = user.uniqueId;
 

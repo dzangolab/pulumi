@@ -1,32 +1,14 @@
-import { Policy } from "@pulumi/aws/iam";
 import { interpolate } from "@pulumi/pulumi";
 
 import { getConfig } from "./config";
 /* eslint-disable-next-line node/no-unpublished-import */
-import { AppUser } from "../../../src/aws/appUser";
+import { SesSmtpUser } from "../../../src/aws/sesSmtpUser";
 
 export = async () => {
   const config = await getConfig();
 
-  const policy = new Policy("policy", {
-    path: "/",
-    description: "My test policy",
-    policy: JSON.stringify({
-      Version: "2012-10-17",
-      Statement: [
-        {
-          Action: ["ec2:Describe*"],
-          Effect: "Allow",
-          Resource: "*",
-        },
-      ],
-    }),
-  });
-
-  const user = new AppUser(config.name, {
-    accessKey: config.accessKey,
+  const user = new SesSmtpUser(config.name, {
     group: config.group,
-    policies: ["arn:aws:iam::aws:policy/AdministratorAccess", policy.arn],
   });
 
   return {

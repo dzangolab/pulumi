@@ -1,0 +1,3 @@
+name: ses-smtp-user
+runtime: nodejs
+description: Example usage of @dzangolab/pulumi/aws/SesSmtpUser
