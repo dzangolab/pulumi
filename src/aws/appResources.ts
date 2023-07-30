@@ -129,20 +129,15 @@ export class AppResources extends ComponentResource {
         sesSmtpSecretAccessKey,
         accessKeyId,
         secretAccessKey,
-      ]) => {
-        const passwordObject: { [key: string]: string | Output<string> } = {
-          "aws-access-key-id": accessKeyId,
-          "aws-secret-access-key": secretAccessKey,
-          "ses-smtp-username": sesSmtpAccessKeyId,
-          "ses-smtp-password": sesSmtpSecretAccessKey,
-          "traefik-dashboard-password": traefikDashboardPassword,
-        };
-
-        passwordObject[`${database}-password`] = databasePassword;
-        passwordObject[`${database}-root-password`] = databaseRootPassword;
-
-        return passwordObject;
-      },
+      ]) => ({
+        "aws-access-key-id": accessKeyId,
+        "aws-secret-access-key": secretAccessKey,
+        "database-password": databasePassword,
+        "database-root-password": databaseRootPassword,
+        "ses-smtp-username": sesSmtpAccessKeyId,
+        "ses-smtp-password": sesSmtpSecretAccessKey,
+        "traefik-dashboard-password": traefikDashboardPassword,
+      })
     );
 
     const secret = new Secret(
