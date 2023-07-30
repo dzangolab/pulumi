@@ -1,3 +1,18 @@
+# [0.10.0](https://github.com/dzangolab/pulumi/compare/v0.9.4...v0.10.0) (2023-07-30)
+
+
+### Bug Fixes
+
+* **aws/AppResources:** update secret ([ef0340b](https://github.com/dzangolab/pulumi/commit/ef0340b3e99364b0f0b732f35706a2adeb5541cc))
+
+
+### Features
+
+* **aws/AppResources:** add user access key id to secret ([6169515](https://github.com/dzangolab/pulumi/commit/6169515687203fa8cdecf17feb3e0acdfbc890b3))
+* **aws/AppUser:** add missing outpot attributes ([65a419b](https://github.com/dzangolab/pulumi/commit/65a419bdc05b24e158feb55f1e0eae30b418e685))
+
+
+
 ## [0.9.4](https://github.com/dzangolab/pulumi/compare/v0.9.3...v0.9.4) (2023-07-29)
 
 
