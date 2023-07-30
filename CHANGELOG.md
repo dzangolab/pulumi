@@ -1,3 +1,13 @@
+# [0.11.0](https://github.com/dzangolab/pulumi/compare/v0.9.4...v0.11.0) (2023-07-30)
+
+
+### Features
+
+* **aws/User:** add User component resource ([ed76eb5](https://github.com/dzangolab/pulumi/commit/ed76eb519535728b1c4dbf68d7039ac76be1814b))
+* **digitalocean/AppResources:** make project resource name optional ([4889fa8](https://github.com/dzangolab/pulumi/commit/4889fa8686e5dc0365d2769d4b2265546311227c))
+
+
+
 # [0.10.0](https://github.com/dzangolab/pulumi/compare/v0.9.4...v0.10.0) (2023-07-30)
 
 
