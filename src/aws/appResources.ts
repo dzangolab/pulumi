@@ -11,7 +11,6 @@ import { Secret } from "./secret";
 import { User } from "./user";
 
 export interface AppResourcesArguments {
-  database?: string;
   passwordLength?: number;
   usergroup?: string;
   username?: string;
@@ -75,11 +74,10 @@ export class AppResources extends ComponentResource {
       },
     );
 
-    const database = args.database || "postgres";
     const passwordLength = args.passwordLength || 24;
 
     const databasePassword = new RandomPassword(
-      `${name}-${database}-password`,
+      `${name}-database-password`,
       {
         length: passwordLength,
       },
@@ -91,7 +89,7 @@ export class AppResources extends ComponentResource {
     );
 
     const databaseRootPassword = new RandomPassword(
-      `${name}-${database}-root-password`,
+      `${name}-database-root-password`,
       {
         length: passwordLength,
       },
