@@ -1,3 +1,13 @@
+## [0.11.2](https://github.com/dzangolab/pulumi/compare/v0.11.1...v0.11.2) (2023-07-30)
+
+
+### Bug Fixes
+
+* **aws/ApppResources:** update app  secret ([944c073](https://github.com/dzangolab/pulumi/commit/944c0730088857e4e46b61ba03676e8b78293183))
+* **aws/ApppResources:** update app  secret ([a739165](https://github.com/dzangolab/pulumi/commit/a739165b69ca6b2ef5c2cf8edb005cc7ac348a9b))
+
+
+
 ## [0.11.1](https://github.com/dzangolab/pulumi/compare/v0.11.0...v0.11.1) (2023-07-30)
 
 
