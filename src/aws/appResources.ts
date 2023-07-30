@@ -61,7 +61,7 @@ export class AppResources extends ComponentResource {
 
     const passwordLength = args.passwordLength || 24;
 
-    const postgresRootPassword = getRandomPasswordOutput(
+    const databasePassword = getRandomPasswordOutput(
       {
         passwordLength: passwordLength,
       },
@@ -70,7 +70,7 @@ export class AppResources extends ComponentResource {
       },
     );
 
-    const postgresPassword = getRandomPasswordOutput(
+    const databaseRootPassword = getRandomPasswordOutput(
       {
         passwordLength: passwordLength,
       },
@@ -92,21 +92,21 @@ export class AppResources extends ComponentResource {
     const passwordObject = all([
       user.accessKeyId as unknown as string,
       user.secretAccessKey as unknown as string,
-      postgresPassword,
-      postgresRootPassword,
+      databasePassword,
+      databaseRootPassword,
       traefikDashboardPassword,
     ]).apply(
       ([
         accessKeyId,
         secretAccessKey,
-        postgresPassword,
-        postgresRootPassword,
+        databasePassword,
+        databaseRootPassword,
         traefikDashboardPassword,
       ]) => ({
         "aws-access_key-iid": accessKeyId,
         "aws-secret-access-key": secretAccessKey,
-        "postgres-password": postgresPassword.randomPassword,
-        "postgres-root-password": postgresRootPassword.randomPassword,
+        "database-password": databasePassword.randomPassword,
+        "database-root-password": databaseRootPassword.randomPassword,
         "traefik-dashboard-password": traefikDashboardPassword.randomPassword,
       }),
     );
