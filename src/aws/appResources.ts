@@ -137,7 +137,7 @@ export class AppResources extends ComponentResource {
         "ses-smtp-username": sesSmtpAccessKeyId,
         "ses-smtp-password": sesSmtpSecretAccessKey,
         "traefik-dashboard-password": traefikDashboardPassword,
-      })
+      }),
     );
 
     const secret = new Secret(
