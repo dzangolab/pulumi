@@ -84,7 +84,7 @@ export class AppResources extends ComponentResource {
         length: passwordLength,
       },
       {
-        parent: user,
+        parent: this,
         protect: opts?.protect,
         retainOnDelete: opts?.retainOnDelete,
       },
@@ -96,7 +96,7 @@ export class AppResources extends ComponentResource {
         length: passwordLength,
       },
       {
-        parent: user,
+        parent: this,
         protect: opts?.protect,
         retainOnDelete: opts?.retainOnDelete,
       },
@@ -108,7 +108,7 @@ export class AppResources extends ComponentResource {
         length: passwordLength,
       },
       {
-        parent: user,
+        parent: this,
       },
     );
 
