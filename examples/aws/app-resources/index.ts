@@ -16,6 +16,8 @@ export = async () => {
     secretAccessKey: interpolate`${resources.secretAccessKey}`,
     secretArn: interpolate`${resources.secretArn}`,
     secretPolicyArn: interpolate`${resources.secretPolicyArn}`,
+    sesSmtpUsername: interpolate`${resources.sesSmtpUsername}`,
+    sesSmtpPassword: interpolate`${resources.sesSmtpPassword}`,
     userArn: interpolate`${resources.userArn}`,
   };
 };

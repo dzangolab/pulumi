@@ -6,9 +6,9 @@ import {
   Output,
 } from "@pulumi/pulumi";
 
-import { AppUser } from "./appUser";
 import { S3Bucket } from "./s3Bucket";
 import { Secret } from "./secret";
+import { User } from "./user";
 
 export interface AppResourcesArguments {
   passwordLength?: number;
@@ -23,6 +23,8 @@ export class AppResources extends ComponentResource {
   secretAccessKey: Output<string>;
   secretArn: Output<string>;
   secretPolicyArn: Output<string>;
+  sesSmtpPassword: Output<string>;
+  sesSmtpUsername: Output<string>;
   userArn: Output<string>;
 
   constructor(
@@ -41,16 +43,29 @@ export class AppResources extends ComponentResource {
       },
     );
 
-    const user = new AppUser(
+    const user = new User(
       args.username || name,
       {
         accessKey: true,
         consoleAccess: false,
         group: args?.usergroup,
-        policies: [
-          bucket.policyArn,
-          "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
-        ],
+        policies: {
+          s3: bucket.policyArn,
+          ecr: "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+        },
+      },
+      {
+        parent: this,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
+      },
+    );
+
+    const sesSmtpUser = new User(
+      `${args.username || name}-ses`,
+      {
+        group: args?.usergroup,
+        sesSmtpUser: true,
       },
       {
         parent: this,
@@ -90,23 +105,29 @@ export class AppResources extends ComponentResource {
     );
 
     const passwordObject = all([
-      user.accessKeyId as unknown as string,
-      user.secretAccessKey as unknown as string,
       databasePassword,
       databaseRootPassword,
       traefikDashboardPassword,
+      sesSmtpUser.accessKeyId as unknown as string,
+      sesSmtpUser.secretAccessKey as unknown as string,
+      user.accessKeyId as unknown as string,
+      user.secretAccessKey as unknown as string,
     ]).apply(
       ([
-        accessKeyId,
-        secretAccessKey,
         databasePassword,
         databaseRootPassword,
         traefikDashboardPassword,
+        sesSmtpAccessKeyId,
+        sesSmtpSecretAccessKey,
+        accessKeyId,
+        secretAccessKey,
       ]) => ({
-        "aws-access_key-iid": accessKeyId,
+        "aws-access_key-id": accessKeyId,
         "aws-secret-access-key": secretAccessKey,
         "database-password": databasePassword.randomPassword,
         "database-root-password": databaseRootPassword.randomPassword,
+        "ses-smtp-username": sesSmtpAccessKeyId,
+        "ses-smtp-password": sesSmtpSecretAccessKey,
         "traefik-dashboard-password": traefikDashboardPassword.randomPassword,
       }),
     );
@@ -131,6 +152,9 @@ export class AppResources extends ComponentResource {
 
     this.secretArn = secret.arn;
     this.secretPolicyArn = secret.policyArn;
+
+    this.sesSmtpPassword = sesSmtpUser.secretAccessKey as Output<string>;
+    this.sesSmtpUsername = sesSmtpUser.accessKeyId as Output<string>;
 
     this.userArn = user.arn;
 

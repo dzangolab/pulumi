@@ -7,6 +7,5 @@ export const getConfig = async () => {
     accessKey: stackConfig.getBoolean("accessKey"),
     group: stackConfig.get("group"),
     name: stackConfig.require("name"),
-    policies: stackConfig.getObject<string[]>("policies"),
   };
 };

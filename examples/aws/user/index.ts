@@ -3,7 +3,7 @@ import { interpolate } from "@pulumi/pulumi";
 
 import { getConfig } from "./config";
 /* eslint-disable-next-line node/no-unpublished-import */
-import { AppUser } from "../../../src/aws/appUser";
+import { User } from "../../../src/aws/user";
 
 export = async () => {
   const config = await getConfig();
@@ -23,10 +23,27 @@ export = async () => {
     }),
   });
 
-  const user = new AppUser(config.name, {
+  const ec2Policy = JSON.stringify({
+    Version: "2012-10-17",
+    Statement: [
+      {
+        Action: ["ec2:Describe*"],
+        Effect: "Allow",
+        Resource: "*",
+      },
+    ],
+  });
+
+  const user = new User(config.name, {
     accessKey: config.accessKey,
     group: config.group,
-    policies: ["arn:aws:iam::aws:policy/AdministratorAccess", policy.arn],
+    inlinePolicies: {
+      ec2: ec2Policy,
+    },
+    policies: {
+      admin: "arn:aws:iam::aws:policy/AdministratorAccess",
+      ec2: policy.arn,
+    },
   });
 
   return {
@@ -38,6 +55,7 @@ export = async () => {
     path: interpolate`${user.path}`,
     permissionsBoundary: interpolate`${user.permissionsBoundary}`,
     secretAccessKey: interpolate`${user.secretAccessKey}`,
+    sesSmtpuser: interpolate`${user.sesSmtpUser}`,
     tagsAll: interpolate`${user.tagsAll}`,
     uniqueId: interpolate`${user.uniqueId}`,
   };
