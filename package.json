@@ -55,7 +55,7 @@
     "eslint-plugin-promise": "6.1.1",
     "eslint-plugin-unicorn": "48.0.1",
     "husky": "8.0.3",
-    "prettier": "3.0.0",
+    "prettier": "3.0.1",
     "shipjs": "0.26.3",
     "sort-package-json": "2.5.1",
     "typescript": "5.1.6",
