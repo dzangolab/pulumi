@@ -1,3 +1,12 @@
+# [0.12.0](https://github.com/dzangolab/pulumi/compare/v0.11.4...v0.12.0) (2023-08-10)
+
+
+### Features
+
+* **aws/GithubIdentityProvider:** add support for ecrArns as Outputs ([5541a2a](https://github.com/dzangolab/pulumi/commit/5541a2ab69df43859790c3ffca9a7d8df67c5e8a))
+
+
+
 ## [0.11.4](https://github.com/dzangolab/pulumi/compare/v0.11.3...v0.11.4) (2023-08-10)
 
 
