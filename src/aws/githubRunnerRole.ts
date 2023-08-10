@@ -24,7 +24,7 @@ export class GithubRunnerRole extends ComponentResource {
     args: GithubRunnerRoleArguments,
     opts?: ComponentResourceOptions,
   ) {
-    super("dzangolab:pulumi:GithubRUnnerRole", name, args, opts);
+    super("dzangolab:pulumi:GithubRunnerRole", name, args, opts);
 
     const assumeRolePolicy = JSON.stringify({
       Version: "2012-10-17",
