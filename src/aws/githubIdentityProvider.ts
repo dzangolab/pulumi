@@ -6,7 +6,7 @@ import {
 } from "@pulumi/pulumi";
 
 export interface GithubIdentityProviderArguments {
-  ecrArns: string[];
+  ecrArns: (Output<string> | string)[];
   repos: string[];
   tags?: { [key: string]: string };
 }
