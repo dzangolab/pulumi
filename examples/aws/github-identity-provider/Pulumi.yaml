@@ -1,0 +1,3 @@
+name: github-identity-provider
+runtime: nodejs
+description: Example use of @dzangolab/pulumi/aws/GithubIdentityProvider"
