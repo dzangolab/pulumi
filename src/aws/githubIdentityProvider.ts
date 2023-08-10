@@ -6,9 +6,9 @@ import {
 } from "@pulumi/pulumi";
 
 export interface GithubIdentityProviderArguments {
-  ecrArns: string[]
-  repos: string[],
-  tags?: { [key: string]: string },
+  ecrArns: string[];
+  repos: string[];
+  tags?: { [key: string]: string };
 }
 
 export class GithubIdentityProvider extends ComponentResource {
@@ -36,10 +36,10 @@ export class GithubIdentityProvider extends ComponentResource {
         parent: this,
         protect: opts?.protect,
         retainOnDelete: opts?.retainOnDelete,
-      }
+      },
     );
 
-    const assumeRolePolicy = provider.arn.apply(arn =>
+    const assumeRolePolicy = provider.arn.apply((arn) =>
       JSON.stringify({
         Version: "2012-10-17",
         Statement: [
@@ -60,7 +60,7 @@ export class GithubIdentityProvider extends ComponentResource {
             },
           },
         ],
-      })
+      }),
     );
 
     const policy = new Policy(
@@ -98,7 +98,7 @@ export class GithubIdentityProvider extends ComponentResource {
         parent: provider,
         protect: opts?.protect,
         retainOnDelete: opts?.retainOnDelete,
-      }
+      },
     );
 
     const role = new Role(
@@ -112,7 +112,7 @@ export class GithubIdentityProvider extends ComponentResource {
         parent: provider,
         protect: opts?.protect,
         retainOnDelete: opts?.retainOnDelete,
-      }
+      },
     );
 
     this.arn = provider.arn;
