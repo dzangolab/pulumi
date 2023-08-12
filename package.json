@@ -1,6 +1,6 @@
 {
   "name": "@dzangolab/pulumi",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "A collection of opinionated Pulumi component resources and dynamic providers",
   "homepage": "https://github.com/dzangolab/pulumi",
   "repository": {
