@@ -1,3 +1,12 @@
+# [0.13.0](https://github.com/dzangolab/pulumi/compare/v0.12.0...v0.13.0) (2023-08-12)
+
+
+### Features
+
+* **aws/github:** add GithubIdentityProvider and GithubActionsRole component resources ([6694da0](https://github.com/dzangolab/pulumi/commit/6694da06b469ee78f036311546240d662ada2686))
+
+
+
 # [0.12.0](https://github.com/dzangolab/pulumi/compare/v0.11.4...v0.12.0) (2023-08-10)
 
 
