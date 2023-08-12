@@ -1,5 +1,5 @@
 {
-    "name": "github-runner-role",
+    "name": "ecr-repository",
     "main": "index.ts",
     "devDependencies": {
         "@types/node": "^16"

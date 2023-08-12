@@ -1,0 +1,3 @@
+name: ecr-repository
+runtime: nodejs
+description: Example use of @dzangolab/pulumi/aws/ECRRepository"

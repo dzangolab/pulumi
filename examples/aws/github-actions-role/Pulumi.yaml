@@ -1,0 +1,3 @@
+name: github-actions-role
+runtime: nodejs
+description: Example use of @dzangolab/pulumi/aws/GithubActionsRole"

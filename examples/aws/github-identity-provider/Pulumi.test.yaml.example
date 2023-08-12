@@ -1,6 +1,2 @@
 config:
-  github-identity-provider:ecrArns:
-    - ...
   github-identity-provider:name: github
-  github-identity-provider:repos:
-    - ...

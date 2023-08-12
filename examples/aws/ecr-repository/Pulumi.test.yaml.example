@@ -1,0 +1,2 @@
+config:
+  ecr-repository:name: testrepo

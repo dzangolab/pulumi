@@ -7,10 +7,7 @@ import { GithubIdentityProvider } from "../../../src/aws/githubIdentityProvider"
 export = async () => {
   const config = await getConfig();
 
-  const provider = new GithubIdentityProvider(config.name, {
-    ecrArns: config.ecrArns,
-    repos: config.repos,
-  });
+  const provider = new GithubIdentityProvider(config.name, {});
 
   return {
     arn: interpolate`${provider.arn}`,
