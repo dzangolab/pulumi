@@ -1,4 +1,4 @@
-import { OpenIdConnectProvider, Policy, Role } from "@pulumi/aws/iam";
+import { OpenIdConnectProvider } from "@pulumi/aws/iam";
 import {
   ComponentResource,
   ComponentResourceOptions,

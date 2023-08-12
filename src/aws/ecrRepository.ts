@@ -23,11 +23,7 @@ export class ECRRepository extends ComponentResource {
   ) {
     super("dzangolab:pulumi:ECRRepository", name, args, opts);
 
-    const repo = new Repository(
-      name,
-      args,
-      opts,
-    );
+    const repo = new Repository(name, args, opts);
 
     new LifecyclePolicy(
       name,
@@ -60,7 +56,7 @@ export class ECRRepository extends ComponentResource {
     );
 
     const roPolicy = new Policy(
-      `${name.replace(/\//g, '-')}-read-only`,
+      `${name.replaceAll("/", "-")}-read-only`,
       {
         policy: jsonStringify({
           Version: "2012-10-17",
@@ -102,7 +98,7 @@ export class ECRRepository extends ComponentResource {
     );
 
     const rwPolicy = new Policy(
-      `${name.replace(/\//g, '-')}-read-write`,
+      `${name.replaceAll("/", "-")}-read-write`,
       {
         policy: jsonStringify({
           Version: "2012-10-17",
