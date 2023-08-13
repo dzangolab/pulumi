@@ -67,3 +67,5 @@ The `Droplet` component resource supports all the [original `digitalocean.Drople
 ## Outputs
 
 The resource's outputs are identical to the [original `digitalocean.Droplet`'s outputs](https://www.pulumi.com/registry/packages/digitalocean/api-docs/droplet/#outputs). 
+
+[&#10092; Home](../index.md)
