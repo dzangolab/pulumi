@@ -2,8 +2,8 @@ import {
   Config,
   getOrganization,
   getStack,
-  Output,
   StackReference,
+  StackReferenceOutputDetails,
 } from "@pulumi/pulumi";
 
 export const getConfig = async () => {
@@ -20,12 +20,38 @@ export const getConfig = async () => {
     `${organization}/ecr-repository/${stack}`,
   );
 
+  const githubIdentityProviderOutput = await githubIdpStack.getOutputDetails(
+    "arn",
+  );
+  const githubIdentityProviderArn = getValue<string>(
+    githubIdentityProviderOutput,
+  );
+
+  const rwPolicyArnOutput = await ecrStack.getOutputDetails("rwPolicyArn");
+  const rwPolicyArn = getValue<string>(rwPolicyArnOutput);
+
   return {
-    githubIdentityProviderArn: githubIdpStack.requireOutput(
-      "arn",
-    ) as Output<string>,
+    githubIdentityProviderArn: githubIdentityProviderArn,
     githubRepos: stackConfig.getObject<string[]>("repos"),
     name: stackConfig.require("name"),
-    policyArns: [ecrStack.requireOutput("rwPolicyArn") as Output<string>],
+    policyArns: [rwPolicyArn],
   };
 };
+
+function getValue<T>(input: StackReferenceOutputDetails, defaultValue?: T): T {
+  console.log(input);
+
+  if (input && input.value) {
+    return <T>input.value!;
+  }
+
+  if (input && input.secretValue) {
+    return <T>input.secretValue!;
+  }
+
+  if (!defaultValue) {
+    throw new Error("A value is required");
+  }
+
+  return defaultValue;
+}

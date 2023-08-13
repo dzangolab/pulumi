@@ -16,7 +16,7 @@ export class S3Bucket extends ComponentResource {
   tagsAll: Output<{ [key: string]: string }>;
 
   constructor(name: string, args: BucketArgs, opts?: ComponentResourceOptions) {
-    super("dzangolab:pulumi:S3Bucket", name, args, opts);
+    super("dzangolab:pulumi/aws:S3Bucket", name, args, opts);
 
     const bucket = new Bucket(name, args, {
       ...opts,

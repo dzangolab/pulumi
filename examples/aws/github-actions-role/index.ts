@@ -7,8 +7,6 @@ import { GithubActionsRole } from "../../../src/aws/githubActionsRole";
 export = async () => {
   const config = await getConfig();
 
-  console.log(config);
-
   const role = new GithubActionsRole(config.name, {
     githubIdentityProviderArn: config.githubIdentityProviderArn,
     githubRepos: config.githubRepos as string[],

@@ -25,7 +25,7 @@ export class Secret extends ComponentResource {
     args: SecretArguments,
     opts?: ComponentResourceOptions,
   ) {
-    super("dzangolab:pulumi:AppSecret", name, args, opts);
+    super("dzangolab:pulumi/aws:AppSecret", name, args, opts);
 
     const secret = new AWSSecret(name, args, {
       ...opts,

@@ -21,7 +21,7 @@ export class ECRRepository extends ComponentResource {
     args: RepositoryArgs,
     opts?: ComponentResourceOptions,
   ) {
-    super("dzangolab:pulumi:ECRRepository", name, args, opts);
+    super("dzangolab:pulumi/aws:ECRRepository", name, args, opts);
 
     const repo = new Repository(name, args, opts);
 

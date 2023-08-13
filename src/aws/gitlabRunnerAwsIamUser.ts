@@ -26,7 +26,7 @@ export class GitlabRunnerAWSIAMUser extends ComponentResource {
     args: GitlabRunnerAWSIAMUserOptions,
     opts?: ComponentResourceOptions,
   ) {
-    super("dzango:gitlabRunnerUser", name, args, opts);
+    super("dzangolab:pulumi/aws:GitlabRunnerUser", name, args, opts);
 
     this.runner = new User(
       name,

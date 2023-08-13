@@ -41,7 +41,7 @@ export class User extends ComponentResource {
     args: UserArguments,
     opts?: ComponentResourceOptions,
   ) {
-    super("dzangolab:pulumi:User", name, args, opts);
+    super("dzangolab:pulumi/aws:User", name, args, opts);
 
     const user = new IAMUser(name, args, {
       ...opts,

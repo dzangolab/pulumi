@@ -19,7 +19,7 @@ export class GithubIdentityProvider extends ComponentResource {
     args: GithubIdentityProviderArguments,
     opts?: ComponentResourceOptions,
   ) {
-    super("dzangolab:pulumi:GithubIdentityProvider", name, args, opts);
+    super("dzangolab:pulumi/aws:GithubIdentityProvider", name, args, opts);
 
     const provider = new OpenIdConnectProvider(
       name,

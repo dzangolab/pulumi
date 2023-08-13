@@ -7,9 +7,9 @@ import {
 } from "@pulumi/pulumi";
 
 export interface GithubActionsRoleArguments {
-  githubIdentityProviderArn: Output<string>;
+  githubIdentityProviderArn: string;
   githubRepos: string[];
-  policyArns: Output<string>[];
+  policyArns: string[];
 }
 
 export class GithubActionsRole extends ComponentResource {
@@ -24,7 +24,7 @@ export class GithubActionsRole extends ComponentResource {
     args: GithubActionsRoleArguments,
     opts?: ComponentResourceOptions,
   ) {
-    super("dzangolab:pulumi:GithubActionsRole", name, args, opts);
+    super("dzangolab:pulumi/aws:GithubActionsRole", name, args, opts);
 
     const assumeRolePolicy = jsonStringify({
       Version: "2012-10-17",

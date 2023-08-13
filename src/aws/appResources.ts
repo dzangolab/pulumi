@@ -1,7 +1,7 @@
 import {
-  all,
   ComponentResource,
   ComponentResourceOptions,
+  jsonStringify,
   Output,
 } from "@pulumi/pulumi";
 import { RandomPassword } from "@pulumi/random";
@@ -32,7 +32,7 @@ export class AppResources extends ComponentResource {
     args: AppResourcesArguments,
     opts?: ComponentResourceOptions,
   ) {
-    super("dzango:AppResources", name, args, opts);
+    super("dzangolab:pulumi/aws:AppResources", name, args, opts);
 
     const bucket = new S3Bucket(
       name,
@@ -110,38 +110,20 @@ export class AppResources extends ComponentResource {
       },
     );
 
-    const passwordObject = all([
-      databasePassword.result,
-      databaseRootPassword.result,
-      traefikDashboardPassword.result,
-      sesSmtpUser.accessKeyId as unknown as string,
-      sesSmtpUser.secretAccessKey as unknown as string,
-      user.accessKeyId as unknown as string,
-      user.secretAccessKey as unknown as string,
-    ]).apply(
-      ([
-        databasePassword,
-        databaseRootPassword,
-        traefikDashboardPassword,
-        sesSmtpAccessKeyId,
-        sesSmtpSecretAccessKey,
-        accessKeyId,
-        secretAccessKey,
-      ]) => ({
-        "aws-access-key-id": accessKeyId,
-        "aws-secret-access-key": secretAccessKey,
-        "database-password": databasePassword,
-        "database-root-password": databaseRootPassword,
-        "ses-smtp-username": sesSmtpAccessKeyId,
-        "ses-smtp-password": sesSmtpSecretAccessKey,
-        "traefik-dashboard-password": traefikDashboardPassword,
-      }),
-    );
+    const secretString = jsonStringify({
+      "aws-access-key-id": user.accessKeyId,
+      "aws-secret-access-key": user.secretAccessKey,
+      "database-password": databasePassword.result,
+      "database-root-password": databaseRootPassword.result,
+      "ses-smtp-username": sesSmtpUser.accessKeyId,
+      "ses-smtp-password": sesSmtpUser.secretAccessKey,
+      "traefik-dashboard-password": traefikDashboardPassword.result,
+    });
 
     const secret = new Secret(
       name,
       {
-        secretString: passwordObject.apply((o) => JSON.stringify(o)),
+        secretString,
       },
       {
         parent: this,
