@@ -10,16 +10,17 @@ import {
 import {
   ComponentResource,
   ComponentResourceOptions,
+  Input,
   Output,
 } from "@pulumi/pulumi";
 
 export interface UserArguments extends UserArgs {
   accessKey?: boolean;
-  group?: string;
+  group?: Input<string>;
   consoleAccess?: boolean;
-  inlinePolicies?: { [key: string]: string | Output<string> };
-  pgpPublicKey?: string;
-  policies?: { [key: string]: string | Output<string> };
+  inlinePolicies?: { [key: string]: Input<string> };
+  pgpPublicKey?: Input<string>;
+  policies?: { [key: string]: Input<string> };
   sesSmtpUser?: boolean;
 }
 

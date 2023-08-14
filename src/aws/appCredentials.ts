@@ -3,6 +3,7 @@ import { SecretVersion } from "@pulumi/aws/secretsmanager";
 import {
   ComponentResource,
   ComponentResourceOptions,
+  Input,
   jsonStringify,
   Output,
 } from "@pulumi/pulumi";
@@ -12,9 +13,9 @@ export interface AppCredentialsArguments {
   additionalPasswords?: string[];
   passwordLength?: number;
   passwords?: string[];
-  secret: string;
-  sesSmtpUser?: string;
-  users: string[];
+  secret: Input<string>;
+  sesSmtpUser?: Input<string>;
+  users: Input<string>[];
 }
 
 export class AppCredentials extends ComponentResource {

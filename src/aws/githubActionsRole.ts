@@ -2,14 +2,15 @@ import { Role } from "@pulumi/aws/iam";
 import {
   ComponentResource,
   ComponentResourceOptions,
+  Input,
   jsonStringify,
   Output,
 } from "@pulumi/pulumi";
 
 export interface GithubActionsRoleArguments {
-  githubIdentityProviderArn: string;
+  githubIdentityProviderArn: Input<string>;
   githubRepos: string[];
-  policyArns: string[];
+  policyArns: Input<string>[];
 }
 
 export class GithubActionsRole extends ComponentResource {

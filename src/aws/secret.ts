@@ -7,11 +7,12 @@ import {
 import {
   ComponentResource,
   ComponentResourceOptions,
+  Input,
   Output,
 } from "@pulumi/pulumi";
 
 export interface SecretArguments extends SecretArgs {
-  secretString?: string | Output<string>;
+  secretString?: Input<string>;
 }
 
 export class Secret extends ComponentResource {
