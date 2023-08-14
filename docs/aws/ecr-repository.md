@@ -28,6 +28,6 @@ This components provides the [original `aws.ecr.Repository` outputs](https://www
 | output        | type     | comments                           |
 |---------------|----------|------------------------------------|
 | `roPolicyArn` | `string` | The arn of the read-only policy.   |
-| `rwPolicyArn` | `string` | The arn of the read-write policy. |
+| `rwPolicyArn` | `string` | The arn of the read-write policy.  |
 
 [&#10092; Home](../index.md)

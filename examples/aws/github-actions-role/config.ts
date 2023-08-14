@@ -39,8 +39,6 @@ export const getConfig = async () => {
 };
 
 function getValue<T>(input: StackReferenceOutputDetails, defaultValue?: T): T {
-  console.log(input);
-
   if (input && input.value) {
     return <T>input.value!;
   }

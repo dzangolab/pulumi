@@ -3,6 +3,6 @@
 Provisions an AWS S3 bucket.
 
 ## Resources created
-
-### S3Bucket
  
+
+[&#10092; Home](../index.md)

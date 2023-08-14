@@ -10,14 +10,13 @@ export = async () => {
   const resources = new AppResources(config.name, config);
 
   return {
-    accessKeyId: interpolate`${resources.accessKeyId}`,
     bucketArn: interpolate`${resources.bucketArn}`,
     bucketPolicyArn: interpolate`${resources.bucketPolicyArn}`,
-    secretAccessKey: interpolate`${resources.secretAccessKey}`,
     secretArn: interpolate`${resources.secretArn}`,
     secretPolicyArn: interpolate`${resources.secretPolicyArn}`,
+    sesSmtpUserArn: interpolate`${resources.sesSmtpUserArn}`,
     sesSmtpUsername: interpolate`${resources.sesSmtpUsername}`,
-    sesSmtpPassword: interpolate`${resources.sesSmtpPassword}`,
     userArn: interpolate`${resources.userArn}`,
+    username: interpolate`${resources.username}`,
   };
 };

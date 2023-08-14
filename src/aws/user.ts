@@ -121,7 +121,7 @@ export class User extends ComponentResource {
       }
     }
 
-    if (args.accessKey || args.sesSmtpUser) {
+    if (args.accessKey) {
       const accessKey = new AccessKey(
         name,
         {

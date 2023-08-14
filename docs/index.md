@@ -2,12 +2,13 @@
 
 ## DigitalOcean
 
-* [ApplicationResources](./digitalocean/application-resources.md) component resource
+* [AppResources](./digitalocean/app-resources.md) component resource
 * [Droplet](./digitalocean/droplet.md) component resource
 
 ## AWS
 
-* [ApplicationResources](./aws/application-resources.md) component resource
+* [AppCredentials](./aws/app-credentials.md) component resource
+* [AppResources](./aws/app-resources.md) component resource
 * [ECRRepository](./aws/ecr-repository.md) component resource
 * [GithubActionsRole](./aws/github-actions-role.md) component resource
 * [GithubIdentityProvider](./aws/github-identity-provider.md) component resource

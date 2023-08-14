@@ -1,31 +1,29 @@
 import {
   ComponentResource,
   ComponentResourceOptions,
-  jsonStringify,
   Output,
 } from "@pulumi/pulumi";
-import { RandomPassword } from "@pulumi/random";
 
 import { S3Bucket } from "./s3Bucket";
 import { Secret } from "./secret";
 import { User } from "./user";
 
 export interface AppResourcesArguments {
-  passwordLength?: number;
+  secretRecoveryWindowInDays?: number;
+  sesSmtpUser?: boolean | string;
   usergroup?: string;
   username?: string;
 }
 
 export class AppResources extends ComponentResource {
-  accessKeyId: Output<string>;
   bucketArn: Output<string>;
   bucketPolicyArn: Output<string>;
-  secretAccessKey: Output<string>;
   secretArn: Output<string>;
   secretPolicyArn: Output<string>;
-  sesSmtpPassword: Output<string>;
-  sesSmtpUsername: Output<string>;
+  sesSmtpUserArn: Output<string> | undefined;
+  sesSmtpUsername: Output<string> | undefined;
   userArn: Output<string>;
+  username: Output<string>;
 
   constructor(
     name: string,
@@ -46,7 +44,7 @@ export class AppResources extends ComponentResource {
     const user = new User(
       args.username || name,
       {
-        accessKey: true,
+        accessKey: false,
         consoleAccess: false,
         group: args?.usergroup,
         policies: {
@@ -61,69 +59,34 @@ export class AppResources extends ComponentResource {
       },
     );
 
-    const sesSmtpUser = new User(
-      `${args.username || name}-ses`,
-      {
-        group: args?.usergroup,
-        sesSmtpUser: true,
-      },
-      {
-        parent: this,
-        protect: opts?.protect,
-        retainOnDelete: opts?.retainOnDelete,
-      },
-    );
+    if (args.sesSmtpUser) {
+      const username =
+        typeof args.sesSmtpUser === "string"
+          ? args.sesSmtpUser
+          : `${args.username || name}-ses`;
 
-    const passwordLength = args.passwordLength || 24;
+      const sesSmtpUser = new User(
+        username,
+        {
+          accessKey: false,
+          group: args?.usergroup,
+          sesSmtpUser: true,
+        },
+        {
+          parent: this,
+          protect: opts?.protect,
+          retainOnDelete: opts?.retainOnDelete,
+        },
+      );
 
-    const databasePassword = new RandomPassword(
-      `${name}-database-password`,
-      {
-        length: passwordLength,
-      },
-      {
-        parent: this,
-        protect: opts?.protect,
-        retainOnDelete: opts?.retainOnDelete,
-      },
-    );
-
-    const databaseRootPassword = new RandomPassword(
-      `${name}-database-root-password`,
-      {
-        length: passwordLength,
-      },
-      {
-        parent: this,
-        protect: opts?.protect,
-        retainOnDelete: opts?.retainOnDelete,
-      },
-    );
-
-    const traefikDashboardPassword = new RandomPassword(
-      `${name}-traefik-dashboard-password`,
-      {
-        length: passwordLength,
-      },
-      {
-        parent: this,
-      },
-    );
-
-    const secretString = jsonStringify({
-      "aws-access-key-id": user.accessKeyId,
-      "aws-secret-access-key": user.secretAccessKey,
-      "database-password": databasePassword.result,
-      "database-root-password": databaseRootPassword.result,
-      "ses-smtp-username": sesSmtpUser.accessKeyId,
-      "ses-smtp-password": sesSmtpUser.secretAccessKey,
-      "traefik-dashboard-password": traefikDashboardPassword.result,
-    });
+      this.sesSmtpUserArn = sesSmtpUser.arn;
+      this.sesSmtpUsername = sesSmtpUser.name;
+    }
 
     const secret = new Secret(
       name,
       {
-        secretString,
+        recoveryWindowInDays: args.secretRecoveryWindowInDays,
       },
       {
         parent: this,
@@ -131,9 +94,6 @@ export class AppResources extends ComponentResource {
         retainOnDelete: opts?.retainOnDelete,
       },
     );
-
-    this.accessKeyId = user.accessKeyId as Output<string>;
-    this.secretAccessKey = user.secretAccessKey as Output<string>;
 
     this.bucketArn = bucket.arn;
     this.bucketPolicyArn = bucket.policyArn;
@@ -141,10 +101,8 @@ export class AppResources extends ComponentResource {
     this.secretArn = secret.arn;
     this.secretPolicyArn = secret.policyArn;
 
-    this.sesSmtpPassword = sesSmtpUser.secretAccessKey as Output<string>;
-    this.sesSmtpUsername = sesSmtpUser.accessKeyId as Output<string>;
-
     this.userArn = user.arn;
+    this.username = user.name;
 
     this.registerOutputs();
   }

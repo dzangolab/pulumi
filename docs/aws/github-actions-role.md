@@ -40,8 +40,10 @@ The following trust policy is attached to the Role:
 |-----------------------------|------------|----------|
 | `githubIdentityProviderArn` | `string`   | The arn of the github identity provider |
 | `githubRepos`               | `string[]` | A collection of github repos tobe included  in the trust policy |
-| `policyArns`                | `string[]` | Therole's managed policies |
+| `policyArns`                | `string[]` | The role's managed policies |
 
 ## Outputs
 
 The resource provides all [original `aws.iam.Role` outputs](https://www.pulumi.com/registry/packages/aws/api-docs/iam/role/#outputs) except for `RoleLastUseds`.
+
+[&#10092; Home](../index.md)

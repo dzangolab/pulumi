@@ -7,6 +7,8 @@ export const getConfig = async () => {
 
   return {
     name: `${organization}-${stack}`,
+    recoveryWindowInDays: stackConfig.get("recoveryWindowInDays"),
+    sesSmtpUser: stackConfig.getBoolean("sesSmtpUser"),
     usergroup: stackConfig.get("usergroup"),
   };
 };
