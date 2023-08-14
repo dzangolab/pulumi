@@ -1,3 +1,12 @@
+# [0.14.0](https://github.com/dzangolab/pulumi/compare/v0.13.1...v0.14.0) (2023-08-14)
+
+
+### Bug Fixes
+
+* fix code ([ce5e5a4](https://github.com/dzangolab/pulumi/commit/ce5e5a4ac27bb0635d32cc5e331b9e0175e60ca5))
+
+
+
 ## [0.13.1](https://github.com/dzangolab/pulumi/compare/v0.12.0...v0.13.1) (2023-08-12)
 
 
