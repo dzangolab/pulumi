@@ -1,3 +1,12 @@
+## [0.15.2](https://github.com/dzangolab/pulumi/compare/v0.15.0...v0.15.2) (2023-08-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @pulumi/pulumi to v3.78.1 ([#83](https://github.com/dzangolab/pulumi/issues/83)) ([a3f1711](https://github.com/dzangolab/pulumi/commit/a3f17111ec2af67c1c998280aa642615c9905551))
+
+
+
 ## [0.15.1](https://github.com/dzangolab/pulumi/compare/v0.15.0...v0.15.1) (2023-08-15)
 
 
