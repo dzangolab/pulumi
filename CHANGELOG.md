@@ -1,3 +1,12 @@
+## [0.15.4](https://github.com/dzangolab/pulumi/compare/v0.15.3...v0.15.4) (2023-08-16)
+
+
+### Bug Fixes
+
+* **aws/ECRRepository:** fix resource hierarchy ([937fb2b](https://github.com/dzangolab/pulumi/commit/937fb2ba57ae4ca20acfffacae71d8bdfcc2d8ca))
+
+
+
 ## [0.15.3](https://github.com/dzangolab/pulumi/compare/v0.15.2...v0.15.3) (2023-08-16)
 
 
