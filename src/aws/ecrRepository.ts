@@ -8,7 +8,7 @@ import {
 } from "@pulumi/pulumi";
 
 export interface ECRRepositoryArguments extends RepositoryArgs {
-  provisionPolicies: boolean;
+  provisionPolicies?: boolean;
 }
 
 export class ECRRepository extends ComponentResource {
@@ -27,7 +27,10 @@ export class ECRRepository extends ComponentResource {
   ) {
     super("dzangolab:pulumi/aws:ECRRepository", name, args, opts);
 
-    const repo = new Repository(name, args, opts);
+    const repo = new Repository(name, args, {
+      ...opts,
+      parent: this,
+    });
 
     new LifecyclePolicy(
       name,
@@ -53,7 +56,7 @@ export class ECRRepository extends ComponentResource {
       },
       {
         dependsOn: repo,
-        parent: this,
+        parent: repo,
         protect: opts?.protect,
         retainOnDelete: opts?.retainOnDelete,
       },
@@ -65,7 +68,7 @@ export class ECRRepository extends ComponentResource {
     this.repositoryUrl = repo.repositoryUrl;
     this.tagsAll = repo.tagsAll;
 
-    if (args.provisionPolicies) {
+    if (args?.provisionPolicies) {
       const roPolicy = new Policy(
         `${name.replaceAll("/", "-")}-read-only`,
         {
