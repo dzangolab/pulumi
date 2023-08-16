@@ -56,7 +56,7 @@ export class ECRRepository extends ComponentResource {
       },
       {
         dependsOn: repo,
-        parent: repo,
+        parent: this,
         protect: opts?.protect,
         retainOnDelete: opts?.retainOnDelete,
       },
