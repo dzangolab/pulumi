@@ -2,7 +2,15 @@
   "name": "@dzangolab/pulumi",
   "version": "0.15.4",
   "description": "A collection of opinionated Pulumi component resources and dynamic providers",
+  "keywords": [
+    "pulumi",
+    "AWS",
+    "ECR"
+  ],
   "homepage": "https://github.com/dzangolab/pulumi",
+  "bugs": {
+    "url": "https://github.com/dzangolab/pulumi/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dzangolab/pulumi.git"
@@ -21,14 +29,6 @@
   "files": [
     "dist"
   ],
-  "keywords": [
-    "pulumi",
-    "AWS",
-    "ECR"
-  ],
-  "bugs": {
-    "url": "https://github.com/dzangolab/pulumi/issues"
-  },
   "scripts": {
     "build": "vite build && tsc --emitDeclarationOnly && mv dist/src dist/types",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
@@ -37,6 +37,10 @@
     "release": "shipjs prepare",
     "sort-package": "npx sort-package-json",
     "typecheck": "tsc --noEmit -p tsconfig.json --composite false"
+  },
+  "dependencies": {
+    "@pulumi/random": "4.13.2",
+    "nunjucks": "3.2.4"
   },
   "devDependencies": {
     "@commitlint/cli": "17.7.1",
@@ -60,10 +64,6 @@
     "sort-package-json": "2.5.1",
     "typescript": "5.1.6",
     "vite": "4.4.9"
-  },
-  "dependencies": {
-    "@pulumi/random": "4.13.2",
-    "nunjucks": "3.2.4"
   },
   "peerDependencies": {
     "@pulumi/aws": "^5.0",

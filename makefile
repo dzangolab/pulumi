@@ -31,8 +31,8 @@ release:
 
 sort-package:
 	@printf "\033[0;32m>>> Format package.json\033[0m\n"
-	npm sort-package
+	npm run sort-package
 
 typecheck:
 	@printf "\033[0;32m>>> Running Type check\033[0m\n"
-	npm typecheck
+	npm run typecheck
