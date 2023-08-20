@@ -20,9 +20,8 @@ export const getConfig = async () => {
     `${organization}/ecr-repository/${stack}`,
   );
 
-  const githubIdentityProviderOutput = await githubIdpStack.getOutputDetails(
-    "arn",
-  );
+  const githubIdentityProviderOutput =
+    await githubIdpStack.getOutputDetails("arn");
   const githubIdentityProviderArn = getValue<string>(
     githubIdentityProviderOutput,
   );

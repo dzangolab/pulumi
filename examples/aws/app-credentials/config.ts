@@ -16,9 +16,8 @@ export const getConfig = async () => {
   const secretArnOutput = await resourcesStack.getOutputDetails("secretArn");
   const secretArn = getValue<string>(secretArnOutput);
 
-  const sesSmtpUsernameOutput = await resourcesStack.getOutputDetails(
-    "sesSmtpUsername",
-  );
+  const sesSmtpUsernameOutput =
+    await resourcesStack.getOutputDetails("sesSmtpUsername");
   const sesSmtpUsername = getValue<string>(sesSmtpUsernameOutput);
 
   const usernameOutput = await resourcesStack.getOutputDetails("username");
