@@ -8,15 +8,16 @@ import {
 import {
   ComponentResource,
   ComponentResourceOptions,
+  Input,
   Output,
 } from "@pulumi/pulumi";
 
 export interface AppResourcesArguments {
-  description?: string;
-  environment?: string;
-  name?: string;
-  region: string;
-  volumeSize: number;
+  description?: Input<string>;
+  environment?: Input<string>;
+  name?: Input<string>;
+  region: Input<string>;
+  volumeSize: Input<number>;
 }
 
 export class AppResources extends ComponentResource {
