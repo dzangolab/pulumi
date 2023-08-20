@@ -1,3 +1,4 @@
+import { AppCredentials } from "./appCredentials";
 import { AppResources } from "./appResources";
 import { ECRRepository } from "./ecrRepository";
 import { GithubActionsRole } from "./githubActionsRole";
@@ -8,6 +9,7 @@ import { Secret } from "./secret";
 import { User } from "./user";
 
 export const aws = {
+  AppCredentials,
   AppResources,
   ECRRepository,
   GithubActionsRole,
