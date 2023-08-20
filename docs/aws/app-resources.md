@@ -25,7 +25,7 @@ Provisions a collection of resources required to deploy and run an app.
 |------------------------------|------------|----------|-------|
 | `secretRecoveryWindowInDays` | `number` | Optional. Recovery window foir the secret created by the component resource. This value can be 0 to force deletion without recovery or range from 7 to 30 days. The default value is 30. |  |
 | `sesSmtpUser`                | `boolean \| string`   | Optional. | (1) |
-| `usergroup`                  | `string` | Optional. The name of the group for the user to be created by this compolnent resource |  |
+| `usergroup`                  | `string` | Optional. The name of the group for the user to be created by this component resource |  |
 | `username`                   | `string` | The name of the user to be created. | |
 
 ### Notes
