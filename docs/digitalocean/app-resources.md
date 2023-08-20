@@ -36,12 +36,12 @@ Provisions a collection of resources required to deploy and run an app on Digita
 
 ## Outputs
 
-| output         | type     | comments                       |
-|----------------|----------|--------------------------------|
-| `projectId`    | `string` | The id of the project.         |
-| `reservedIpId` | `string` | The id of the reserved ip.     |
-| `volumeId`     | `string` | The id of the volume.          |
-| `volumeName`   | `string` | The name of the volume.        |
-| `vpcId`        | `string` | The id of the VPC.             |
+| output         | type                 | comments                       |
+|----------------|----------------------|--------------------------------|
+| `projectId`    | `string`             | The id of the project.         |
+| `reservedIpId` | `string`             | The id of the reserved ip.     |
+| `volumeId`     | `string | undefined` | The id of the volume.          |
+| `volumeName`   | `string | undefined` | The name of the volume.        |
+| `vpcId`        | `string`             | The id of the VPC.             |
 
 [&#10092; Home](../index.md)

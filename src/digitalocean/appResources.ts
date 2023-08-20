@@ -13,18 +13,18 @@ import {
 } from "@pulumi/pulumi";
 
 export interface AppResourcesArguments {
-  description?: Input<string>;
-  environment?: Input<string>;
+  description?: string;
+  environment?: string;
   name?: Input<string>;
   region: Input<string>;
-  volumeSize: Input<number>;
+  volumeSize: number;
 }
 
 export class AppResources extends ComponentResource {
   projectId: Output<string>;
   reservedIpId: Output<string>;
-  volumeId: Output<string>;
-  volumeName: Output<string>;
+  volumeId?: Output<string>;
+  volumeName?: Output<string>;
   vpcId: Output<string>;
 
   constructor(
@@ -73,39 +73,42 @@ export class AppResources extends ComponentResource {
       },
     );
 
-    const volume = new Volume(
-      name,
-      {
-        description: `Block-storage volume for ${name}`,
-        initialFilesystemType: "ext4",
-        region: args.region,
-        size: args.volumeSize,
-      },
-      {
-        parent: project,
-        protect: opts?.protect,
-        retainOnDelete: opts?.retainOnDelete,
-      },
-    );
-
-    new ProjectResources(
-      name,
-      {
-        project: project.id,
-        resources: [volume.volumeUrn],
-      },
-      {
-        parent: project,
-        protect: opts?.protect,
-        retainOnDelete: opts?.retainOnDelete,
-      },
-    );
-
     this.projectId = project.id;
     this.reservedIpId = reservedIp.id;
-    this.volumeId = volume.id;
-    this.volumeName = volume.name;
     this.vpcId = vpc.id;
+
+    if (args.volumeSize) {
+      const volume = new Volume(
+        name,
+        {
+          description: `Block-storage volume for ${name}`,
+          initialFilesystemType: "ext4",
+          region: args.region,
+          size: args.volumeSize,
+        },
+        {
+          parent: project,
+          protect: opts?.protect,
+          retainOnDelete: opts?.retainOnDelete,
+        },
+      );
+
+      new ProjectResources(
+        name,
+        {
+          project: project.id,
+          resources: [volume.volumeUrn],
+        },
+        {
+          parent: project,
+          protect: opts?.protect,
+          retainOnDelete: opts?.retainOnDelete,
+        },
+      );
+
+      this.volumeId = volume.id;
+      this.volumeName = volume.name;
+    }
 
     this.registerOutputs();
   }
