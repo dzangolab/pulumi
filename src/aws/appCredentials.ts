@@ -28,7 +28,7 @@ export class AppCredentials extends ComponentResource {
     args: AppCredentialsArguments,
     opts?: ComponentResourceOptions,
   ) {
-    super("dzangolab:pulumi/aws:AppResources", name, args, opts);
+    super("dzangolab:pulumi/aws:AppCredentials", name, args, opts);
 
     const passwordLength = args.passwordLength || 24;
 
