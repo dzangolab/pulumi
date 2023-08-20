@@ -1,3 +1,12 @@
+# [0.16.0](https://github.com/dzangolab/pulumi/compare/v0.15.4...v0.16.0) (2023-08-20)
+
+
+### Features
+
+* **aws/ppCredentials:** add AWS AppCredentials component resource ([069d44f](https://github.com/dzangolab/pulumi/commit/069d44f263ad661b4dab216e6ab338430547d55c))
+
+
+
 ## [0.15.5](https://github.com/dzangolab/pulumi/compare/v0.15.4...v0.15.5) (2023-08-20)
 
 
