@@ -1,3 +1,13 @@
+## [0.15.5](https://github.com/dzangolab/pulumi/compare/v0.15.4...v0.15.5) (2023-08-20)
+
+
+### Bug Fixes
+
+* **digitalocean/AppResources:** fix inputs ([fab50f1](https://github.com/dzangolab/pulumi/commit/fab50f1362075297d6d9940b01cf037ef75fbf7f))
+* **digitalocean/AppResources:** make volume optional ([8d2a57f](https://github.com/dzangolab/pulumi/commit/8d2a57f5a85585b1ffbeed7ef5cdcf86b35127db))
+
+
+
 ## [0.15.4](https://github.com/dzangolab/pulumi/compare/v0.15.3...v0.15.4) (2023-08-16)
 
 
