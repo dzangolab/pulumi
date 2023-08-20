@@ -1,3 +1,12 @@
+## [0.16.1](https://github.com/dzangolab/pulumi/compare/v0.16.0...v0.16.1) (2023-08-20)
+
+
+### Bug Fixes
+
+* **aws/AppCredentials:** fix urn ([62426bf](https://github.com/dzangolab/pulumi/commit/62426bf92afec9a4e4f94a11bfb082162aaaca86))
+
+
+
 # [0.16.0](https://github.com/dzangolab/pulumi/compare/v0.15.5...v0.16.0) (2023-08-20)
 
 
