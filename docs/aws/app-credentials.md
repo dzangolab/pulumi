@@ -14,8 +14,8 @@ Provisions a set of credentials for an app.
 ### Notes
 
 1. The `SecretVersion` created is attached to the `aws.secretsmanager.Secret` identified by its name via the `secret` input argument. 
-2. 1 password is generated for each entry in the `passwords` input argument.
-3. 1 `AccessKey` is generated for each entry in the `users` input argument.
+2. One `RandomPassword` is generated for each entry in the `passwords` input argument.
+3. One `AccessKey` is generated for each entry in the `users` input argument.
 4. An SES-compatible `AccessKey` is created for the SES SMTP user.
 
 ### Secret string
@@ -27,9 +27,8 @@ The secret string will be a stringified JSON object in the form of:
     "<passwords[0]>": "<pulumi.random.RandomPassword.result>",
     "<passwords[1]>": "<pulumi.random.RandomPassword.result>",
     ...
-    "<users[0]-access-key-id": "<aws.iam.AccessKey.id>",
-    "<users[0]-secret-access-key": "<aws.iam.AccessKey.secretAccessKey>",
-    ...
+    "aws-access-key-id": "<aws.iam.AccessKey.id>",
+    "aws-secret-access-key": "<aws.iam.AccessKey.secretAccessKey>",
     "ses-smtp-username": "<aws.iam.Accesskey.id>",
     "ses-smtp-password": "<aws.iam.AccessKey.sesSmtpPasswordV4>"
 }
@@ -44,7 +43,7 @@ The secret string will be a stringified JSON object in the form of:
 | `passwords`           | `string[]` | Optional. The names of the passwords to generate | (1) |
 | `secret`              | `string`   | The name or arn of the secret to which this secret version should be associated |  |
 | `sesSmtpUser`         | `string`   | Optional. The name of the SES SMTP user for which an `AccessKey` should be created |  |
-| `users`               | `string[]` | Optional. The names of users for which an `AccessKey` should be created |  |
+| `user`                | `string`   | Optional. The name of the AWS IAM user for which an `AccessKey` should be created |  |
 
 ### Passwords
 

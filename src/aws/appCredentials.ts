@@ -15,7 +15,7 @@ export interface AppCredentialsArguments {
   passwords?: string[];
   secret: Input<string>;
   sesSmtpUser?: Input<string>;
-  users: Input<string>[];
+  user?: Input<string>;
 }
 
 export class AppCredentials extends ComponentResource {
@@ -61,11 +61,11 @@ export class AppCredentials extends ComponentResource {
       passwordObject[suffix] = password.result;
     }
 
-    for (const username of args.users) {
+    if (args.user) {
       const accessKey = new AccessKey(
-        `${name}-${username}`,
+        `${name}-${args.user}`,
         {
-          user: username,
+          user: args.user,
         },
         {
           parent: this,
@@ -74,8 +74,8 @@ export class AppCredentials extends ComponentResource {
         },
       );
 
-      passwordObject[`${username}-access-key-id`] = accessKey.id;
-      passwordObject[`${username}-secret-access-key`] = accessKey.secret;
+      passwordObject["aws-access-key-id"] = accessKey.id;
+      passwordObject["aws-secret-access-key"] = accessKey.secret;
     }
 
     if (args.sesSmtpUser) {
