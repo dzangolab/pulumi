@@ -1,3 +1,12 @@
+# [0.17.0](https://github.com/dzangolab/pulumi/compare/v0.16.1...v0.17.0) (2023-08-21)
+
+
+### Bug Fixes
+
+* **aws/AppCredentials:** remove support for multiple users ([88f82c8](https://github.com/dzangolab/pulumi/commit/88f82c81ca71d747d8de4de7f56a656e2256fdaf))
+
+
+
 ## [0.16.1](https://github.com/dzangolab/pulumi/compare/v0.16.0...v0.16.1) (2023-08-20)
 
 
