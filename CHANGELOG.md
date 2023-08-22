@@ -1,3 +1,12 @@
+# [0.18.0](https://github.com/dzangolab/pulumi/compare/v0.17.0...v0.18.0) (2023-08-22)
+
+
+### Features
+
+* **cloudflare/DnsRecordSet:** add DnsRecordSet component resource ([#102](https://github.com/dzangolab/pulumi/issues/102)) ([79dee76](https://github.com/dzangolab/pulumi/commit/79dee764b8f34cf620355dae4e55ddcdcdfce72e))
+
+
+
 # [0.17.0](https://github.com/dzangolab/pulumi/compare/v0.16.1...v0.17.0) (2023-08-21)
 
 
