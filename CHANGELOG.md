@@ -1,3 +1,12 @@
+## [0.18.1](https://github.com/dzangolab/pulumi/compare/v0.18.0...v0.18.1) (2023-08-22)
+
+
+### Bug Fixes
+
+* **cloudflare/DnsRecordSet:** fix case where no subdomain is provided ([614e95f](https://github.com/dzangolab/pulumi/commit/614e95f28a95dd47c5dbe3907ae7fd950fa37337))
+
+
+
 # [0.18.0](https://github.com/dzangolab/pulumi/compare/v0.17.0...v0.18.0) (2023-08-22)
 
 
