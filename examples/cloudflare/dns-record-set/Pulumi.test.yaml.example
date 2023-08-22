@@ -1,2 +1,11 @@
 
-
+dns-record-set:aliases:
+    - adminer
+    - mailhog
+    - portainer
+    - traefik
+    - "*"
+  dns-record-set:domain: 
+  dns-record-set:host: 
+  dns-record-set:ip: 
+  dns-record-set:subdomain: 

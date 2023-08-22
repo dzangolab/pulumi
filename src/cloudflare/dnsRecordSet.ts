@@ -11,7 +11,7 @@ export interface DnsRecordSetArguments {
   domain: string;
   host: string;
   ip: Input<string>;
-  subDomain?: string;
+  subdomain?: string;
   ttl?: number;
 }
 
@@ -30,9 +30,9 @@ export class DnsRecordSet extends ComponentResource {
 
     const zone = getZone({ name: domain });
 
-    const subDomain = args.subDomain;
+    const subdomain = args.subdomain;
 
-    const hostname = subDomain ? `${args.host}.${subDomain}` : args.host;
+    const hostname = this.getValue(args.host, subdomain);
 
     const host = new Record(
       `${hostname}.${args.domain}`,
@@ -53,7 +53,7 @@ export class DnsRecordSet extends ComponentResource {
     const cnames = [];
 
     for (let i = 0; i < args.aliases.length; i++) {
-      const alias = [args.aliases[i], subDomain].join(".");
+      const alias = this.getValue(args.aliases[i], subdomain);
 
       cnames.push(
         new Record(
@@ -78,5 +78,15 @@ export class DnsRecordSet extends ComponentResource {
     this.aliases = cnames.map((alias) => alias.hostname);
 
     this.registerOutputs();
+  }
+
+  private getValue(host: string, subdomain?: string) {
+    const tokens = [host];
+
+    if (subdomain) {
+      tokens.push(subdomain);
+    }
+
+    return tokens.join(".");
   }
 }

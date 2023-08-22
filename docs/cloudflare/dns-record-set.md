@@ -29,7 +29,7 @@ Add `CLOUDFLARE_API_TOKEN` to your environment variables.
 | `domain`    | `string`   | The domain in the zone of which the DNS records will be created |  |
 | `host`      | `string`   | The name of the host for which an `A` record will be createrd. |  |
 | `ip`        | `string`   | The IP address for the shot record. |  |
-| `subDomain` | `string`   | Optional. A subdomain in which all records will be created. |  |
+| `subdomain` | `string`   | Optional. A subdomain in which all records will be created. |  |
 | `ttl`       | `string`   | Optional. The ttl for the records. Defaults to 3600. |  |
 
 ### Notes

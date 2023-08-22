@@ -8,6 +8,6 @@ export const getConfig = async () => {
     domain: stackConfig.require("domain"),
     host: stackConfig.require("host"),
     ip: stackConfig.require("ip"),
-    subDomain: stackConfig.get("subDomain"),
+    subdomain: stackConfig.get("subdomain"),
   };
 };
