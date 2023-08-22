@@ -14,8 +14,8 @@ Provisions a collection of resources required to deploy and run an app.
 
 ### Notes
 
-1. The S3 bucket is used for storing various artifacts such as database backups, public web assets, etc.
-2. The IAM user is expected to (1) pull the app's docker images, and (2) copy files to the S3 bucket (among other things).
+1. The S3 bucket is used for storing various artifacts such as database backups, public web assets, etc. in addition, a read/write IAM policy on this bucket is generated.
+2. The IAM user is expected to (1) pull the app's docker images, and (2) copy files to the S3 bucket (among other things). This user is granted the Bucket policy created as per above.
 3. The SES SMTP user is responsible for sending emails via SES. 
 4. Empty secret. A secret version is expected to be added via the [AppCredentials](./app-credentials.md) component resource.
 

@@ -1,0 +1,3 @@
+name: dns-record-set
+runtime: nodejs
+description: Example use of @dzangolab/pulumi/clouflare/DnsRecordSet"
