@@ -1,0 +1,4 @@
+config:
+  app-resources:recoveryWindowInDays: "0"
+  aws:profile: lemonaide
+  aws:region: ap-southeast-1

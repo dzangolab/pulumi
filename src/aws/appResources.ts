@@ -1,3 +1,4 @@
+import { Eip } from "@pulumi/aws/ec2";
 import {
   ComponentResource,
   ComponentResourceOptions,
@@ -18,6 +19,7 @@ export interface AppResourcesArguments {
 export class AppResources extends ComponentResource {
   bucketArn: Output<string>;
   bucketPolicyArn: Output<string>;
+  eip: Output<string>;
   secretArn: Output<string>;
   secretPolicyArn: Output<string>;
   sesSmtpUserArn: Output<string> | undefined;
@@ -95,8 +97,20 @@ export class AppResources extends ComponentResource {
       },
     );
 
+    const eip = new Eip(
+      name,
+      {},
+      {
+        parent: this,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
+      },
+    );
+
     this.bucketArn = bucket.arn;
     this.bucketPolicyArn = bucket.policyArn;
+
+    this.eip = eip.publicIp;
 
     this.secretArn = secret.arn;
     this.secretPolicyArn = secret.policyArn;

@@ -1,4 +1,5 @@
 import { interpolate } from "@pulumi/pulumi";
+import "dotenv/config";
 
 import { getConfig } from "./config";
 /* eslint-disable-next-line node/no-unpublished-import */
@@ -12,6 +13,7 @@ export = async () => {
   return {
     bucketArn: interpolate`${resources.bucketArn}`,
     bucketPolicyArn: interpolate`${resources.bucketPolicyArn}`,
+    eip: interpolate`${resources.eip}`,
     secretArn: interpolate`${resources.secretArn}`,
     secretPolicyArn: interpolate`${resources.secretPolicyArn}`,
     sesSmtpUserArn: interpolate`${resources.sesSmtpUserArn}`,
