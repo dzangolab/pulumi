@@ -14,8 +14,8 @@ export interface AppCredentialsArguments {
   passwordLength?: number;
   passwords?: string[];
   secret: Input<string>;
-  sesSmtpUser?: Input<string>;
-  user?: Input<string>;
+  sesSmtpUser?: Input<string> | false;
+  user?: Input<string> | false;
 }
 
 export class AppCredentials extends ComponentResource {
