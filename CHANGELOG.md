@@ -1,3 +1,20 @@
+# [0.19.0](https://github.com/dzangolab/pulumi/compare/v0.18.1...v0.19.0) (2023-09-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @pulumi/aws to v6 ([#111](https://github.com/dzangolab/pulumi/issues/111)) ([51a35e1](https://github.com/dzangolab/pulumi/commit/51a35e18245d60b9d7b92465d767e6b2a5f59ffe))
+* **deps:** update dependency @pulumi/pulumi to v3.80.0 ([#109](https://github.com/dzangolab/pulumi/issues/109)) ([a84046f](https://github.com/dzangolab/pulumi/commit/a84046f248c333671eabdc71e9c0f5bf0f32b9d6))
+* staging aws profile config ([a0bbb3b](https://github.com/dzangolab/pulumi/commit/a0bbb3b23a3ca7430f31890cc35bc8e35e036761))
+
+
+### Features
+
+* configure eip for aws app resources example ([bb1c3ae](https://github.com/dzangolab/pulumi/commit/bb1c3aedc5c561a7d416e02598e6b6c019875a4a))
+* install dotenv package ([b02a00c](https://github.com/dzangolab/pulumi/commit/b02a00caa648e4c14ae689999d3e8a48f03f0f11))
+
+
+
 ## [0.18.1](https://github.com/dzangolab/pulumi/compare/v0.18.0...v0.18.1) (2023-08-22)
 
 
