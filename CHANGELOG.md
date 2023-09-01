@@ -1,3 +1,12 @@
+# [0.20.0](https://github.com/dzangolab/pulumi/compare/v0.19.0...v0.20.0) (2023-09-01)
+
+
+### Features
+
+* **aws-credentials:** add support for boolean args ([a9010c6](https://github.com/dzangolab/pulumi/commit/a9010c678d1912dd8ca45bf202f9e6ae08954e2a))
+
+
+
 # [0.19.0](https://github.com/dzangolab/pulumi/compare/v0.18.1...v0.19.0) (2023-09-01)
 
 
