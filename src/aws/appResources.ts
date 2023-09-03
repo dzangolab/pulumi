@@ -10,6 +10,8 @@ import { Secret } from "./secret";
 import { User } from "./user";
 
 export interface AppResourcesArguments {
+  bucketName?: string;
+  bucketFolders?: string[];
   secretRecoveryWindowInDays?: number;
   sesSmtpUser?: boolean | string;
   usergroup?: string;
@@ -35,8 +37,10 @@ export class AppResources extends ComponentResource {
     super("dzangolab:pulumi/aws:AppResources", name, args, opts);
 
     const bucket = new S3Bucket(
-      name,
-      {},
+      args?.bucketName || name,
+      {
+        folders: args?.bucketFolders || ["backuops/postgresql"],
+      },
       {
         ...opts,
         parent: this,

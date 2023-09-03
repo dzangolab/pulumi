@@ -6,9 +6,12 @@ export const getConfig = async () => {
   const stackConfig = new Config();
 
   return {
+    bucketName: stackConfig.get("bucketName"),
+    bucketFolders: stackConfig.getObject<string[]>("bucketFolders"),
     name: `${organization}-${stack}`,
     recoveryWindowInDays: stackConfig.get("recoveryWindowInDays"),
     sesSmtpUser: stackConfig.getBoolean("sesSmtpUser"),
     usergroup: stackConfig.get("usergroup"),
+    username: stackConfig.get("username"),
   };
 };

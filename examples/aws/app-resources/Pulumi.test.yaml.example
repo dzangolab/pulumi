@@ -1,0 +1,10 @@
+config:
+  aws:profile: AWS_PROFILE
+  aws:region: AWS_REGION
+  app-resources:bucketName: BUCKET_NAME
+  app-resources:bucketFolders: 
+  - backups/mariadb
+  - backups/postgresql
+  app-resources:recoveryWindowInDays: 0
+  app-resources:sesSmtpUser: true
+  app-resources:suername: USERNAME
