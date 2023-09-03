@@ -1,3 +1,12 @@
+## [0.21.3](https://github.com/dzangolab/pulumi/compare/v0.21.2...v0.21.3) (2023-09-03)
+
+
+### Bug Fixes
+
+* **aws/app-resources:** fix typo in default bucket folder ([77f1e2a](https://github.com/dzangolab/pulumi/commit/77f1e2abb179a7025e141b37123c971977df3ed4))
+
+
+
 ## [0.21.2](https://github.com/dzangolab/pulumi/compare/v0.21.1...v0.21.2) (2023-09-03)
 
 
