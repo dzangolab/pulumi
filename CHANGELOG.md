@@ -1,3 +1,13 @@
+# [0.21.0](https://github.com/dzangolab/pulumi/compare/v0.20.0...v0.21.0) (2023-09-03)
+
+
+### Features
+
+* **aws/app-resources:** add support for folders ([964c5c6](https://github.com/dzangolab/pulumi/commit/964c5c61a8c9e6f3aebe24df719d0a6cc8e1003d))
+* **aws/s3bucket:** add support for folders ([1444de2](https://github.com/dzangolab/pulumi/commit/1444de28a4ea1b6685a8bf2f7326bfbed8964b7d))
+
+
+
 # [0.20.0](https://github.com/dzangolab/pulumi/compare/v0.19.0...v0.20.0) (2023-09-01)
 
 
