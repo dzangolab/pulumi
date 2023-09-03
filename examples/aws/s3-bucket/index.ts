@@ -7,7 +7,9 @@ import { S3Bucket } from "../../../src/aws/s3Bucket";
 export = async () => {
   const config = await getConfig();
 
-  const bucket = new S3Bucket(config.bucket, {});
+  const bucket = new S3Bucket(config.bucket, {
+    folders: config.folders,
+  });
 
   return {
     bucket_arn: interpolate`${bucket.arn}`,

@@ -5,5 +5,6 @@ export const getConfig = async () => {
 
   return {
     bucket: stackConfig.require("name"),
+    folders: stackConfig.getObject<string[]>("folders"),
   };
 };

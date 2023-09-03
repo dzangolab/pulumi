@@ -1,3 +1,8 @@
 config:
+  aws:profile: AWS_PROFILE
   aws:region: AWS_REGION
-  bucket:name: BNUCKET_NAME
+  bucket:name: BUCKET_NAME
+  folders:
+    - backups/mariadb
+    - backups/postgres13
+    - backups/postgres14

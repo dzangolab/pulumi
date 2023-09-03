@@ -1,10 +1,15 @@
 import { Policy } from "@pulumi/aws/iam";
-import { Bucket, BucketArgs } from "@pulumi/aws/s3";
+import { Bucket, BucketArgs, BucketObject } from "@pulumi/aws/s3";
 import {
   ComponentResource,
   ComponentResourceOptions,
   Output,
 } from "@pulumi/pulumi";
+import { FileAsset } from "@pulumi/pulumi/asset";
+
+export interface S3BucketArguments extends BucketArgs {
+  folders?: string[];
+}
 
 export class S3Bucket extends ComponentResource {
   arn: Output<string>;
@@ -15,7 +20,7 @@ export class S3Bucket extends ComponentResource {
   region: Output<string>;
   tagsAll: Output<{ [key: string]: string }>;
 
-  constructor(name: string, args: BucketArgs, opts?: ComponentResourceOptions) {
+  constructor(name: string, args: S3BucketArguments, opts?: ComponentResourceOptions) {
     super("dzangolab:pulumi/aws:S3Bucket", name, args, opts);
 
     const bucket = new Bucket(name, args, {
@@ -53,6 +58,26 @@ export class S3Bucket extends ComponentResource {
         retainOnDelete: opts?.retainOnDelete,
       },
     );
+
+    if (args.folders) {
+      for (let i = 0; i < (args.folders ? args.folders.length : 0); i++) {
+        const path = args?.folders[i];
+
+        new BucketObject(
+          `${path}/`,
+          {
+            bucket,
+            source: new FileAsset("/dev/null"), // empty data
+          },
+          {
+            dependsOn: bucket,
+            parent: bucket,
+            protect: opts?.protect,
+            retainOnDelete: opts?.retainOnDelete,
+          },
+        );
+      }
+    }
 
     this.arn = bucket.arn;
     this.bucketDomainName = bucket.bucketDomainName;
