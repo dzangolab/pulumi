@@ -39,7 +39,7 @@ export class AppResources extends ComponentResource {
     const bucket = new S3Bucket(
       args?.bucketName || name,
       {
-        folders: args?.bucketFolders || ["backuops/postgresql"],
+        folders: args?.bucketFolders || ["backups/postgresql"],
       },
       {
         ...opts,
