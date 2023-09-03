@@ -23,14 +23,18 @@ Provisions a collection of resources required to deploy and run an app.
 
 | input                        | type       | Comments | Notes |
 |------------------------------|------------|----------|-------|
-| `secretRecoveryWindowInDays` | `number` | Optional. Recovery window foir the secret created by the component resource. This value can be 0 to force deletion without recovery or range from 7 to 30 days. The default value is 30. |  |
-| `sesSmtpUser`                | `boolean \| string`   | Optional. | (1) |
+| `bucketName`                 | `string`   | Optional. The name of the bucket to create. |  |
+| `bucketFolders`              | `string[]` | Optional. Folders to create in the bucket | (1) |
+| `secretRecoveryWindowInDays` | `number` | Optional. Recovery window for the secret created by the component resource. This value can be 0 to force deletion without recovery or range from 7 to 30 days. The default value is 30. |  |
+| `sesSmtpUser`                | `boolean \| string`   | Optional. | (2) |
 | `usergroup`                  | `string` | Optional. The name of the group for the user to be created by this component resource |  |
 | `username`                   | `string` | The name of the user to be created. | |
 
 ### Notes
 
-1. If `undefined` or `falsy`, no SES SMTP user will be created. If true, a SES SMTP user will be created with a default name equal to the name of the user suffixed with `ses`. If a string, a SES SMTP user will be created with the argument value as its name. You are responsible for ensuring its validity and unicity.
+1. If empty, by default a folder named `backups/postgresql` will be created.
+
+2. If `undefined` or `falsy`, no SES SMTP user will be created. If true, a SES SMTP user will be created with a default name equal to the name of the user suffixed with `ses`. If a string, a SES SMTP user will be created with the argument value as its name. You are responsible for ensuring its validity and unicity.
 
 ## Outputs
 
