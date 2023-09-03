@@ -1,3 +1,12 @@
+## [0.21.2](https://github.com/dzangolab/pulumi/compare/v0.21.1...v0.21.2) (2023-09-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @pulumi/aws to v6.0.3 ([#113](https://github.com/dzangolab/pulumi/issues/113)) ([1b5bc39](https://github.com/dzangolab/pulumi/commit/1b5bc393a0c1cbca250a0e3c79e2ee42f5c46678))
+
+
+
 ## [0.21.1](https://github.com/dzangolab/pulumi/compare/v0.21.0...v0.21.1) (2023-09-03)
 
 
