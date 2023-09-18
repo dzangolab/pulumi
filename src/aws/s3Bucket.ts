@@ -1,5 +1,5 @@
 import { Policy } from "@pulumi/aws/iam";
-import { Bucket, BucketArgs, BucketObject } from "@pulumi/aws/s3";
+import { Bucket, BucketArgs, BucketObjectv2 } from "@pulumi/aws/s3";
 import {
   ComponentResource,
   ComponentResourceOptions,
@@ -67,10 +67,11 @@ export class S3Bucket extends ComponentResource {
       for (let i = 0; i < (args.folders ? args.folders.length : 0); i++) {
         const path = args?.folders[i];
 
-        new BucketObject(
-          `${path}/`,
+        new BucketObjectv2(
+          `${name}/${path}`,
           {
             bucket,
+            key: `${path}`,
             source: new FileAsset("/dev/null"), // empty data
           },
           {
