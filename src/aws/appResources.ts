@@ -15,7 +15,7 @@ export interface AppResourcesArguments {
   secretRecoveryWindowInDays?: number;
   sesSmtpUser?: boolean | string;
   usergroup?: string;
-  username?: string;
+  username?: boolean | string;
 }
 
 export class AppResources extends ComponentResource {
@@ -26,8 +26,8 @@ export class AppResources extends ComponentResource {
   secretPolicyArn: Output<string>;
   sesSmtpUserArn: Output<string> | undefined;
   sesSmtpUsername: Output<string> | undefined;
-  userArn: Output<string>;
-  username: Output<string>;
+  userArn: Output<string> | undefined;
+  username: Output<string> | undefined;
 
   constructor(
     name: string,
@@ -47,23 +47,30 @@ export class AppResources extends ComponentResource {
       },
     );
 
-    const user = new User(
-      args.username || name,
-      {
-        accessKey: false,
-        consoleAccess: false,
-        group: args?.usergroup,
-        policies: {
-          s3: bucket.policyArn,
-          ecr: "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+    if (args.username) {
+      const username = typeof args.username === "string" ? args.username : name;
+
+      const user = new User(
+        username,
+        {
+          accessKey: false,
+          consoleAccess: false,
+          group: args?.usergroup,
+          policies: {
+            s3: bucket.policyArn,
+            ecr: "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+          },
         },
-      },
-      {
-        parent: this,
-        protect: opts?.protect,
-        retainOnDelete: opts?.retainOnDelete,
-      },
-    );
+        {
+          parent: this,
+          protect: opts?.protect,
+          retainOnDelete: opts?.retainOnDelete,
+        },
+      );
+
+      this.userArn = user.arn;
+      this.username = user.name;
+    }
 
     if (args.sesSmtpUser) {
       const username =
@@ -118,9 +125,6 @@ export class AppResources extends ComponentResource {
 
     this.secretArn = secret.arn;
     this.secretPolicyArn = secret.policyArn;
-
-    this.userArn = user.arn;
-    this.username = user.name;
 
     this.registerOutputs();
   }
