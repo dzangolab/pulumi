@@ -1,3 +1,12 @@
+## [0.21.4](https://github.com/dzangolab/pulumi/compare/v0.21.3...v0.21.4) (2023-09-18)
+
+
+### Features
+
+* **aws/app-resources:** make user optional ([8d36018](https://github.com/dzangolab/pulumi/commit/8d3601806ab8fa584f6bf50a1aad16490ec232b4))
+
+
+
 ## [0.21.3](https://github.com/dzangolab/pulumi/compare/v0.21.2...v0.21.3) (2023-09-03)
 
 
