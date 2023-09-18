@@ -39,7 +39,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.json --composite false"
   },
   "dependencies": {
-    "@pulumi/random": "4.13.2",
+    "@pulumi/random": "4.14.0",
     "nunjucks": "3.2.4"
   },
   "devDependencies": {
