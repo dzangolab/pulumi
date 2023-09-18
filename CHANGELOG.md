@@ -1,3 +1,12 @@
+## [0.21.5](https://github.com/dzangolab/pulumi/compare/v0.21.3...v0.21.5) (2023-09-18)
+
+
+### Bug Fixes
+
+* **aws/s3-bucket:** update to BucketObjectv2 ([e7467fa](https://github.com/dzangolab/pulumi/commit/e7467fa4d60b79d6c9dab5e2427403d38ffe79bc))
+
+
+
 ## [0.21.4](https://github.com/dzangolab/pulumi/compare/v0.21.3...v0.21.4) (2023-09-18)
 
 
