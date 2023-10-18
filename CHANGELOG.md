@@ -1,3 +1,16 @@
+# [0.22.0](https://github.com/dzangolab/pulumi/compare/v0.21.6...v0.22.0) (2023-10-18)
+
+
+### Bug Fixes
+
+* **aws/s3bucket:** fix bucket permissions ([d3484fc](https://github.com/dzangolab/pulumi/commit/d3484fc64b4071223ffe3223720a8eab8a6e3c5a))
+* **deps:** update dependency @pulumi/aws to v6.5.0 ([#122](https://github.com/dzangolab/pulumi/issues/122)) ([4fab88a](https://github.com/dzangolab/pulumi/commit/4fab88a37f76f61fb577d2276f6edfd2bc0a8626))
+* **deps:** update dependency @pulumi/pulumi to v3.89.0 ([#125](https://github.com/dzangolab/pulumi/issues/125)) ([6d63c47](https://github.com/dzangolab/pulumi/commit/6d63c47ace1d803f961efbe2d2e27773f636db50))
+* **deps:** update dependency @pulumi/random to v4.14.0 ([#129](https://github.com/dzangolab/pulumi/issues/129)) ([225ad11](https://github.com/dzangolab/pulumi/commit/225ad11238d1ae41c97d38b37e0b9730d6c660df))
+* **deps:** update dependency @pulumi/random to v4.14.0 ([#130](https://github.com/dzangolab/pulumi/issues/130)) ([ba4224e](https://github.com/dzangolab/pulumi/commit/ba4224e28b8949b2268502b4376570981774edad))
+
+
+
 ## [0.21.6](https://github.com/dzangolab/pulumi/compare/v0.21.4...v0.21.6) (2023-09-18)
 
 
