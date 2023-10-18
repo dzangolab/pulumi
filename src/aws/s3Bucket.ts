@@ -47,7 +47,7 @@ export class S3Bucket extends ComponentResource {
                 Resource: arn,
               },
               {
-                Action: ["S3:PutObject", "S3:GetObject"],
+                Action: ["S3:DeleteObject", "S3:GetObject", "S3:PutObject"],
                 Effect: "Allow",
                 Resource: `${arn}/*`,
               },
