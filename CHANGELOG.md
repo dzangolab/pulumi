@@ -1,3 +1,13 @@
+## [0.22.2](https://github.com/dzangolab/pulumi/compare/v0.22.0...v0.22.2) (2023-12-05)
+
+
+### Bug Fixes
+
+* **aws/s3-bucket:** fix folder path ([d4ae9f2](https://github.com/dzangolab/pulumi/commit/d4ae9f21f65501672ed8663b5379e5a070652fa2))
+* **deps:** update dependency @pulumi/aws to v6.13.0 ([#147](https://github.com/dzangolab/pulumi/issues/147)) ([8d7e1f0](https://github.com/dzangolab/pulumi/commit/8d7e1f0c3a7d7b3b94e93dbefeda75f5e8288eb4))
+
+
+
 ## [0.22.1](https://github.com/dzangolab/pulumi/compare/v0.22.0...v0.22.1) (2023-12-05)
 
 
