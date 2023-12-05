@@ -61,7 +61,7 @@
     "husky": "8.0.3",
     "prettier": "3.0.3",
     "shipjs": "0.26.3",
-    "sort-package-json": "2.5.1",
+    "sort-package-json": "2.6.0",
     "typescript": "5.2.2",
     "vite": "4.4.11"
   },
