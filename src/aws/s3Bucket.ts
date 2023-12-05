@@ -71,7 +71,7 @@ export class S3Bucket extends ComponentResource {
           `${name}/${path}`,
           {
             bucket,
-            key: `${path}`,
+            key: `${path}/`,
             source: new FileAsset("/dev/null"), // empty data
           },
           {
