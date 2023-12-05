@@ -1,3 +1,12 @@
+## [0.22.1](https://github.com/dzangolab/pulumi/compare/v0.22.0...v0.22.1) (2023-12-05)
+
+
+### Bug Fixes
+
+* **aws/s3-bucket:** fix folder path ([d4ae9f2](https://github.com/dzangolab/pulumi/commit/d4ae9f21f65501672ed8663b5379e5a070652fa2))
+
+
+
 # [0.22.0](https://github.com/dzangolab/pulumi/compare/v0.21.6...v0.22.0) (2023-10-18)
 
 
