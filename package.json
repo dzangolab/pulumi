@@ -57,7 +57,7 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "5.0.1",
     "eslint-plugin-promise": "6.1.1",
-    "eslint-plugin-unicorn": "48.0.1",
+    "eslint-plugin-unicorn": "49.0.0",
     "husky": "8.0.3",
     "prettier": "3.0.3",
     "shipjs": "0.26.3",
