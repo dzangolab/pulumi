@@ -3,7 +3,7 @@ import { interpolate, jsonStringify } from "@pulumi/pulumi";
 import { RandomPassword } from "@pulumi/random";
 
 import { getConfig } from "./config";
-/* eslint-disable-next-line node/no-unpublished-import */
+/* eslint-disable-next-line n/no-unpublished-import */
 import { Secret } from "../../../src/aws/secret";
 
 export = async () => {

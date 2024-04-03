@@ -55,11 +55,11 @@ module.exports = {
         "newlines-between": "always",
       },
     ],
-    "n/no-unpublished-import": [
-      "error",
+    "n/no-missing-import": [
+      "off",
       {
-        allowModules: [],
-      },
+        "allowModules": [],
+      }
     ],
     "n/no-unsupported-features/es-syntax": [
       "error",
