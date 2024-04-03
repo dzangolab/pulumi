@@ -7,7 +7,7 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "plugin:node/recommended",
+    "plugin:n/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
     "plugin:prettier/recommended",
@@ -28,7 +28,7 @@ module.exports = {
   plugins: [
     "@typescript-eslint",
     "import",
-    "node",
+    "n",
     "prettier",
     "promise",
     "unicorn",
@@ -55,13 +55,13 @@ module.exports = {
         "newlines-between": "always",
       },
     ],
-    "node/no-unpublished-import": [
+    "n/no-unpublished-import": [
       "error",
       {
         allowModules: [],
       },
     ],
-    "node/no-unsupported-features/es-syntax": [
+    "n/no-unsupported-features/es-syntax": [
       "error",
       { ignores: ["modules"] },
     ],
