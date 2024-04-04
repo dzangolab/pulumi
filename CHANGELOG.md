@@ -1,3 +1,32 @@
+## 0.24.0 (2024-04-04)
+
+* chore: update dependencies ([b22e090](https://github.com/dzangolab/pulumi/commit/b22e090))
+* chore: update eslint rules exceptions ([10f3417](https://github.com/dzangolab/pulumi/commit/10f3417))
+* chore(deps-dev): bump follow-redirects from 1.15.2 to 1.15.6 (#170) ([f210617](https://github.com/dzangolab/pulumi/commit/f210617)), closes [#170](https://github.com/dzangolab/pulumi/issues/170)
+* chore(deps): replace dependency eslint-plugin-node with eslint-plugin-n 14.0.0 (#171) ([27d05d9](https://github.com/dzangolab/pulumi/commit/27d05d9)), closes [#171](https://github.com/dzangolab/pulumi/issues/171)
+* chore(deps): update actions/github-script action to v7 (#160) ([2c9c440](https://github.com/dzangolab/pulumi/commit/2c9c440)), closes [#160](https://github.com/dzangolab/pulumi/issues/160)
+* chore(deps): update actions/setup-node action to v4 (#161) ([b8fbb20](https://github.com/dzangolab/pulumi/commit/b8fbb20)), closes [#161](https://github.com/dzangolab/pulumi/issues/161)
+* chore(deps): update commitlint monorepo (#172) ([443f9c3](https://github.com/dzangolab/pulumi/commit/443f9c3)), closes [#172](https://github.com/dzangolab/pulumi/issues/172)
+* chore(deps): update dependency @types/node to v20.12.3 (#164) ([cab04d2](https://github.com/dzangolab/pulumi/commit/cab04d2)), closes [#164](https://github.com/dzangolab/pulumi/issues/164)
+* chore(deps): update dependency @types/node to v20.12.3 (#165) ([e0d11bf](https://github.com/dzangolab/pulumi/commit/e0d11bf)), closes [#165](https://github.com/dzangolab/pulumi/issues/165)
+* chore(deps): update dependency @types/node to v20.12.4 (#180) ([23e1d78](https://github.com/dzangolab/pulumi/commit/23e1d78)), closes [#180](https://github.com/dzangolab/pulumi/issues/180)
+* chore(deps): update dependency @types/node to v20.12.4 (#181) ([20ebc19](https://github.com/dzangolab/pulumi/commit/20ebc19)), closes [#181](https://github.com/dzangolab/pulumi/issues/181)
+* chore(deps): update dependency eslint to v8.57.0 (#174) ([a91bfdf](https://github.com/dzangolab/pulumi/commit/a91bfdf)), closes [#174](https://github.com/dzangolab/pulumi/issues/174)
+* chore(deps): update dependency eslint-plugin-import to v2.29.1 (#169) ([1f10c3a](https://github.com/dzangolab/pulumi/commit/1f10c3a)), closes [#169](https://github.com/dzangolab/pulumi/issues/169)
+* chore(deps): update dependency eslint-plugin-unicorn to v52 (#179) ([613376f](https://github.com/dzangolab/pulumi/commit/613376f)), closes [#179](https://github.com/dzangolab/pulumi/issues/179)
+* chore(deps): update dependency prettier to v3.2.5 (#155) ([26f7793](https://github.com/dzangolab/pulumi/commit/26f7793)), closes [#155](https://github.com/dzangolab/pulumi/issues/155)
+* chore(deps): update dependency typescript to v5.4.3 (#156) ([3d3a31f](https://github.com/dzangolab/pulumi/commit/3d3a31f)), closes [#156](https://github.com/dzangolab/pulumi/issues/156)
+* chore(deps): update dependency vite to v4.5.2 [security] (#168) ([c2af2a3](https://github.com/dzangolab/pulumi/commit/c2af2a3)), closes [#168](https://github.com/dzangolab/pulumi/issues/168)
+* chore(deps): update dependency vite to v4.5.3 (#173) ([d15cf7c](https://github.com/dzangolab/pulumi/commit/d15cf7c)), closes [#173](https://github.com/dzangolab/pulumi/issues/173)
+* chore(deps): update dependency vite to v5.2.8 (#178) ([9b5e9ca](https://github.com/dzangolab/pulumi/commit/9b5e9ca)), closes [#178](https://github.com/dzangolab/pulumi/issues/178)
+* chore(deps): update typescript-eslint monorepo to v6.21.0 (#157) ([fcc1644](https://github.com/dzangolab/pulumi/commit/fcc1644)), closes [#157](https://github.com/dzangolab/pulumi/issues/157)
+* fix(deps): update dependency @pulumi/aws to v6.28.2 (#159) ([28e7ee4](https://github.com/dzangolab/pulumi/commit/28e7ee4)), closes [#159](https://github.com/dzangolab/pulumi/issues/159)
+* fix(deps): update dependency @pulumi/pulumi to v3.112.0 (#158) ([05d4a0d](https://github.com/dzangolab/pulumi/commit/05d4a0d)), closes [#158](https://github.com/dzangolab/pulumi/issues/158)
+* fix(deps): update dependency @pulumi/random to v4.16.0 (#177) ([0198645](https://github.com/dzangolab/pulumi/commit/0198645)), closes [#177](https://github.com/dzangolab/pulumi/issues/177)
+* feat(digitalocean/app-resources): deprecate digitalocean AppResources module ([85c9c77](https://github.com/dzangolab/pulumi/commit/85c9c77))
+
+
+
 # [0.23.0](https://github.com/dzangolab/pulumi/compare/v0.22.2...v0.23.0) (2024-04-03)
 
 
