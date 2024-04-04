@@ -20,6 +20,9 @@ export interface AppResourcesArguments {
   volumeSize: number;
 }
 
+/**
+ * @deprecated
+ */
 export class AppResources extends ComponentResource {
   projectId: Output<string>;
   reservedIpId: Output<string>;
