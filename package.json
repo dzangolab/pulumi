@@ -62,7 +62,7 @@
     "prettier": "3.2.5",
     "shipjs": "0.26.3",
     "sort-package-json": "2.10.0",
-    "typescript": "5.4.3",
+    "typescript": "5.4.4",
     "vite": "5"
   },
   "peerDependencies": {
