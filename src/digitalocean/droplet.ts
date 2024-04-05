@@ -2,7 +2,6 @@ import { local } from "@pulumi/command";
 import {
   Droplet as DODroplet,
   DropletArgs as DODropletArguments,
-  // Firewall,
   getSshKeysOutput,
   ProjectResources,
   ReservedIpAssignment,
@@ -19,7 +18,7 @@ export interface DropletArguments extends DODropletArguments {
   packages?: string[];
   projectId?: string;
   reservedIpId?: string;
-  sshKeyNames: string[];
+  sshKeyNames?: string[];
   swapFile?: string[];
   swapSize?: string;
   userDataTemplate?: string;
@@ -63,12 +62,15 @@ export class Droplet extends ComponentResource {
 
     const doArguments = {
       ...args,
-      sshKeys: this.getSshKeys(args.sshKeyNames),
       userData: this.generateUserData(
         args.userDataTemplate || "./cloud-config.njx",
         args,
       ),
     };
+
+    if (args?.sshKeyNames) {
+      doArguments.sshKeys = this.getSshKeys(args.sshKeyNames);
+    }
 
     const droplet = new DODroplet(name, doArguments, opts);
 
@@ -105,19 +107,6 @@ export class Droplet extends ComponentResource {
         },
       );
     }
-
-    /*
-    new Firewall(
-      name,
-      {
-        dropletIds: [droplet.id.apply(id => Number(id))],
-        inboundRules,
-        name: args.name,
-        outboundRules,
-      },
-      opts
-    );
-    */
 
     const ipAddress = args.reservedIpId || droplet.ipv4Address;
 

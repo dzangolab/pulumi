@@ -25,6 +25,9 @@ export default defineConfig(({ mode }) => {
           exports: "named",
           globals: {
             "@pulumi/aws": "AWS",
+            "@pulumi/cloudflare": "Cloudflare",
+            "@pulumi/command": "Command",
+            "@pulumi/digitalocean": "DigitalOcean",
             "@pulumi/gitlab": "Gitlab",
             "@pulumi/pulumi": "Pulumi",
             "nunjucks": "Nunjucks",
