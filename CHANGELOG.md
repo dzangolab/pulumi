@@ -1,3 +1,11 @@
+## 0.25.0 (2024-04-05)
+
+* chore(deps): update dependency typescript to v5.4.4 (#184) ([dc9cdbf](https://github.com/dzangolab/pulumi/commit/dc9cdbf)), closes [#184](https://github.com/dzangolab/pulumi/issues/184)
+* fix(deps): update dependency @pulumi/aws to v6.29.0 (#183) ([6a974db](https://github.com/dzangolab/pulumi/commit/6a974db)), closes [#183](https://github.com/dzangolab/pulumi/issues/183)
+* feat(digitalocean/droplet): make sshKeys argument optional ([bb505dd](https://github.com/dzangolab/pulumi/commit/bb505dd))
+
+
+
 ## 0.24.0 (2024-04-04)
 
 * chore: update dependencies ([b22e090](https://github.com/dzangolab/pulumi/commit/b22e090))
