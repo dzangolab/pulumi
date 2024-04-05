@@ -38,7 +38,7 @@ swap:
 {% endif %}
 
 runcmd:
-  - sed -i -e '$aAllowUsers root {% for user in users %}{{ user.username }} {% endfor %}' /etc/ssh/sshd_config
+  - sed -i -e '$aAllowUsers {% for user in users %}{{ user.username }} {% endfor %}' /etc/ssh/sshd_config
   - service ssh restart
 {% for volume
  in volumes %}

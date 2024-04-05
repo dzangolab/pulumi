@@ -9,7 +9,7 @@ export const getConfig = async () => {
     projectId: stackConfig.get("projectId"),
     region: stackConfig.require("region"),
     size: stackConfig.require("size"),
-    sshKeyNames: stackConfig.requireObject<string[]>("sshKeyNames"),
+    // sshKeyNames: stackConfig.requireObject<string[]>("sshKeyNames"),
     userDataTemplate: stackConfig.require("userDataTemplate"),
     users: [
       {
