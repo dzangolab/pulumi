@@ -1,3 +1,12 @@
+## [0.28.3](https://github.com/dzangolab/pulumi/compare/v0.28.2...v0.28.3) (2024-04-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @pulumi/aws to v6.29.0 ([#194](https://github.com/dzangolab/pulumi/issues/194)) ([e7fcc83](https://github.com/dzangolab/pulumi/commit/e7fcc83f964a2fbe5a8bcedecb86c585dbe9e2d8))
+
+
+
 ## [0.28.2](https://github.com/dzangolab/pulumi/compare/v0.28.1...v0.28.2) (2024-04-05)
 
 
