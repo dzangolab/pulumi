@@ -1,3 +1,10 @@
+## 0.26.0 (2024-04-05)
+
+* feat(digitalocean/droplet): update example ([8c9e7d9](https://github.com/dzangolab/pulumi/commit/8c9e7d9))
+* feat(digitalocean/droplet): update example ([ce0bd84](https://github.com/dzangolab/pulumi/commit/ce0bd84))
+
+
+
 ## 0.25.0 (2024-04-05)
 
 * chore(deps): update dependency typescript to v5.4.4 (#184) ([dc9cdbf](https://github.com/dzangolab/pulumi/commit/dc9cdbf)), closes [#184](https://github.com/dzangolab/pulumi/issues/184)
