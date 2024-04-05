@@ -1,3 +1,12 @@
+# [0.28.0](https://github.com/dzangolab/pulumi/compare/v0.27.0...v0.28.0) (2024-04-05)
+
+
+### Features
+
+* **digitalocean/droplet:** make ssh keys optional ([9d77441](https://github.com/dzangolab/pulumi/commit/9d77441311f28bc4af3f5bcd3a6333c7bbc55beb))
+
+
+
 # [0.27.0](https://github.com/dzangolab/pulumi/compare/v0.22.2...v0.27.0) (2024-04-05)
 
 
