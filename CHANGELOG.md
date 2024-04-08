@@ -1,3 +1,13 @@
+## [0.28.4](https://github.com/dzangolab/pulumi/compare/v0.28.3...v0.28.4) (2024-04-08)
+
+
+### Bug Fixes
+
+* **digitalocean/droplet:** add name to outputs ([2deb53e](https://github.com/dzangolab/pulumi/commit/2deb53ee7590327a0e14c4810ab4e234f1aa7746))
+* **digitalocean/droplet:** add name to outputs ([014bc1f](https://github.com/dzangolab/pulumi/commit/014bc1f15885a4458bd77f761cfb2d339fbbcebf))
+
+
+
 ## [0.28.3](https://github.com/dzangolab/pulumi/compare/v0.28.2...v0.28.3) (2024-04-05)
 
 
