@@ -48,6 +48,7 @@ export class Droplet extends ComponentResource {
   ipv4AddressPrivate: Output<string>;
   locked: Output<boolean>;
   memory: Output<number>;
+  name: Output<string>;
   priceHourly: Output<number>;
   priceMonthly: Output<number>;
   status: Output<string>;
