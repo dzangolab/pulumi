@@ -130,6 +130,7 @@ export class Droplet extends ComponentResource {
     this.ipv4AddressPrivate = droplet.ipv4AddressPrivate;
     this.locked = droplet.locked;
     this.memory = droplet.memory;
+    this.name = droplet.name;
     this.priceHourly = droplet.priceHourly;
     this.priceMonthly = droplet.priceMonthly;
     this.status = droplet.status;
