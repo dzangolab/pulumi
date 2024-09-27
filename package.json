@@ -45,7 +45,7 @@
   "devDependencies": {
     "@commitlint/cli": "19.2.1",
     "@commitlint/config-conventional": "19.1.0",
-    "@types/node": "20.12.4",
+    "@types/node": "20.16.10",
     "@types/nunjucks": "3.2.6",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
