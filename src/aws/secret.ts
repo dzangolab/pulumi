@@ -18,6 +18,7 @@ export interface SecretArguments extends SecretArgs {
 export class Secret extends ComponentResource {
   arn: Output<string>;
   id: Output<string>;
+  name: Output<string>;
   policyArn: Output<string>;
   tagsAll: Output<{ [key: string]: string }>;
 
@@ -76,6 +77,7 @@ export class Secret extends ComponentResource {
 
     this.arn = secret.arn;
     this.id = secret.id;
+    this.name = secret.name;
     this.policyArn = policy.arn;
     this.tagsAll = secret.tagsAll;
 
