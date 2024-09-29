@@ -1,3 +1,17 @@
+# [0.29.0](https://github.com/dzangolab/pulumi/compare/v0.28.4...v0.29.0) (2024-09-29)
+
+
+### Bug Fixes
+
+* fix shipjs make jobs ([0997c5b](https://github.com/dzangolab/pulumi/commit/0997c5b8c51d6dd79bbae78057a31ab12164e8d5))
+
+
+### Features
+
+* **aws/secret:** add name as output ([573cdaa](https://github.com/dzangolab/pulumi/commit/573cdaad76d37615318a59db486468ea2f164b8e))
+
+
+
 ## [0.28.4](https://github.com/dzangolab/pulumi/compare/v0.28.3...v0.28.4) (2024-04-08)
 
 
