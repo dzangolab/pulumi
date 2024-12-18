@@ -78,7 +78,7 @@ export class Droplet extends ComponentResource {
     // Add droplet to project
     if (args.projectId) {
       new ProjectResources(
-        "name",
+        name,
         {
           project: args.projectId,
           resources: [droplet.dropletUrn],
