@@ -1,3 +1,14 @@
+# [0.30.0](https://github.com/dzangolab/pulumi/compare/v0.29.0...v0.30.0) (2024-12-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @pulumi/random to v4.16.6 ([#197](https://github.com/dzangolab/pulumi/issues/197)) ([6b5def9](https://github.com/dzangolab/pulumi/commit/6b5def99fac3b3c0b3c345797ed1008356ac3c59))
+* **deps:** update dependency @pulumi/random to v4.16.6 ([#198](https://github.com/dzangolab/pulumi/issues/198)) ([dc1df65](https://github.com/dzangolab/pulumi/commit/dc1df6573149b886666b5aa18ea7751295ccbbb5))
+* **digitalocean/droplet:** fix ProjectResources name ([bc1a5a7](https://github.com/dzangolab/pulumi/commit/bc1a5a78368c1577ecd6807a218fa1e6ebd30683))
+
+
+
 # [0.29.0](https://github.com/dzangolab/pulumi/compare/v0.28.4...v0.29.0) (2024-09-29)
 
 
