@@ -1,3 +1,7 @@
+## [0.30.2](https://github.com/dzangolab/pulumi/compare/v0.30.1...v0.30.2) (2025-01-22)
+
+
+
 ## [0.30.1](https://github.com/dzangolab/pulumi/compare/v0.30.0...v0.30.1) (2024-12-23)
 
 
