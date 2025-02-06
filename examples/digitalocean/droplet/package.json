@@ -2,10 +2,10 @@
     "name": "examples-droplet",
     "main": "index.ts",
     "devDependencies": {
-        "@types/node": "20.4.4"
+        "@types/node": "^22"
     },
     "dependencies": {
-        "@pulumi/digitalocean": "^4.0.0",
-        "@pulumi/pulumi": "3.146.0"
+        "@pulumi/digitalocean": "^4",
+        "@pulumi/pulumi": "^3"
     }
 }
