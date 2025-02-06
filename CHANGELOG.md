@@ -1,3 +1,17 @@
+# [0.31.0](https://github.com/dzangolab/pulumi/compare/v0.30.2...v0.31.0) (2025-02-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @pulumi/aws to v6.67.0 ([#256](https://github.com/dzangolab/pulumi/issues/256)) ([c0a6d97](https://github.com/dzangolab/pulumi/commit/c0a6d97beb4c520bb64b3573abc9539e0bee5480))
+* **deps:** update dependency @pulumi/pulumi to v3.148.0 ([#257](https://github.com/dzangolab/pulumi/issues/257)) ([dd5693c](https://github.com/dzangolab/pulumi/commit/dd5693cbb59ee35e0e464868ad9a6e7feb62e552))
+* **deps:** update dependency @pulumi/random to v4.17.0 ([#237](https://github.com/dzangolab/pulumi/issues/237)) ([daa5fbf](https://github.com/dzangolab/pulumi/commit/daa5fbfe3d528d35cb28125391d0ca385f28cf51))
+* **deps:** update dependency @pulumi/random to v4.17.0 ([#238](https://github.com/dzangolab/pulumi/issues/238)) ([94b929a](https://github.com/dzangolab/pulumi/commit/94b929a0f63842699843226eaf216f7b75ebf414))
+* replace eslint-plugin-node with eslint-plugin-n ([7039894](https://github.com/dzangolab/pulumi/commit/7039894bde6f039c54752cbfe7897a691918c898))
+* update vite config and google-protobuf dependency ([e69fc71](https://github.com/dzangolab/pulumi/commit/e69fc71b66e9a137c7f6c2d4b9c95650bc56fc50))
+
+
+
 ## [0.30.2](https://github.com/dzangolab/pulumi/compare/v0.30.1...v0.30.2) (2025-01-22)
 
 
