@@ -1,5 +1,4 @@
 import { interpolate } from "@pulumi/pulumi";
-import "dotenv/config";
 
 import { getConfig } from "./config";
 /* eslint-disable-next-line n/no-unpublished-import */
