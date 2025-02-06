@@ -2,12 +2,11 @@
     "name": "dns-record-set",
     "main": "index.ts",
     "devDependencies": {
-        "@types/node": "^16"
+        "@types/node": "^22"
     },
     "dependencies": {
-        "@pulumi/cloudflare": "^5.0.0",
-        "@pulumi/pulumi": "^3.0.0",
-        "@pulumi/random": "^4.13.2",
-        "dotenv": "^16.3.1"
+        "@pulumi/cloudflare": "^5",
+        "@pulumi/pulumi": "^3",
+        "@pulumi/random": "^4"
     }
 }
