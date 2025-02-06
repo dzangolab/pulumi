@@ -7,7 +7,7 @@ import js from "@eslint/js";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import _import from "eslint-plugin-import";
-import node from "eslint-plugin-node";
+import n from "eslint-plugin-n";
 import prettier from "eslint-plugin-prettier";
 import promise from "eslint-plugin-promise";
 import unicorn from "eslint-plugin-unicorn";
@@ -25,7 +25,7 @@ export default [
   ...fixupConfigRules(
     compat.extends(
       "eslint:recommended",
-      "plugin:node/recommended",
+      "plugin:n/recommended",
       "plugin:import/recommended",
       "plugin:import/typescript",
       "plugin:prettier/recommended",
@@ -35,14 +35,14 @@ export default [
     ),
   ),
   {
-    ignores: ["eslint.config.js", "ship.config.cfs", "vite.config.ts"],
+    ignores: ["dist/", "eslint.config.js", "ship.config.cfs", "vite.config.ts"],
   },
   {
     files: ["**/*.js", "**/*.ts"],
     plugins: {
       "@typescript-eslint": fixupPluginRules(typescriptEslint),
       import: fixupPluginRules(_import),
-      node: fixupPluginRules(node),
+      n: fixupPluginRules(n),
       prettier: fixupPluginRules(prettier),
       promise,
       unicorn: fixupPluginRules(unicorn),
@@ -83,13 +83,13 @@ export default [
           "newlines-between": "always",
         },
       ],
-      "node/no-unpublished-import": [
+      "n/no-unpublished-import": [
         "error",
         {
           allowModules: [],
         },
       ],
-      "node/no-unsupported-features/es-syntax": [
+      "n/no-unsupported-features/es-syntax": [
         "error",
         {
           ignores: ["modules"],
