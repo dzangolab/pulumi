@@ -2,10 +2,10 @@
     "name": "ecr-repository",
     "main": "index.ts",
     "devDependencies": {
-        "@types/node": "^16"
+        "@types/node": "^22"
     },
     "dependencies": {
-        "@pulumi/pulumi": "^3.0.0",
-        "@pulumi/aws": "^5.0.0"
+        "@pulumi/aws": "^6",
+        "@pulumi/pulumi": "^3"
     }
 }
