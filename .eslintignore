@@ -1,5 +1,0 @@
-.eslintrc.cjs
-dist
-node_modules
-ship.config.cjs
-vite.config.ts
