@@ -1,3 +1,12 @@
+# [0.33.0](https://github.com/dzangolab/pulumi/compare/v0.32.0...v0.33.0) (2025-02-09)
+
+
+### Features
+
+* **do/appResources:** add vpcIpRange as resource output ([#274](https://github.com/dzangolab/pulumi/issues/274)) ([2a7c1bc](https://github.com/dzangolab/pulumi/commit/2a7c1bcb2b0e029076d2de2eb0225f13e664773a))
+
+
+
 # [0.32.0](https://github.com/dzangolab/pulumi/compare/v0.31.3...v0.32.0) (2025-02-06)
 
 
