@@ -26,6 +26,7 @@ export class AppResources extends ComponentResource {
   volumeId?: Output<string>;
   volumeName?: Output<string>;
   vpcId: Output<string>;
+  vpcIpRange: Output<string>;
 
   constructor(
     name: string,
@@ -49,6 +50,8 @@ export class AppResources extends ComponentResource {
       },
     );
 
+    this.projectId = project.id;
+
     const vpc = new Vpc(
       name,
       {
@@ -60,6 +63,9 @@ export class AppResources extends ComponentResource {
         retainOnDelete: opts?.retainOnDelete,
       },
     );
+
+    this.vpcId = vpc.id;
+    this.vpcIpRange = vpc.ipRange;
 
     const reservedIp = new ReservedIp(
       name,
@@ -73,9 +79,7 @@ export class AppResources extends ComponentResource {
       },
     );
 
-    this.projectId = project.id;
     this.reservedIpId = reservedIp.id;
-    this.vpcId = vpc.id;
 
     if (args.volumeSize) {
       const volume = new Volume(
