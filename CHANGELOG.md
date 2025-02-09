@@ -1,3 +1,14 @@
+## [0.33.1](https://github.com/dzangolab/pulumi/compare/v0.33.0...v0.33.1) (2025-02-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @pulumi/aws to v6.68.0 ([#271](https://github.com/dzangolab/pulumi/issues/271)) ([1e7c5de](https://github.com/dzangolab/pulumi/commit/1e7c5dea2e69da8d08441775e812bda51397bebd))
+* **deps:** update dependency @pulumi/pulumi to v3.149.0 ([#273](https://github.com/dzangolab/pulumi/issues/273)) ([f6d6d63](https://github.com/dzangolab/pulumi/commit/f6d6d635f0bc83a77c67840e86847799ae0e6f95))
+* **husky:** cleanup husky script ([19f605d](https://github.com/dzangolab/pulumi/commit/19f605dc5b674597ef6ba48c45e9a8017dbabfe0))
+
+
+
 # [0.33.0](https://github.com/dzangolab/pulumi/compare/v0.32.0...v0.33.0) (2025-02-09)
 
 
