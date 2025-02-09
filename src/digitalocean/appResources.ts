@@ -23,10 +23,14 @@ export interface AppResourcesArguments {
 export class AppResources extends ComponentResource {
   projectId: Output<string>;
   reservedIpId: Output<string>;
+  reservedIpUrn: Output<string>;
   volumeId?: Output<string>;
   volumeName?: Output<string>;
+  volumeUrn?: Output<string>;
   vpcId: Output<string>;
   vpcIpRange: Output<string>;
+  vpcName: Output<string>;
+  vpcUrn: Output<string>;
 
   constructor(
     name: string,
@@ -66,6 +70,10 @@ export class AppResources extends ComponentResource {
 
     this.vpcId = vpc.id;
     this.vpcIpRange = vpc.ipRange;
+    this.vpcName = vpc.name;
+    this.vpcUrn = vpc.vpcUrn;
+
+    const resources = [vpc.vpcUrn];
 
     const reservedIp = new ReservedIp(
       name,
@@ -80,6 +88,9 @@ export class AppResources extends ComponentResource {
     );
 
     this.reservedIpId = reservedIp.id;
+    this.reservedIpUrn = reservedIp.reservedIpUrn;
+
+    resources.push(reservedIp.urn);
 
     if (args.volumeSize) {
       const volume = new Volume(
@@ -97,22 +108,25 @@ export class AppResources extends ComponentResource {
         },
       );
 
-      new ProjectResources(
-        name,
-        {
-          project: project.id,
-          resources: [volume.volumeUrn],
-        },
-        {
-          parent: project,
-          protect: opts?.protect,
-          retainOnDelete: opts?.retainOnDelete,
-        },
-      );
-
       this.volumeId = volume.id;
       this.volumeName = volume.name;
+      this.volumeUrn = volume.volumeUrn;
+
+      resources.push(volume.urn);
     }
+
+    new ProjectResources(
+      name,
+      {
+        project: project.id,
+        resources,
+      },
+      {
+        parent: project,
+        protect: opts?.protect,
+        retainOnDelete: opts?.retainOnDelete,
+      },
+    );
 
     this.registerOutputs();
   }

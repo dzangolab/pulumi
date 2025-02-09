@@ -20,7 +20,6 @@ export default defineConfig(({ mode }) => {
         external: [
           ...Object.keys(peerDependencies),
           ...Object.keys(dependencies),
-          "nunjucks",
         ],
         output: {
           exports: "named",
@@ -31,6 +30,8 @@ export default defineConfig(({ mode }) => {
             "@pulumi/digitalocean": "DigitalOcean",
             "@pulumi/gitlab": "Gitlab",
             "@pulumi/pulumi": "Pulumi",
+            "@pulumi/random": "Random",
+            "google-protobuf": "GoogleProtobuf",
             nunjucks: "Nunjucks",
           },
         },
