@@ -112,7 +112,7 @@ export class Droplet extends ComponentResource {
     const ipAddress = args.reservedIpId || droplet.ipv4Address;
 
     new local.Command(
-      "addOrRemoveDropletToOrFromKnownHosts",
+      `addOrRemoveDropletToOrFromKnownHosts-${name}`,
       {
         create: interpolate`sleep 30 && ssh-keyscan ${ipAddress} 2>&1 | grep -vE '^#' >> ~/.ssh/known_hosts`,
         delete: interpolate`sed -i -e '/^${ipAddress} .*/d' ~/.ssh/known_hosts`,
