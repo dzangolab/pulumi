@@ -1,3 +1,12 @@
+## [0.33.2](https://github.com/dzangolab/pulumi/compare/v0.33.1...v0.33.2) (2025-02-11)
+
+
+### Bug Fixes
+
+* **do/droplet:** ensure unicity of local command resource name ([d15cf06](https://github.com/dzangolab/pulumi/commit/d15cf0640ed44b965f380e690930ab3a671c3c5c))
+
+
+
 ## [0.33.1](https://github.com/dzangolab/pulumi/compare/v0.33.0...v0.33.1) (2025-02-09)
 
 
