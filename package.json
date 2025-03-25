@@ -69,7 +69,7 @@
     "shipjs": "0.27.0",
     "sort-package-json": "2.14.0",
     "typescript": "5.7.3",
-    "vite": "6.1.0"
+    "vite": "6.1.2"
   },
   "peerDependencies": {
     "@pulumi/aws": ">=6.0",
