@@ -27,6 +27,10 @@ export class GithubActionsRole extends ComponentResource {
   ) {
     super("dzangolab:pulumi/aws:GithubActionsRole", name, args, opts);
 
+    if (args.githubRepos.length === 0) {
+      throw new Error("At least one github repo is required");
+    }
+
     const assumeRolePolicy = jsonStringify({
       Version: "2012-10-17",
       Statement: [
@@ -42,7 +46,9 @@ export class GithubActionsRole extends ComponentResource {
               "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
             },
             StringLike: {
-              "token.actions.githubusercontent.com:sub": `repo:${args.githubRepos[0]}`,
+              "token.actions.githubusercontent.com:sub": args.githubRepos.map(
+                (repo) => `repo:${repo}`,
+              ),
             },
           },
         },
