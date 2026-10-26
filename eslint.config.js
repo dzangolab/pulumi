@@ -1,51 +1,29 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-import { fixupConfigRules, fixupPluginRules } from "@eslint/compat";
-import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
-import _import from "eslint-plugin-import";
+import importX from "eslint-plugin-import-x";
 import n from "eslint-plugin-n";
-import prettier from "eslint-plugin-prettier";
+import prettierRecommended from "eslint-plugin-prettier/recommended";
 import promise from "eslint-plugin-promise";
 import unicorn from "eslint-plugin-unicorn";
 import globals from "globals";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
 export default [
-  ...fixupConfigRules(
-    compat.extends(
-      "eslint:recommended",
-      "plugin:n/recommended",
-      "plugin:import/recommended",
-      "plugin:import/typescript",
-      "plugin:prettier/recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:unicorn/recommended",
-      "prettier",
-    ),
-  ),
+  js.configs.recommended,
+  n.configs["flat/recommended"],
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.typescript,
+  ...typescriptEslint.configs["flat/recommended"],
+  unicorn.configs.recommended,
+  // Must come last so it disables rules that conflict with prettier
+  prettierRecommended,
   {
-    ignores: ["dist/", "eslint.config.js", "ship.config.cfs", "vite.config.ts"],
+    ignores: ["dist/", "eslint.config.js", "ship.config.cjs", "vite.config.ts"],
   },
   {
     files: ["**/*.js", "**/*.ts"],
     plugins: {
-      "@typescript-eslint": fixupPluginRules(typescriptEslint),
-      import: fixupPluginRules(_import),
-      n: fixupPluginRules(n),
-      prettier: fixupPluginRules(prettier),
       promise,
-      unicorn: fixupPluginRules(unicorn),
     },
     languageOptions: {
       globals: {
@@ -64,7 +42,7 @@ export default [
     rules: {
       curly: ["error", "all"],
       "brace-style": ["error", "1tbs"],
-      "import/order": [
+      "import-x/order": [
         "error",
         {
           alphabetize: {
@@ -103,18 +81,10 @@ export default [
             camelCase: true,
             snakeCase: true,
           },
+          checkDirectories: false,
         },
       ],
-      "unicorn/numeric-separators-style": [
-        "error",
-        {
-          number: {
-            minimumDigits: 6,
-            groupLength: 3,
-          },
-        },
-      ],
-      "unicorn/prevent-abbreviations": [
+      "unicorn/name-replacements": [
         "error",
         {
           allowList: {
@@ -123,6 +93,15 @@ export default [
             env: true,
             err: true,
             i: true,
+          },
+        },
+      ],
+      "unicorn/numeric-separators-style": [
+        "error",
+        {
+          number: {
+            minimumDigits: 6,
+            groupLength: 3,
           },
         },
       ],

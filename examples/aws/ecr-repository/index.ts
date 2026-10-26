@@ -7,13 +7,13 @@ import { ECRRepository } from "../../../src/aws/ecrRepository";
 export = async () => {
   const config = await getConfig();
 
-  const repo = new ECRRepository(config.name, {});
+  const repository = new ECRRepository(config.name, {});
 
   return {
-    arn: interpolate`${repo.arn}`,
-    id: interpolate`${repo.id}`,
-    roPolicyArn: interpolate`${repo.roPolicyArn}`,
-    rwPolicyArn: interpolate`${repo.rwPolicyArn}`,
-    tagsAll: interpolate`${repo.tagsAll}`,
+    arn: interpolate`${repository.arn}`,
+    id: interpolate`${repository.id}`,
+    roPolicyArn: interpolate`${repository.roPolicyArn}`,
+    rwPolicyArn: interpolate`${repository.rwPolicyArn}`,
+    tagsAll: interpolate`${repository.tagsAll}`,
   };
 };

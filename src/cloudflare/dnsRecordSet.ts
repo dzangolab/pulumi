@@ -4,6 +4,7 @@ import {
   ComponentResourceOptions,
   Input,
   Output,
+  output,
 } from "@pulumi/pulumi";
 
 export interface DnsRecordSetArguments {
@@ -28,7 +29,7 @@ export class DnsRecordSet extends ComponentResource {
 
     const domain = args.domain;
 
-    const zone = getZone({ name: domain });
+    const zone = getZone({ filter: { name: domain } });
 
     const subdomain = args.subdomain;
 
@@ -37,12 +38,12 @@ export class DnsRecordSet extends ComponentResource {
     const host = new Record(
       `${hostname}.${args.domain}`,
       {
-        name: hostname,
+        name: `${hostname}.${args.domain}`,
         proxied: false,
         type: "A",
         ttl: args.ttl || 3600,
-        value: args.ip,
-        zoneId: zone.then((zone) => zone.id),
+        content: args.ip,
+        zoneId: output(zone).id,
       },
       {
         ...opts,
@@ -59,12 +60,12 @@ export class DnsRecordSet extends ComponentResource {
         new Record(
           `${alias}.${args.domain}`,
           {
-            name: alias,
+            name: `${alias}.${args.domain}`,
             proxied: false,
             type: "CNAME",
             ttl: args.ttl || 3600,
-            value: `${hostname}.${args.domain}`,
-            zoneId: zone.then((zone) => zone.id),
+            content: `${hostname}.${args.domain}`,
+            zoneId: output(zone).id,
           },
           {
             ...opts,
@@ -74,8 +75,8 @@ export class DnsRecordSet extends ComponentResource {
       );
     }
 
-    this.a = host.hostname;
-    this.aliases = cnames.map((alias) => alias.hostname);
+    this.a = host.name;
+    this.aliases = cnames.map((alias) => alias.name);
 
     this.registerOutputs();
   }

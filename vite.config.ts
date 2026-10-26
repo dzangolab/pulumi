@@ -17,11 +17,11 @@ export default defineConfig(({ mode }) => {
         name: "DzangolabPulumi",
       },
       rollupOptions: {
-        external: [
-          ...Object.keys(peerDependencies),
-          ...Object.keys(dependencies),
-          "nunjucks",
-        ],
+        // Match subpath imports (e.g. "@pulumi/aws/iam") too, not just package names
+        external: (id: string) =>
+          [...Object.keys(peerDependencies), ...Object.keys(dependencies)].some(
+            (name) => id === name || id.startsWith(`${name}/`),
+          ),
         output: {
           exports: "named",
           globals: {

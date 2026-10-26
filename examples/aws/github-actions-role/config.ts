@@ -37,7 +37,7 @@ export const getConfig = async () => {
   };
 };
 
-function getValue<T>(input: StackReferenceOutputDetails, defaultValue?: T): T {
+function getValue<T>(input: StackReferenceOutputDetails): T {
   if (input && input.value) {
     return <T>input.value!;
   }
@@ -46,9 +46,5 @@ function getValue<T>(input: StackReferenceOutputDetails, defaultValue?: T): T {
     return <T>input.secretValue!;
   }
 
-  if (!defaultValue) {
-    throw new Error("A value is required");
-  }
-
-  return defaultValue;
+  throw new Error("A value is required");
 }

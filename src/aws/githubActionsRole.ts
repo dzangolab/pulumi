@@ -47,7 +47,7 @@ export class GithubActionsRole extends ComponentResource {
             },
             StringLike: {
               "token.actions.githubusercontent.com:sub": args.githubRepos.map(
-                (repo) => `repo:${repo}`,
+                (repository) => `repo:${repository}`,
               ),
             },
           },

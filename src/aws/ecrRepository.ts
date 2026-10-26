@@ -27,7 +27,7 @@ export class ECRRepository extends ComponentResource {
   ) {
     super("dzangolab:pulumi/aws:ECRRepository", name, args, opts);
 
-    const repo = new Repository(name, args, {
+    const repository = new Repository(name, args, {
       ...opts,
       parent: this,
     });
@@ -35,7 +35,7 @@ export class ECRRepository extends ComponentResource {
     new LifecyclePolicy(
       name,
       {
-        repository: repo.name,
+        repository: repository.name,
         policy: `{
           "rules": [
               {
@@ -55,18 +55,18 @@ export class ECRRepository extends ComponentResource {
       }`,
       },
       {
-        dependsOn: repo,
+        dependsOn: repository,
         parent: this,
         protect: opts?.protect,
         retainOnDelete: opts?.retainOnDelete,
       },
     );
 
-    this.arn = repo.arn;
-    this.id = repo.id;
-    this.registryId = repo.registryId;
-    this.repositoryUrl = repo.repositoryUrl;
-    this.tagsAll = repo.tagsAll;
+    this.arn = repository.arn;
+    this.id = repository.id;
+    this.registryId = repository.registryId;
+    this.repositoryUrl = repository.repositoryUrl;
+    this.tagsAll = repository.tagsAll;
 
     if (args?.provisionPolicies) {
       const roPolicy = new Policy(
@@ -91,7 +91,7 @@ export class ECRRepository extends ComponentResource {
                   "ecr:DescribeImageScanFindings",
                 ],
                 Effect: "Allow",
-                Resource: repo.arn,
+                Resource: repository.arn,
                 Sid: "ECR",
               },
               {
@@ -104,8 +104,8 @@ export class ECRRepository extends ComponentResource {
           }),
         },
         {
-          dependsOn: repo,
-          parent: repo,
+          dependsOn: repository,
+          parent: repository,
           protect: opts?.protect,
           retainOnDelete: opts?.retainOnDelete,
         },
@@ -129,7 +129,7 @@ export class ECRRepository extends ComponentResource {
                   "ecr:BatchCheckLayerAvailability",
                 ],
                 Effect: "Allow",
-                Resource: repo.arn,
+                Resource: repository.arn,
                 Sid: "ECR",
               },
               {
@@ -142,7 +142,7 @@ export class ECRRepository extends ComponentResource {
           }),
         },
         {
-          parent: repo,
+          parent: repository,
           protect: opts?.protect,
           retainOnDelete: opts?.retainOnDelete,
         },
