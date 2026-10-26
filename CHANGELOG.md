@@ -1,3 +1,14 @@
+## [0.34.1](https://github.com/dzangolab/pulumi/compare/v0.33.2...v0.34.1) (2026-10-26)
+
+
+### Bug Fixes
+
+* **aws/github-identity-provider:** fix GithubActionsRole ([1ad7751](https://github.com/dzangolab/pulumi/commit/1ad7751c05fb0236254b0432dad87dfcd7496819))
+* **deps:** update dependency @pulumi/aws to v6.81.0 ([#306](https://github.com/dzangolab/pulumi/issues/306)) ([a986904](https://github.com/dzangolab/pulumi/commit/a986904f9c724e42d816c2e671a2cb2f0e891b4d))
+* **deps:** update dependency @pulumi/pulumi to v3.170.0 ([#279](https://github.com/dzangolab/pulumi/issues/279)) ([cae1aeb](https://github.com/dzangolab/pulumi/commit/cae1aeb4b0417754a3ab8f52a1fdd0f066c2d88c))
+* **deps:** update dependency @pulumi/pulumi to v3.171.0 ([#307](https://github.com/dzangolab/pulumi/issues/307)) ([b49f938](https://github.com/dzangolab/pulumi/commit/b49f938c4d49708069e05beff1bf06cfb189ba81))
+* **deps:** update dependency @pulumi/random to v4.18.2 ([#308](https://github.com/dzangolab/pulumi/issues/308)) ([c59ac22](https://github.com/dzangolab/pulumi/commit/c59ac220f61d9b4a84de42de365b97df81c5b68c))
+* **deps:** update dependency @pulumi/random to v4.18.2 ([#309](https://github.com/dzangolab/pulumi/issues/309)) ([055ed99](https://github.com/dzangolab/pulumi/commit/055ed99e108f283ec8aff18a1bf511d061021bb0))
 ## [0.33.2](https://github.com/dzangolab/pulumi/compare/v0.33.1...v0.33.2) (2025-02-11)
 
 
