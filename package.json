@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@pulumi/random": "4.21.4",
-    "google-protobuf": "3.21.4",
+    "google-protobuf": "4.0.3",
     "nunjucks": "3.2.4"
   },
   "devDependencies": {
