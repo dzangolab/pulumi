@@ -3,7 +3,21 @@ import { fileURLToPath } from "node:url";
 
 import { defineConfig, loadEnv } from "vite";
 
-import { dependencies, peerDependencies } from "./package.json";
+import packageJson from "./package.json" with { type: "json" };
+
+const { dependencies, peerDependencies } = packageJson;
+
+const globals: Record<string, string> = {
+  "@pulumi/aws": "AWS",
+  "@pulumi/cloudflare": "Cloudflare",
+  "@pulumi/command": "Command",
+  "@pulumi/digitalocean": "DigitalOcean",
+  "@pulumi/gitlab": "Gitlab",
+  "@pulumi/pulumi": "Pulumi",
+  "@pulumi/random": "Random",
+  "google-protobuf": "GoogleProtobuf",
+  nunjucks: "Nunjucks",
+};
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -24,14 +38,20 @@ export default defineConfig(({ mode }) => {
           ),
         output: {
           exports: "named",
-          globals: {
-            "@pulumi/aws": "AWS",
-            "@pulumi/cloudflare": "Cloudflare",
-            "@pulumi/command": "Command",
-            "@pulumi/digitalocean": "DigitalOcean",
-            "@pulumi/gitlab": "Gitlab",
-            "@pulumi/pulumi": "Pulumi",
-            nunjucks: "Nunjucks",
+          // Subpath imports (e.g. "@pulumi/aws/iam") map to a property of the
+          // package global (e.g. "AWS.iam")
+          globals: (id: string) => {
+            const name = Object.keys(globals).find(
+              (name) => id === name || id.startsWith(`${name}/`),
+            );
+
+            if (!name) {
+              return id;
+            }
+
+            return [globals[name], ...id.slice(name.length + 1).split("/")]
+              .filter(Boolean)
+              .join(".");
           },
         },
       },
