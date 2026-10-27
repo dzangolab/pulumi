@@ -34,7 +34,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepare": "husky install",
-    "release": "shipjs prepare",
     "sort-package": "npx sort-package-json",
     "typecheck": "tsc --noEmit -p tsconfig.json --composite false"
   },
@@ -51,7 +50,6 @@
     "@types/nunjucks": "3.2.6",
     "@typescript-eslint/eslint-plugin": "8.72.1",
     "@typescript-eslint/parser": "8.72.1",
-    "conventional-changelog-angular": "9.4.0",
     "eslint": "10.13.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-import-resolver-typescript": "4.4.5",
@@ -63,7 +61,6 @@
     "globals": "17.13.0",
     "husky": "9.1.7",
     "prettier": "3.9.10",
-    "shipjs": "0.28.4",
     "sort-package-json": "4.1.0",
     "typescript": "5.9.3",
     "vite": "8.3.5"

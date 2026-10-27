@@ -10,7 +10,7 @@ build:
 # Install dependencies
 install:
     @echo "{{ GREEN }}>>> Installing dependencies{{ NORMAL }}"
-    npm -r install
+    npm install
 
 # Lint code
 lint:
@@ -25,17 +25,17 @@ lint-fix:
 # Check for outdated dependencies
 outdated:
     @echo "{{ GREEN }}>>> Check for outdated dependencies{{ NORMAL }}"
-    npm -r outdated
+    npm outdated
 
-# Publish packages
-publish:
-    @echo "{{ GREEN }}>>> Publish packages{{ NORMAL }}"
-    npx shipjs trigger
-
-# Prepare packages for release
-release:
-    @echo "{{ GREEN }}>>> Prepare packages for release{{ NORMAL }}"
-    npx shipjs prepare
+# Bump the version (patch, minor or major) and push the tag that triggers publishing
+[no-exit-message]
+release bump="patch":
+    @echo "{{ GREEN }}>>> Release {{ bump }} version{{ NORMAL }}"
+    @test "$(git branch --show-current)" = main || { echo "Not on main"; exit 1; }
+    @test -z "$(git status --porcelain)" || { echo "Working copy not clean"; exit 1; }
+    git pull --ff-only origin main
+    npm version {{ bump }} -m "chore: release v%s"
+    git push --follow-tags origin main
 
 # Format package.json
 sort-package:
