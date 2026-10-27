@@ -51,7 +51,7 @@
     "@types/nunjucks": "3.2.6",
     "@typescript-eslint/eslint-plugin": "8.72.0",
     "@typescript-eslint/parser": "8.72.0",
-    "conventional-changelog-angular": "8.3.1",
+    "conventional-changelog-angular": "9.4.0",
     "eslint": "10.13.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-import-resolver-typescript": "4.4.5",
