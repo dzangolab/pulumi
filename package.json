@@ -63,7 +63,7 @@
     "prettier": "3.9.10",
     "sort-package-json": "4.1.0",
     "typescript": "5.9.3",
-    "vite": "8.3.5"
+    "vite": "8.3.8"
   },
   "peerDependencies": {
     "@pulumi/aws": ">=7.0",
